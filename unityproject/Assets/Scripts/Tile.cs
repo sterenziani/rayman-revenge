@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+	public bool isPellet;
+	public bool isSuperPellet;
+	public bool consumed;
+	public bool isPortal;
+	public GameObject portalPair;
+
+	// Start is called before the first frame update
+	void Start()
     {
         
     }
