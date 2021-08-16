@@ -21,12 +21,12 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		speed = 4f;
+		speed = 5f;
         _anmCtrl = GetComponent<Animator>();
         _sprRnd = GetComponent<SpriteRenderer>();
         Node node = GetNodeAtPosition(transform.localPosition);
-        if(node != null)
-            currentNode = node;
+		if (node != null)
+			currentNode = node;
 		direction = Vector2.left;
 		ChangeDirection(direction);
     }
