@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Maze
   - InvisibleNode
+  - Enemy
+  - GhostHomeNode
   layers:
   - Default
   - TransparentFX

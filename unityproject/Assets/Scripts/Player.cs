@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 4f;
     private Animator _anmCtrl;
     private SpriteRenderer _sprRnd;
-
-    private Node prevNode, currentNode, targetNode;
+	
+	public float speed = 4f;
+	public Vector2 direction = Vector2.zero;
+	private Vector2 nextDirection = Vector2.zero;
+	private Node prevNode, currentNode, targetNode;
 	private int pelletsConsumed = 0;
-    private Vector2 direction = Vector2.zero;
-    private Vector2 nextDirection = Vector2.zero;
     private KeyCode PACMAN_LEFT_KEY = KeyCode.LeftArrow;
     private KeyCode PACMAN_RIGHT_KEY = KeyCode.RightArrow;
     private KeyCode PACMAN_UP_KEY = KeyCode.UpArrow;
     private KeyCode PACMAN_DOWN_KEY = KeyCode.DownArrow;
 	private int PELLET_SCORE = 1;
+	private GameBoard gameBoard;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,8 @@ public class Player : MonoBehaviour
 		speed = 5f;
         _anmCtrl = GetComponent<Animator>();
         _sprRnd = GetComponent<SpriteRenderer>();
-        Node node = GetNodeAtPosition(transform.localPosition);
+		gameBoard = GameObject.Find("Game").GetComponent<GameBoard>();
+        Node node = NodeUtilities.GetNodeAtPosition(transform.localPosition, gameBoard);
 		if (node != null)
 			currentNode = node;
 		direction = Vector2.left;
@@ -34,7 +36,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		Debug.Log("SCORE: " +GameObject.Find("Game").GetComponent<GameBoard>().score);
+		//Debug.Log("SCORE: " +gameBoard.score);
         ReadInput();
         UpdateMovement();
 		UpdateSprite();
@@ -57,7 +59,7 @@ public class Player : MonoBehaviour
     {
 		if(targetNode != null && targetNode != currentNode)
 		{
-			// If I turn around, switch origin and target
+			// If I turn around, swap origin with target
 			if(nextDirection == direction * -1)
 			{
 				direction *= -1;
@@ -65,25 +67,25 @@ public class Player : MonoBehaviour
 				targetNode = prevNode;
 				prevNode = tempNode;
 			}
-			// If I passed a node, go back and plan next step
-			if(OvershotTarget())
+			// If I passed a node, go back to its position and plan next step
+			if(NodeUtilities.OvershotTarget(prevNode.transform.position, transform.localPosition, targetNode.transform.position))
 			{
 				currentNode = targetNode;
 				transform.localPosition = currentNode.transform.position;
 
 				// Check if I'm at a portal
-				GameObject otherPortal = GetPortal(currentNode.transform.position);
-				if(otherPortal != null){
+				GameObject otherPortal = NodeUtilities.GetPortal(currentNode.transform.position, gameBoard);
+				if (otherPortal != null){
 					transform.localPosition = otherPortal.transform.position;
 					currentNode = otherPortal.GetComponent<Node>();
 				}
 				
 				// If there's a node in the direction I pressed, aim for that. If not, go forward
-				Node destinationNode = NextNodeInDirection(nextDirection);
+				Node destinationNode = NodeUtilities.NextNodeInDirection(currentNode, nextDirection);
 				if(destinationNode != null)
 					direction = nextDirection;
 				if(destinationNode == null)
-					destinationNode = NextNodeInDirection(direction);
+					destinationNode = NodeUtilities.NextNodeInDirection(currentNode, direction);
 				
 				// Set the node I decided on as my target
 				if(destinationNode != null){
@@ -126,9 +128,10 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	// Eat pellet on current tile
 	void ConsumePellet()
 	{
-		GameObject o = GetTileAtPosition(transform.position);
+		GameObject o = NodeUtilities.GetTileAtPosition(transform.position, gameBoard);
 		if(o != null)
 		{
 			Tile tile = o.GetComponent<Tile>();
@@ -138,44 +141,20 @@ public class Player : MonoBehaviour
 				{
 					o.GetComponent<SpriteRenderer>().enabled = false;
 					tile.consumed = true;
-					GameObject.Find("Game").GetComponent<GameBoard>().score += PELLET_SCORE;
+					gameBoard.score += PELLET_SCORE;
 					pelletsConsumed++;
 				}
 			}
 		}
 	}
-
-    Node GetNodeAtPosition(Vector2 position)
-    {
-        GameObject tile = GetTileAtPosition(position);
-        if(tile != null)
-            return tile.GetComponent<Node>();
-        return null;
-    }
-
-    Node NextNodeInDirection(Vector2 d)
-    {
-        Node destinationNode = null;
-		if(currentNode != null)
-		{
-			for(int i=0; i < currentNode.neighbors.Length; i++)
-			{
-				if(currentNode.validDirections[i] == d){
-					destinationNode = currentNode.neighbors[i];
-					break;
-				}
-			}
-		}
-        return destinationNode;
-    }
-
+	
     void ChangeDirection(Vector2 d)
     {
         if(d != direction)
 			nextDirection = d;
 		if(currentNode != null)
 		{
-			Node destinationNode = NextNodeInDirection(d);
+			Node destinationNode = NodeUtilities.NextNodeInDirection(currentNode, d);
 			if(destinationNode != null){
 				direction = d;
 				targetNode = destinationNode;
@@ -184,39 +163,4 @@ public class Player : MonoBehaviour
 			}
 		}
     }
-
-	// Returns true if we passed the target we were trying to reach
-	bool OvershotTarget()
-	{
-		float nodeToTarget = DistanceFromNode(targetNode.transform.position);
-		float nodeToSelf = DistanceFromNode(transform.localPosition);
-		return nodeToSelf > nodeToTarget;
-	}
-
-	float DistanceFromNode(Vector2 targetPosition)
-	{
-		Vector2 vec = targetPosition - (Vector2)prevNode.transform.position;
-		return vec.sqrMagnitude;
-	}
-
-	GameObject GetPortal(Vector2 position)
-	{
-		GameObject tile = GetTileAtPosition(position);
-		if(tile != null)
-		{
-			if(tile.GetComponent<Tile>() != null && tile.GetComponent<Tile>().isPortal){
-				GameObject otherPortal = tile.GetComponent<Tile>().portalPair;
-				return otherPortal;
-			}
-		}
-		return null;
-	}
-
-	GameObject GetTileAtPosition(Vector2 position)
-	{
-		int tileX = Mathf.RoundToInt(position.x);
-		int tileY = Mathf.RoundToInt(position.y);
-		GameObject tile = GameObject.Find("Game").GetComponent<GameBoard>().board[tileX, tileY];
-		return tile;
-	}
 }
