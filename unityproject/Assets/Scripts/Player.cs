@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     private Animator _anmCtrl;
     private SpriteRenderer _sprRnd;
 	
-	public float speed = 4f;
+	public float speed = 5.75f;
 	public Vector2 direction = Vector2.zero;
 	private Vector2 nextDirection = Vector2.zero;
 	private Node prevNode, currentNode, targetNode;
@@ -19,10 +19,15 @@ public class Player : MonoBehaviour
 	private int PELLET_SCORE = 1;
 	private GameBoard gameBoard;
 
-    // Start is called before the first frame update
-    void Start()
+	// SONIDOS
+	private bool playedFirstMunch = false;
+	private AudioSource audioSource;
+	public AudioClip munch1;
+	public AudioClip munch2;
+
+	// Start is called before the first frame update
+	void Start()
     {
-		speed = 5f;
         _anmCtrl = GetComponent<Animator>();
         _sprRnd = GetComponent<SpriteRenderer>();
 		gameBoard = GameObject.Find("Game").GetComponent<GameBoard>();
@@ -31,6 +36,7 @@ public class Player : MonoBehaviour
 			currentNode = node;
 		direction = Vector2.left;
 		ChangeDirection(direction);
+		audioSource = transform.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -42,6 +48,16 @@ public class Player : MonoBehaviour
 		UpdateSprite();
 		ConsumePellet();
     }
+
+	void PlayMunchSound()
+	{
+		if (playedFirstMunch)
+			audioSource.PlayOneShot(munch2);
+		else
+			audioSource.PlayOneShot(munch1);
+		playedFirstMunch = !playedFirstMunch;
+	}
+
 
     void ReadInput()
     {
@@ -143,6 +159,15 @@ public class Player : MonoBehaviour
 					tile.consumed = true;
 					gameBoard.score += PELLET_SCORE;
 					pelletsConsumed++;
+					PlayMunchSound();
+					if(tile.isSuperPellet)
+					{
+						GameObject[] ghosts = GameObject.FindGameObjectsWithTag("Enemy");
+						foreach(GameObject g in ghosts)
+						{
+							g.GetComponent<Ghost>().StartScaredMode();
+						}
+					}
 				}
 			}
 		}

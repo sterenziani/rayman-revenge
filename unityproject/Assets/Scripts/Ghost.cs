@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Ghost : MonoBehaviour
 {
-	public float speed = 4.9f;
+	private float speed;
+	public float regularSpeed = 5.6f;
+	public float scaredSpeed = 3f;
 	private Animator _anmCtrl;
 	private SpriteRenderer _sprRnd;
 	private GameBoard gameBoard;
 
 	public enum Mode { CHASE, SCATTER, SCARED, EATEN };
+	private Mode prevMode;
 	private Mode currentMode = Mode.CHASE;
 	public enum GhostType { BLINKY, PINKY, INKY, CLYDE };
 	public GhostType type = GhostType.BLINKY;
@@ -26,11 +29,21 @@ public class Ghost : MonoBehaviour
 	private GameObject pacman;
 	private GameObject blinky;
 
-	private float modeChangeTimer = 0;
 	private int modeChangeIndex = 0;
 	private static int CHASE_MODE_LENGTH = 20;
 	private static Mode[] modeOrder = { Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE};
-	private static int[] modeTimers = { 7, 7, CHASE_MODE_LENGTH, 7, CHASE_MODE_LENGTH, 5, CHASE_MODE_LENGTH, 7, CHASE_MODE_LENGTH };
+	private static int[] modeDurations = { 7, 7, CHASE_MODE_LENGTH, 7, CHASE_MODE_LENGTH, 5, CHASE_MODE_LENGTH, 7, CHASE_MODE_LENGTH };
+
+	private float modeChangeTimer = 0;
+	private float scaredModeTimer = 0;
+	private float whiteModeTimer = 0;
+	private int scaredModeDuration = 10;
+	private int scaredModeBlinkAt = 7;
+	private bool scaredWhite = false;
+
+	public RuntimeAnimatorController regularAnimatorController;
+	public RuntimeAnimatorController scaredAnimatorController;
+	public RuntimeAnimatorController whiteAnimatorController;
 
 	// Start is called before the first frame update
 	void Start()
@@ -38,6 +51,7 @@ public class Ghost : MonoBehaviour
 		_anmCtrl = GetComponent<Animator>();
 		_sprRnd = GetComponent<SpriteRenderer>();
 		gameBoard = GameObject.Find("Game").GetComponent<GameBoard>();
+		speed = regularSpeed;
 		pacman = GameObject.FindGameObjectWithTag("Player");
 		blinky = GameObject.Find("Ghost - Blinky");
 		Node node = NodeUtilities.GetNodeAtPosition(transform.localPosition, gameBoard);
@@ -67,7 +81,21 @@ public class Ghost : MonoBehaviour
 
 	void ChangeMode(Mode m)
 	{
+		if (m == Mode.SCARED)
+		{
+			speed = scaredSpeed;
+			prevMode = currentMode;
+		}
+		else
+		{
+			speed = regularSpeed;
+		}
 		currentMode = m;
+	}
+
+	public void StartScaredMode()
+	{
+		ChangeMode(Mode.SCARED);
 	}
 
 	void UpdateMode()
@@ -75,15 +103,34 @@ public class Ghost : MonoBehaviour
 		if(currentMode != Mode.SCARED)
 		{
 			modeChangeTimer += Time.deltaTime;
-			if (modeChangeTimer > modeTimers[modeChangeIndex])
+			if (modeChangeTimer > modeDurations[modeChangeIndex])
 			{
 				// Go to next mode if available
 				if(modeChangeIndex < modeOrder.Length - 1)
 					modeChangeIndex++;
 				ChangeMode(modeOrder[modeChangeIndex]);
 				modeChangeTimer = 0;
-				Debug.Log("(" +modeChangeIndex +") Changing to " + modeOrder[modeChangeIndex] + " mode!");
 			}
+		}
+		else
+		{
+			scaredModeTimer += Time.deltaTime;
+			if(scaredModeTimer > scaredModeDuration)
+			{
+				scaredModeTimer = 0;
+				ChangeMode(prevMode);
+			}
+			else if (scaredModeTimer > scaredModeBlinkAt)
+			{
+				whiteModeTimer += Time.deltaTime;
+				if (whiteModeTimer >= 0.1f)
+				{
+					scaredWhite = !scaredWhite;
+					whiteModeTimer = 0f;
+				}
+			}
+			else
+				scaredWhite = false;
 		}
 	}
 
@@ -115,6 +162,17 @@ public class Ghost : MonoBehaviour
 
 	void UpdateSprite()
 	{
+		if(currentMode == Mode.SCARED)
+		{
+			if(scaredWhite)
+				_anmCtrl.runtimeAnimatorController = whiteAnimatorController;
+			else
+				_anmCtrl.runtimeAnimatorController = scaredAnimatorController;
+		}
+		else
+		{
+			_anmCtrl.runtimeAnimatorController = regularAnimatorController;
+		}
 		_anmCtrl.SetInteger("directionX", (int)direction.x);
 		_anmCtrl.SetInteger("directionY", (int)direction.y);
 		if (direction == Vector2.left)
