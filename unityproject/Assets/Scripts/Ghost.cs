@@ -83,8 +83,10 @@ public class Ghost : MonoBehaviour
 	{
 		if (m == Mode.SCARED)
 		{
+			scaredModeTimer = 0;
 			speed = scaredSpeed;
-			prevMode = currentMode;
+			if(currentMode != Mode.SCARED)
+				prevMode = currentMode;
 		}
 		else
 		{
