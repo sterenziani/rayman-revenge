@@ -19,6 +19,7 @@ public class Ghost : MonoBehaviour
 	public GhostType type = GhostType.BLINKY;
 	private GameObject[] ghosts;
 
+	public bool canMove = true;
 	public bool isInGhostCage = true;
 	public int releaseWait = 0;				// Time the ghost must remain in cage
 	private float ghostReleaseTimer = 0;    // Timer to check when it's time to release ghost from cage
@@ -70,8 +71,10 @@ public class Ghost : MonoBehaviour
 		modeChangeIndex = 0;
 		isInGhostCage = (type != GhostType.BLINKY);
 		InitializeGhost();
-		audioSource.clip = gameBoard.backgroundAudioNormal;
-		audioSource.Play();
+		currentMode = Mode.CHASE;
+		gameBoard.PlayNormalAlarm();
+		canMove = true;
+		transform.GetComponent<SpriteRenderer>().enabled = true;
 	}
 
 	void InitializeGhost()
@@ -92,16 +95,19 @@ public class Ghost : MonoBehaviour
 		modeChangeTimer = 0;
 		scaredModeTimer = 0;
 		whiteModeTimer = 0;
-		currentMode = Mode.CHASE;
+		currentMode = prevMode;
 	}
 
     // Update is called once per frame
     void Update()
     {
-		UpdateMode();
-		UpdateMovement();
-		TryToExitCage();
-		UpdateSprite();
+		if(canMove)
+		{
+			UpdateMode();
+			UpdateMovement();
+			TryToExitCage();
+			UpdateSprite();
+		}
 	}
 
 	void ChangeMode(Mode m)
@@ -124,16 +130,14 @@ public class Ghost : MonoBehaviour
 
 	public void StartScaredMode()
 	{
-		audioSource.clip = gameBoard.backgroundAudioScared;
-		audioSource.Play();
+		gameBoard.PlayScaredAlarm();
 		scaredModeTimer = 0;
 		ChangeMode(Mode.SCARED);
 	}
 
 	void ExitScaredMode()
 	{
-		audioSource.clip = gameBoard.backgroundAudioNormal;
-		audioSource.Play();
+		gameBoard.PlayNormalAlarm();
 		scaredModeTimer = 0;
 		ChangeMode(prevMode);
 	}
@@ -156,8 +160,7 @@ public class Ghost : MonoBehaviour
 		}
 		if(lastGhost)
 		{
-			audioSource.clip = gameBoard.backgroundAudioNormal;
-			audioSource.Play();
+			gameBoard.PlayNormalAlarm();
 		}
 		currentNode = retreatNode;
 		isInGhostCage = true;
@@ -172,7 +175,7 @@ public class Ghost : MonoBehaviour
 			StartEatenMode();
 		else if (currentMode != Mode.EATEN)
 		{
-			gameBoard.Restart();
+			gameBoard.StartDeath();
 		}
 	}
 

@@ -8,11 +8,13 @@ public class Player : MonoBehaviour
 	private SpriteRenderer _sprRnd;
 	
 	public float speed = 5.75f;
+	public bool canMove = true;
 	public Node startingPosition;
 	public Vector2 direction = Vector2.zero;
 	private Vector2 nextDirection = Vector2.zero;
 	private Node prevNode, currentNode, targetNode;
 	private int pelletsConsumed = 0;
+	private bool dead = false;
 	private KeyCode PACMAN_LEFT_KEY = KeyCode.LeftArrow;
 	private KeyCode PACMAN_RIGHT_KEY = KeyCode.RightArrow;
 	private KeyCode PACMAN_UP_KEY = KeyCode.UpArrow;
@@ -26,6 +28,8 @@ public class Player : MonoBehaviour
 	private AudioSource audioSource;
 	public AudioClip munch1;
 	public AudioClip munch2;
+	public AudioClip deathSound;
+	public AudioClip deathQuack;
 
 	// Start is called before the first frame update
 	void Start()
@@ -41,20 +45,25 @@ public class Player : MonoBehaviour
 	public void Restart()
 	{
 		transform.position = startingPosition.transform.position;
+		transform.GetComponent<SpriteRenderer>().enabled = true;
 		currentNode = startingPosition;
 		direction = Vector2.left;
 		nextDirection = Vector2.left;
 		ChangeDirection(direction);
+		canMove = true;
+		dead = false;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		//Debug.Log("SCORE: " +gameBoard.score);
-		ReadInput();
-		UpdateMovement();
+		if(canMove)
+		{
+			ReadInput();
+			UpdateMovement();
+			ConsumePellet();
+		}
 		UpdateSprite();
-		ConsumePellet();
 	}
 
 	void PlayMunchSound()
@@ -127,6 +136,15 @@ public class Player : MonoBehaviour
 
 	void UpdateSprite()
 	{
+		if(dead)
+		{
+			_anmCtrl.SetBool("dead", true);
+			_sprRnd.flipX = false;
+			transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
+			return;
+		}
+		else
+			_anmCtrl.SetBool("dead", false);
 		if (direction == Vector2.down) {
 			_anmCtrl.SetBool("move", true);
 			_sprRnd.flipX = true;
@@ -203,5 +221,20 @@ public class Player : MonoBehaviour
 		{
 			ghost.TouchPacman();
 		}
+	}
+
+	public void Die()
+	{
+		dead = true;
+		StartCoroutine(PlayDeathAudio(1.65f));	// 1.65 secs for deathSound
+	}
+
+	IEnumerator PlayDeathAudio(float delay)
+	{
+		audioSource.PlayOneShot(deathSound);
+		yield return new WaitForSeconds(delay); // {delay} secs for deathSound
+		audioSource.PlayOneShot(deathQuack);
+		yield return new WaitForSeconds(0.19f);	// 0.19 secs between deathQuacks
+		audioSource.PlayOneShot(deathQuack);
 	}
 }
