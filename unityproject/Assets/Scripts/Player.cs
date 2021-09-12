@@ -42,16 +42,22 @@ public class Player : MonoBehaviour
 		Restart();
 	}
 
-	public void Restart()
+	public void moveToSpawn()
 	{
 		transform.position = startingPosition.transform.position;
-		transform.GetComponent<SpriteRenderer>().enabled = true;
-		currentNode = startingPosition;
 		direction = Vector2.left;
+		dead = false;
+	}
+
+	public void Restart()
+	{
+		moveToSpawn();
+		currentNode = startingPosition;
 		nextDirection = Vector2.left;
 		ChangeDirection(direction);
 		canMove = true;
-		dead = false;
+		transform.GetComponent<SpriteRenderer>().enabled = true;
+		transform.GetComponent<Animator>().enabled = true;
 	}
 
 	// Update is called once per frame
@@ -236,5 +242,8 @@ public class Player : MonoBehaviour
 		audioSource.PlayOneShot(deathQuack);
 		yield return new WaitForSeconds(0.19f);	// 0.19 secs between deathQuacks
 		audioSource.PlayOneShot(deathQuack);
+		yield return new WaitForSeconds(0.5f);
+		transform.GetComponent<SpriteRenderer>().enabled = false;
+		dead = false;
 	}
 }

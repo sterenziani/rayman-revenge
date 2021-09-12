@@ -63,6 +63,11 @@ public class Ghost : MonoBehaviour
 		InitializeGhost();
 	}
 
+	public void moveToSpawn()
+	{
+		transform.position = spawnNode.transform.position;
+	}
+
 	public void Restart()
 	{
 		transform.position = spawnNode.transform.position;
