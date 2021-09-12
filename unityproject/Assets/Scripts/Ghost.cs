@@ -6,24 +6,27 @@ public class Ghost : MonoBehaviour
 {
 	private float speed;
 	public float regularSpeed = 5.6f;
-	public float scaredSpeed = 3f;
+	public float scaredSpeed = 2.5f;
 	private Animator _anmCtrl;
 	private SpriteRenderer _sprRnd;
 	private GameBoard gameBoard;
+	private AudioSource audioSource;
 
 	public enum Mode { CHASE, SCATTER, SCARED, EATEN };
 	private Mode prevMode;
 	private Mode currentMode = Mode.CHASE;
 	public enum GhostType { BLINKY, PINKY, INKY, CLYDE };
 	public GhostType type = GhostType.BLINKY;
+	private GameObject[] ghosts;
 
 	public bool isInGhostCage = true;
-	public int releaseWait = 0;
-	private float ghostReleaseTimer = 0;
+	public int releaseWait = 0;				// Time the ghost must remain in cage
+	private float ghostReleaseTimer = 0;    // Timer to check when it's time to release ghost from cage
 
-	public Node spawnNode;
-	public Node homeNode;
-	private Node prevNode, currentNode, targetNode;
+	public Node spawnNode;					// Node the ghost starts from when reset
+	public Node retreatNode;				// Node the ghost retreats to when eaten
+	public Node homeNode;					// Node the ghost gravitates towards when in SCATTER mode
+	public Node prevNode, currentNode, targetNode;
 	private Vector2 direction = Vector2.zero;
 	private Vector2 nextDirection = Vector2.zero;
 	private GameObject pacman;
@@ -34,29 +37,46 @@ public class Ghost : MonoBehaviour
 	private static Mode[] modeOrder = { Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE};
 	private static int[] modeDurations = { 7, 7, CHASE_MODE_LENGTH, 7, CHASE_MODE_LENGTH, 5, CHASE_MODE_LENGTH, 7, CHASE_MODE_LENGTH };
 
-	private float modeChangeTimer = 0;
-	private float scaredModeTimer = 0;
-	private float whiteModeTimer = 0;
+	private float modeChangeTimer = 0;		// Timer to check when it's time to change modes
+	private float scaredModeTimer = 0;		// Timer to check how long they´ve been in scared mode
+	private float whiteModeTimer = 0;		// Timer to check when it's time to blink different a color
 	private int scaredModeDuration = 10;
 	private int scaredModeBlinkAt = 7;
-	private bool scaredWhite = false;
+	private bool scaredWhite = false;		// Used to check what stage of color blinking it's in
 
 	public RuntimeAnimatorController regularAnimatorController;
 	public RuntimeAnimatorController scaredAnimatorController;
 	public RuntimeAnimatorController whiteAnimatorController;
-
-	// Start is called before the first frame update
+	public RuntimeAnimatorController eyesAnimatorController;
+	
 	void Start()
     {
 		_anmCtrl = GetComponent<Animator>();
 		_sprRnd = GetComponent<SpriteRenderer>();
 		gameBoard = GameObject.Find("Game").GetComponent<GameBoard>();
-		speed = regularSpeed;
+		audioSource = GameObject.Find("Game").transform.GetComponent<AudioSource>();
 		pacman = GameObject.FindGameObjectWithTag("Player");
 		blinky = GameObject.Find("Ghost - Blinky");
-		Node node = NodeUtilities.GetNodeAtPosition(transform.localPosition, gameBoard);
-		if (node != null)
-			currentNode = node;
+		ghosts = GameObject.FindGameObjectsWithTag("Enemy");
+		currentNode = spawnNode;
+		InitializeGhost();
+	}
+
+	public void Restart()
+	{
+		transform.position = spawnNode.transform.position;
+		currentNode = spawnNode;
+		ghostReleaseTimer = 0;
+		modeChangeIndex = 0;
+		isInGhostCage = (type != GhostType.BLINKY);
+		InitializeGhost();
+		audioSource.clip = gameBoard.backgroundAudioNormal;
+		audioSource.Play();
+	}
+
+	void InitializeGhost()
+	{
+		speed = regularSpeed;
 		if(isInGhostCage)
 		{
 			direction = currentNode.validDirections[0];
@@ -68,6 +88,11 @@ public class Ghost : MonoBehaviour
 			targetNode = ChooseNextNode();
 		}
 		prevNode = currentNode;
+		ghostReleaseTimer = 0;
+		modeChangeTimer = 0;
+		scaredModeTimer = 0;
+		whiteModeTimer = 0;
+		currentMode = Mode.CHASE;
 	}
 
     // Update is called once per frame
@@ -81,46 +106,90 @@ public class Ghost : MonoBehaviour
 
 	void ChangeMode(Mode m)
 	{
-		if (m == Mode.SCARED)
+		if(m == Mode.SCARED && currentMode != Mode.EATEN)
 		{
-			scaredModeTimer = 0;
 			speed = scaredSpeed;
 			if(currentMode != Mode.SCARED)
 				prevMode = currentMode;
 		}
-		else
+		if (m == Mode.EATEN)
 		{
-			speed = regularSpeed;
+			speed = regularSpeed * 3;
 		}
-		currentMode = m;
+		else
+			speed = regularSpeed;
+		if (currentMode != Mode.EATEN || m != Mode.SCARED)
+			currentMode = m;
 	}
 
 	public void StartScaredMode()
 	{
+		audioSource.clip = gameBoard.backgroundAudioScared;
+		audioSource.Play();
+		scaredModeTimer = 0;
 		ChangeMode(Mode.SCARED);
+	}
+
+	void ExitScaredMode()
+	{
+		audioSource.clip = gameBoard.backgroundAudioNormal;
+		audioSource.Play();
+		scaredModeTimer = 0;
+		ChangeMode(prevMode);
+	}
+
+	void StartEatenMode()
+	{
+		ChangeMode(Mode.EATEN);
+	}
+
+	void ExitEatenMode()
+	{
+		bool lastGhost = true;
+		foreach (GameObject g in ghosts)
+		{
+			if (g.GetComponent<Ghost>().currentMode == Mode.SCARED)
+			{
+				lastGhost = false;
+				break;
+			}
+		}
+		if(lastGhost)
+		{
+			audioSource.clip = gameBoard.backgroundAudioNormal;
+			audioSource.Play();
+		}
+		currentNode = retreatNode;
+		isInGhostCage = true;
+		ChangeMode(prevMode);
+		InitializeGhost();
+		releaseWait = 2;
+	}
+
+	public void TouchPacman()
+	{
+		if (currentMode == Mode.SCARED)
+			StartEatenMode();
+		else if (currentMode != Mode.EATEN)
+		{
+			gameBoard.Restart();
+		}
 	}
 
 	void UpdateMode()
 	{
-		if(currentMode != Mode.SCARED)
+		if (currentMode == Mode.EATEN)
 		{
-			modeChangeTimer += Time.deltaTime;
-			if (modeChangeTimer > modeDurations[modeChangeIndex])
-			{
-				// Go to next mode if available
-				if(modeChangeIndex < modeOrder.Length - 1)
-					modeChangeIndex++;
-				ChangeMode(modeOrder[modeChangeIndex]);
-				modeChangeTimer = 0;
-			}
+			// If I passed the spawnNode, that means I'm stuck and should reset currentNode
+			if (prevNode == retreatNode)
+				ExitEatenMode();
 		}
-		else
+		else if (currentMode == Mode.SCARED)
 		{
 			scaredModeTimer += Time.deltaTime;
-			if(scaredModeTimer > scaredModeDuration)
+			if (scaredModeTimer > scaredModeDuration)
 			{
-				scaredModeTimer = 0;
-				ChangeMode(prevMode);
+				ExitScaredMode();
 			}
 			else if (scaredModeTimer > scaredModeBlinkAt)
 			{
@@ -133,6 +202,18 @@ public class Ghost : MonoBehaviour
 			}
 			else
 				scaredWhite = false;
+		}
+		else if (currentMode != Mode.EATEN)
+		{
+			modeChangeTimer += Time.deltaTime;
+			if (modeChangeTimer > modeDurations[modeChangeIndex])
+			{
+				// Go to next mode if available
+				if(modeChangeIndex < modeOrder.Length - 1)
+					modeChangeIndex++;
+				ChangeMode(modeOrder[modeChangeIndex]);
+				modeChangeTimer = 0;
+			}
 		}
 	}
 
@@ -171,6 +252,10 @@ public class Ghost : MonoBehaviour
 			else
 				_anmCtrl.runtimeAnimatorController = scaredAnimatorController;
 		}
+		else if(currentMode == Mode.EATEN)
+		{
+			_anmCtrl.runtimeAnimatorController = eyesAnimatorController;
+		}
 		else
 		{
 			_anmCtrl.runtimeAnimatorController = regularAnimatorController;
@@ -194,21 +279,31 @@ public class Ghost : MonoBehaviour
 			case Mode.SCATTER:
 				targetTile = homeNode.transform.position;
 				break;
-
+			case Mode.EATEN:
+				targetTile = retreatNode.transform.position;
+				break;
 		}
 		Node destinationNode = null;
 		int destinationCounter = 0;
 		Node[] foundDestinations = new Node[4];
 		Vector2[] foundDestinationsDirection = new Vector2[4];
+
+		Node[] neighbors;
+		if (currentMode == Mode.EATEN)
+			neighbors = currentNode.GetAllNeighbors();
+		else
+			neighbors = currentNode.neighbors;
+
 		// Add possible directions, excluding going backwards
-		for(int i=0; i < currentNode.neighbors.Length; i++)
+		for (int i=0; i < neighbors.Length; i++)
 		{
 			if(currentNode.validDirections[i] != direction*-1){
-				foundDestinations[destinationCounter] = currentNode.neighbors[i];
+				foundDestinations[destinationCounter] = neighbors[i];
 				foundDestinationsDirection[destinationCounter] = currentNode.validDirections[i];
 				destinationCounter++;
 			}
 		}
+		
 		// If I can move, go towards my targetTile
 		if (foundDestinations.Length > 0)
 		{
@@ -265,8 +360,14 @@ public class Ghost : MonoBehaviour
 	// Aim to double the distance between Pinky's target and Blinky
 	Vector2 GetInkyTargetTile()
 	{
-		Vector2 blinkyTile = NodeUtilities.GetTileAtPosition(blinky.transform.position, gameBoard).transform.position;
-		Vector2 pacmanTile = NodeUtilities.GetTileAtPosition(pacman.transform.position, gameBoard).transform.position;
+		Vector2 blinkyTile = transform.position;
+		Vector2 pacmanTile = transform.position;
+		GameObject tile = NodeUtilities.GetTileAtPosition(blinky.transform.position, gameBoard);
+		if(tile != null)
+			blinkyTile = tile.transform.position;
+		tile = NodeUtilities.GetTileAtPosition(pacman.transform.position, gameBoard);
+		if(tile != null)
+			pacmanTile = tile.transform.position;
 		Vector2 targetTile = pacmanTile + (2 * pacman.GetComponent<Player>().direction);
 		float distance = 2 * NodeUtilities.DistanceBetween(blinkyTile, targetTile);
 

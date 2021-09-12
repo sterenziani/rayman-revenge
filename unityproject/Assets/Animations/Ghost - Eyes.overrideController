@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Ghost - Eyes
+  m_Controller: {fileID: 9100000, guid: 6cb4b844d012e1246ab7088622f6b61c, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 8e9f44fd1ec73df42bab727b5e5cf922, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5d8d4aaae2794d54880c964d84546bb2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 944a9410f06186e41971f8ebefa27258, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f131dbf9b2376c54aba17e4ea7bf1475, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5c9733a92aad0734abfb4223bca2b38f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f4b28cd17590d464ab460eb1a881cd46, type: 2}

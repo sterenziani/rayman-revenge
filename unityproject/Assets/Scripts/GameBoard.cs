@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class GameBoard : MonoBehaviour
 {
-    private static int boardWidth = 30;
-    private static int boardHeight = 33;
-	public int totalPellets = 0;
+	public int boardWidth = 30;
+	public int boardHeight = 33;
+	private int totalPellets = 0;
+	public int lives = 3;
 	public int score = 0;
-    public GameObject[,] board = new GameObject[boardWidth, boardHeight];
+	public GameObject[,] board;
+	public AudioClip backgroundAudioNormal;
+	public AudioClip backgroundAudioScared;
+	private GameObject pacman;
+	private GameObject[] ghosts;
 
-    void Start()
+	void Start()
     {
+		totalPellets = 0;
+		board = new GameObject[boardWidth, boardHeight];
 		// Load all interactive tiles into the array and place them on the board
-        Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject));
+		Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject));
         foreach (GameObject o in objects)
         {
             Vector2 pos = o.transform.position;
@@ -27,10 +34,25 @@ public class GameBoard : MonoBehaviour
 				}
 				board[(int)pos.x, (int)pos.y] = o;
 			}
+			if(o.name != "Pellets")
+			{
+				totalPellets++;
+			}
         }
+		pacman = pacman = GameObject.FindGameObjectWithTag("Player");
+		ghosts = GameObject.FindGameObjectsWithTag("Enemy");
 	}
-	
-    void Update()
+
+
+	public void Restart()
+	{
+		lives--;
+		pacman.transform.GetComponent<Player>().Restart();
+		foreach (GameObject g in ghosts)
+			g.GetComponent<Ghost>().Restart();
+	}
+
+	void Update()
     {
         
     }
