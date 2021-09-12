@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1487520486345691679}
   - component: {fileID: 1487520486345691672}
   - component: {fileID: 1487520486345691677}
+  - component: {fileID: 1446497834945818221}
   m_Layer: 0
   m_Name: Ghost - Clyde
   m_TagString: Enemy
@@ -71,10 +72,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1730625283
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3431564518433536506, guid: 6cba3c3340ccb994fbb4f52bcf68e510, type: 3}
+  m_Sprite: {fileID: 7646060404542611315, guid: 6cba3c3340ccb994fbb4f52bcf68e510, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 1487520486345691673}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: b8573073f09e1384092766bbe9cc99a2, type: 2}
+  m_Controller: {fileID: 22100000, guid: 97295733a0f7b7d4cafadacadfd71424, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -116,9 +117,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30301b523b55c5c48a0e01501ae5ebcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4.9
+  regularSpeed: 5.6
+  scaredSpeed: 3
   type: 3
   isInGhostCage: 1
-  releaseWait: 0
+  releaseWait: 21
   spawnNode: {fileID: 0}
   homeNode: {fileID: 0}
+  regularAnimatorController: {fileID: 22100000, guid: 97295733a0f7b7d4cafadacadfd71424, type: 2}
+  scaredAnimatorController: {fileID: 22100000, guid: dd5f1818313b51b4ca6e2f841521f4dc, type: 2}
+  whiteAnimatorController: {fileID: 22100000, guid: eecba63fceef08844b2ed7086dceddb9, type: 2}
+--- !u!58 &1446497834945818221
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487520486345691673}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.8
