@@ -43,7 +43,8 @@ public class Ghost : MonoBehaviour
 	private float whiteModeTimer = 0;		// Timer to check when it's time to blink different a color
 	private int scaredModeDuration = 10;
 	private int scaredModeBlinkAt = 7;
-	private bool scaredWhite = false;		// Used to check what stage of color blinking it's in
+	private bool scaredWhite = false;       // Used to check what stage of color blinking it's in
+	private static int EATEN_SCORE = 200;
 
 	public RuntimeAnimatorController regularAnimatorController;
 	public RuntimeAnimatorController scaredAnimatorController;
@@ -66,6 +67,7 @@ public class Ghost : MonoBehaviour
 	public void moveToSpawn()
 	{
 		transform.position = spawnNode.transform.position;
+		currentMode = Mode.CHASE;
 	}
 
 	public void Restart()
@@ -111,8 +113,8 @@ public class Ghost : MonoBehaviour
 			UpdateMode();
 			UpdateMovement();
 			TryToExitCage();
-			UpdateSprite();
 		}
+		UpdateSprite();
 	}
 
 	void ChangeMode(Mode m)
@@ -150,6 +152,8 @@ public class Ghost : MonoBehaviour
 	void StartEatenMode()
 	{
 		ChangeMode(Mode.EATEN);
+		gameBoard.score += EATEN_SCORE;
+		gameBoard.StartEaten(this.GetComponent<Ghost>());
 	}
 
 	void ExitEatenMode()

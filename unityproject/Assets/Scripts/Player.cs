@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 	private KeyCode PACMAN_RIGHT_KEY = KeyCode.RightArrow;
 	private KeyCode PACMAN_UP_KEY = KeyCode.UpArrow;
 	private KeyCode PACMAN_DOWN_KEY = KeyCode.DownArrow;
-	private int PELLET_SCORE = 1;
+	private int PELLET_SCORE = 10;
 	private GameBoard gameBoard;
 	private GameObject[] ghosts;
 

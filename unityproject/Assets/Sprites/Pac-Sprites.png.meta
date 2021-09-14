@@ -8529,7 +8529,7 @@ TextureImporter:
         serializedVersion: 2
         x: 528
         y: 887
-        width: 12
+        width: 34
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -8545,54 +8545,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pac-Sprites_368
-      rect:
-        serializedVersion: 2
-        x: 541
-        y: 887
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf03bec5c85c73ad0800000000000000
-      internalID: -2722490243077164805
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_369
-      rect:
-        serializedVersion: 2
-        x: 552
-        y: 887
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 66a755c0dbc059590800000000000000
-      internalID: -7668208784433120666
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Pac-Sprites_370
       rect:
         serializedVersion: 2
         x: 572
         y: 887
-        width: 11
+        width: 33
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -8608,54 +8566,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pac-Sprites_371
-      rect:
-        serializedVersion: 2
-        x: 584
-        y: 887
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b04af1ffcf592e7e0800000000000000
-      internalID: -1737661592367029237
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_372
-      rect:
-        serializedVersion: 2
-        x: 595
-        y: 887
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2bfc90874b9b58db0800000000000000
-      internalID: -4790218443879493710
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Pac-Sprites_373
       rect:
         serializedVersion: 2
         x: 628
         y: 887
-        width: 6
+        width: 28
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -8671,54 +8587,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pac-Sprites_374
-      rect:
-        serializedVersion: 2
-        x: 635
-        y: 887
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e5a693c9687361570800000000000000
-      internalID: 8436992003211356766
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_375
-      rect:
-        serializedVersion: 2
-        x: 646
-        y: 887
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0c8476ecabd23e610800000000000000
-      internalID: 1649212168897775808
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Pac-Sprites_376
       rect:
         serializedVersion: 2
         x: 675
         y: 887
-        width: 6
+        width: 39
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -8734,75 +8608,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pac-Sprites_377
-      rect:
-        serializedVersion: 2
-        x: 682
-        y: 887
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bb5edaa172ac43840800000000000000
-      internalID: 5203005738819904955
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_378
-      rect:
-        serializedVersion: 2
-        x: 693
-        y: 887
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 697b69c683c8cd710800000000000000
-      internalID: 1719403331716560790
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_379
-      rect:
-        serializedVersion: 2
-        x: 704
-        y: 887
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae64a29b17ffaf3d0800000000000000
-      internalID: -3171942123626150166
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Pac-Sprites_380
       rect:
         serializedVersion: 2
         x: 754
         y: 887
-        width: 9
+        width: 33
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -8818,96 +8629,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pac-Sprites_381
-      rect:
-        serializedVersion: 2
-        x: 764
-        y: 887
-        width: 11
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5138d54c73b48ea30800000000000000
-      internalID: 4244725351686439701
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_382
-      rect:
-        serializedVersion: 2
-        x: 776
-        y: 887
-        width: 11
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f24f457f1ec76a7b0800000000000000
-      internalID: -5213342208675744721
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_383
+      name: Pac-Sprites_385
       rect:
         serializedVersion: 2
         x: 528
         y: 865
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f7a5a1b63f6f99650800000000000000
-      internalID: 6240290284032907903
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_384
-      rect:
-        serializedVersion: 2
-        x: 541
-        y: 865
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bc99caa9163bd85e0800000000000000
-      internalID: -1905669835519649333
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_385
-      rect:
-        serializedVersion: 2
-        x: 552
-        y: 865
-        width: 10
+        width: 34
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -8928,7 +8655,7 @@ TextureImporter:
         serializedVersion: 2
         x: 572
         y: 865
-        width: 6
+        width: 39
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -8944,75 +8671,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pac-Sprites_387
-      rect:
-        serializedVersion: 2
-        x: 579
-        y: 865
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0ae77c1a7dac963e0800000000000000
-      internalID: -2059892327064306016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_388
-      rect:
-        serializedVersion: 2
-        x: 590
-        y: 865
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbfd361dab56da870800000000000000
-      internalID: 8695718308573601727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_389
-      rect:
-        serializedVersion: 2
-        x: 601
-        y: 865
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4610eaa0037bb05d0800000000000000
-      internalID: -3095178901921595036
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Pac-Sprites_390
       rect:
         serializedVersion: 2
         x: 628
         y: 867
-        width: 12
+        width: 34
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -9028,54 +8692,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pac-Sprites_391
-      rect:
-        serializedVersion: 2
-        x: 641
-        y: 867
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 513254f6f217f8b60800000000000000
-      internalID: 7750537932272116501
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_392
-      rect:
-        serializedVersion: 2
-        x: 652
-        y: 867
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 59cb07bda89914580800000000000000
-      internalID: -8844619371512808299
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Pac-Sprites_393
       rect:
         serializedVersion: 2
         x: 675
         y: 867
-        width: 12
+        width: 45
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -9091,75 +8713,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pac-Sprites_394
-      rect:
-        serializedVersion: 2
-        x: 688
-        y: 867
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4a58f0e26b85e9a70800000000000000
-      internalID: 8835597058427553188
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_395
-      rect:
-        serializedVersion: 2
-        x: 699
-        y: 867
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8923a7c06b889f9e0800000000000000
-      internalID: -1587087078196628840
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_396
-      rect:
-        serializedVersion: 2
-        x: 710
-        y: 867
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 39751637118db5fc0800000000000000
-      internalID: -3504970315515996269
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Pac-Sprites_397
       rect:
         serializedVersion: 2
         x: 754
         y: 864
-        width: 12
+        width: 36
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -9170,48 +8729,6 @@ TextureImporter:
       bones: []
       spriteID: c5c01e1dcfdec6ce0800000000000000
       internalID: -1410490913165079460
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_398
-      rect:
-        serializedVersion: 2
-        x: 767
-        y: 864
-        width: 11
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 79c2487d5c975d0b0800000000000000
-      internalID: -5704519462363583337
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_399
-      rect:
-        serializedVersion: 2
-        x: 779
-        y: 864
-        width: 11
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2598c8ac9511c97a0800000000000000
-      internalID: -6369196695660754606
       vertices: []
       indices: 
       edges: []
@@ -9474,7 +8991,7 @@ TextureImporter:
         serializedVersion: 2
         x: 628
         y: 847
-        width: 12
+        width: 34
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -9490,54 +9007,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pac-Sprites_413
-      rect:
-        serializedVersion: 2
-        x: 641
-        y: 847
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 728ba5b53f48346b0800000000000000
-      internalID: -5313256954622461913
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_414
-      rect:
-        serializedVersion: 2
-        x: 652
-        y: 847
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4d91e868f5baa8f0800000000000000
-      internalID: -528409927746478772
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Pac-Sprites_415
       rect:
         serializedVersion: 2
         x: 675
         y: 847
-        width: 12
+        width: 45
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -9548,69 +9023,6 @@ TextureImporter:
       bones: []
       spriteID: b901d1f58f9ef1000800000000000000
       internalID: 8982977234931867
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_416
-      rect:
-        serializedVersion: 2
-        x: 688
-        y: 847
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: def0f2eba691fd250800000000000000
-      internalID: 5971519577164550125
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_417
-      rect:
-        serializedVersion: 2
-        x: 699
-        y: 847
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be40cb1c8a0090b30800000000000000
-      internalID: 4253932047832974571
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_418
-      rect:
-        serializedVersion: 2
-        x: 710
-        y: 847
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e4238eb55d00c3a00800000000000000
-      internalID: 737465355351896654
       vertices: []
       indices: 
       edges: []
@@ -9831,7 +9243,7 @@ TextureImporter:
         serializedVersion: 2
         x: 628
         y: 827
-        width: 11
+        width: 33
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -9847,54 +9259,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pac-Sprites_430
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 827
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2d8d174c4377d1640800000000000000
-      internalID: 5052325425497364690
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_431
-      rect:
-        serializedVersion: 2
-        x: 651
-        y: 827
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 802b3cd634c65d8d0800000000000000
-      internalID: -2822230554617597432
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Pac-Sprites_432
       rect:
         serializedVersion: 2
         x: 675
         y: 827
-        width: 12
+        width: 45
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -9905,69 +9275,6 @@ TextureImporter:
       bones: []
       spriteID: d93c273fa3808f610800000000000000
       internalID: 1655081912344167325
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_433
-      rect:
-        serializedVersion: 2
-        x: 688
-        y: 827
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f8496dc1370723ad0800000000000000
-      internalID: -2723991184898354033
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_434
-      rect:
-        serializedVersion: 2
-        x: 699
-        y: 827
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 97f7a5fcd8aeee100800000000000000
-      internalID: 139306533285166969
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pac-Sprites_435
-      rect:
-        serializedVersion: 2
-        x: 710
-        y: 827
-        width: 10
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 94618cd231b46f100800000000000000
-      internalID: 141382984053298761
       vertices: []
       indices: 
       edges: []
