@@ -21,7 +21,8 @@ public class Ghost : MonoBehaviour
 
 	public bool canMove = true;
 	public bool isInGhostCage = true;
-	public int releaseWait = 0;				// Time the ghost must remain in cage
+	private bool scaredWhite = false;       // Used to check what stage of color blinking it's in
+	public int baseReleaseWait = 0;			// Time the ghost must remain in cage in Level 1
 	private float ghostReleaseTimer = 0;    // Timer to check when it's time to release ghost from cage
 
 	public Node spawnNode;					// Node the ghost starts from when reset
@@ -35,15 +36,19 @@ public class Ghost : MonoBehaviour
 
 	private int modeChangeIndex = 0;
 	private static int CHASE_MODE_LENGTH = 20;
-	private static Mode[] modeOrder = { Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE};
-	private static int[] modeDurations = { 7, 7, CHASE_MODE_LENGTH, 7, CHASE_MODE_LENGTH, 5, CHASE_MODE_LENGTH, 7, CHASE_MODE_LENGTH };
+
 
 	private float modeChangeTimer = 0;		// Timer to check when it's time to change modes
 	private float scaredModeTimer = 0;		// Timer to check how long they´ve been in scared mode
-	private float whiteModeTimer = 0;		// Timer to check when it's time to blink different a color
-	private int scaredModeDuration = 10;
-	private int scaredModeBlinkAt = 7;
-	private bool scaredWhite = false;       // Used to check what stage of color blinking it's in
+	private float whiteModeTimer = 0;       // Timer to check when it's time to blink different a color
+
+	// These will be set when a level starts
+	private static Mode[] modeOrder;
+	private static int[] modeDurations;
+	private int scaredModeDuration;
+	private int releaseWait;
+
+
 	private static int EATEN_SCORE = 200;
 
 	public RuntimeAnimatorController regularAnimatorController;
@@ -86,8 +91,9 @@ public class Ghost : MonoBehaviour
 
 	void InitializeGhost()
 	{
+		SetDifficultyForLevel(GameBoard.level);
 		speed = regularSpeed;
-		if(isInGhostCage)
+		if (isInGhostCage)
 		{
 			direction = currentNode.validDirections[0];
 			targetNode = currentNode.neighbors[0];
@@ -125,7 +131,7 @@ public class Ghost : MonoBehaviour
 			if(currentMode != Mode.SCARED)
 				prevMode = currentMode;
 		}
-		if (m == Mode.EATEN)
+		else if (m == Mode.EATEN)
 		{
 			speed = regularSpeed * 3;
 		}
@@ -152,7 +158,7 @@ public class Ghost : MonoBehaviour
 	void StartEatenMode()
 	{
 		ChangeMode(Mode.EATEN);
-		gameBoard.score += EATEN_SCORE;
+		GameBoard.score += EATEN_SCORE;
 		gameBoard.StartEaten(this.GetComponent<Ghost>());
 	}
 
@@ -176,6 +182,33 @@ public class Ghost : MonoBehaviour
 		ChangeMode(prevMode);
 		InitializeGhost();
 		releaseWait = 2;
+	}
+
+	void SetDifficultyForLevel(int level)
+	{
+		float[] speeds = {5.6f, 5.9f, 6.2f, 6.5f * level/4};
+		float[] scaredSpeeds = { 2.7f, 3.0f, 3.3f, 3.5f * level/4};
+		int[] scaredModeDurations = { 10, 9, 7, Mathf.Max(3, 5 * level/4)};
+		Mode[][] order = {
+							new Mode[]{ Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE },
+							new Mode[]{ Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE },
+							new Mode[]{ Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE, Mode.SCATTER, Mode.CHASE },
+							new Mode[]{ Mode.CHASE}
+						};
+		int[][] durations = {
+								new int[]{ 7, 7, CHASE_MODE_LENGTH, 7, CHASE_MODE_LENGTH, 5, CHASE_MODE_LENGTH, 7, CHASE_MODE_LENGTH },
+								new int[]{ 7, 5, CHASE_MODE_LENGTH, 5, CHASE_MODE_LENGTH, 5, CHASE_MODE_LENGTH, 5, CHASE_MODE_LENGTH },
+								new int[]{ 7, 4, CHASE_MODE_LENGTH, 4, CHASE_MODE_LENGTH, 5, CHASE_MODE_LENGTH, 4, CHASE_MODE_LENGTH },
+								new int[]{ CHASE_MODE_LENGTH }
+							};
+		if (level > speeds.Length)
+			level = speeds.Length;
+		regularSpeed = speeds[level-1];
+		scaredSpeed = scaredSpeeds[level-1];
+		modeOrder = order[level-1];
+		modeDurations = durations[level-1];
+		scaredModeDuration = scaredModeDurations[level-1];
+		releaseWait = Mathf.Max(0, baseReleaseWait - level);
 	}
 
 	public void TouchPacman()
@@ -203,7 +236,7 @@ public class Ghost : MonoBehaviour
 			{
 				ExitScaredMode();
 			}
-			else if (scaredModeTimer > scaredModeBlinkAt)
+			else if (scaredModeTimer > (scaredModeDuration-3))
 			{
 				whiteModeTimer += Time.deltaTime;
 				if (whiteModeTimer >= 0.1f)
@@ -241,7 +274,8 @@ public class Ghost : MonoBehaviour
 
 				// Check if I'm at a portal
 				GameObject otherPortal = NodeUtilities.GetPortal(currentNode.transform.position, gameBoard);
-				if (otherPortal != null){
+				if (otherPortal != null)
+				{
 					transform.localPosition = otherPortal.transform.position;
 					currentNode = otherPortal.GetComponent<Node>();
 				}

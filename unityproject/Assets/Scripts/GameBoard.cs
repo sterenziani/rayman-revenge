@@ -6,41 +6,52 @@ using UnityEngine.SceneManagement;
 
 public class GameBoard : MonoBehaviour
 {
+	// These are shared between stages
 	public HealthBar healthBar;
-	public int lives = 3;
-	public int score = 0;
-	public int boardWidth = 30;
-	public int boardHeight = 33;
-	private int totalPellets = 0;
+	public static int level = 1;
+	public static int lives = 3;
+	public static int score = 0;
+	public static int boardWidth = 30;
+	public static int boardHeight = 33;
+
+	private int totalPellets;
+	public int pelletsConsumed;
 	public GameObject[,] board;
+	private GameObject pacman;
+	private GameObject[] ghosts;
+
 	private AudioSource audioSource;
 	public AudioClip backgroundAudioNormal;
 	public AudioClip backgroundAudioScared;
 	public AudioClip startupSound;
 	public AudioClip eatGhostSound;
-	private GameObject pacman;
-	private GameObject[] ghosts;
+	public AudioClip victorySound;
 
 	private bool dying = false;
 	private bool eatingGhost = false;
+	private bool winning = false;
 	public GameObject readyText;
 	public GameObject gameOverText;
 	public Text scoreText;
+	public Text levelText;
 	public Text eatenGhostScoreText;
-	public Image livesIcons;
 
 	void Start()
     {
 		totalPellets = 0;
-		score = 0;
+		pelletsConsumed = 0;
 		board = new GameObject[boardWidth, boardHeight];
 		// Load all interactive tiles into the array and place them on the board
 		Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject));
         foreach (GameObject o in objects)
         {
             Vector2 pos = o.transform.position;
+			// Pellet, InvisibleNode, WalkableTile
+			/*
 			if (o.name != "Nodes" && o.name != "Non-Nodes" && o.name != "Maze" && o.name != "Pellets" && o.name != "PathTiles" && o.name != "PacMan Spawn Node"
 				 && o.tag != "Player" && o.tag != "Enemy" && o.tag != "Maze" && o.tag != "MainCamera" && o.tag != "GhostHomeNode" && o.tag != "UI")
+			*/
+			if(o.tag == "Pellet" || o.tag == "InvisibleNode" || o.tag == "WalkableTile")
 			{
 				if(o.GetComponent<Tile>() != null)
 				{
@@ -49,21 +60,43 @@ public class GameBoard : MonoBehaviour
 				}
 				board[(int)pos.x, (int)pos.y] = o;
 			}
-			if(o.name != "Pellets")
-			{
-				totalPellets++;
-			}
         }
 		pacman = pacman = GameObject.FindGameObjectWithTag("Player");
 		ghosts = GameObject.FindGameObjectsWithTag("Enemy");
 		audioSource = transform.GetComponent<AudioSource>();
 		healthBar.SetupLives(lives-1);
+		Debug.Log("There's " +totalPellets +" pellets");
 		StartGame();
 	}
 
 	void Update()
 	{
 		UpdateUI();
+		CheckPelletsConsumed();
+	}
+
+	void CheckPelletsConsumed()
+	{
+		if(!winning && totalPellets == pelletsConsumed)
+		{
+			winning = true;
+			PlayerWin();
+		}
+	}
+
+	void PlayerWin()
+	{
+		level++;
+		audioSource.Stop();
+		audioSource.PlayOneShot(victorySound);
+		foreach (GameObject g in ghosts)
+		{
+			g.GetComponent<Ghost>().canMove = false;
+			g.GetComponent<Animator>().enabled = false;
+		}
+		pacman.transform.GetComponent<Player>().Celebrate();
+		pacman.transform.GetComponent<Player>().canMove = false;
+		StartCoroutine(ChangeLevel(6));
 	}
 
 	void UpdateUI()
@@ -87,6 +120,7 @@ public class GameBoard : MonoBehaviour
 	{
 		readyText.GetComponent<SpriteRenderer>().enabled = false;
 		dying = false;
+		winning = false;
 		pacman.transform.GetComponent<Player>().Restart();
 		foreach (GameObject g in ghosts)
 			g.GetComponent<Ghost>().Restart();
@@ -94,8 +128,9 @@ public class GameBoard : MonoBehaviour
 
 	public void StartGame()
 	{
+		levelText.text = level.ToString();
 		audioSource.PlayOneShot(startupSound);
-		// Hide ghosts and PAcman, make them unable to move
+		// Hide ghosts and Pacman, make them unable to move
 		foreach (GameObject g in ghosts)
 		{
 			g.GetComponent<Ghost>().canMove = false;
@@ -143,7 +178,6 @@ public class GameBoard : MonoBehaviour
 	{
 		pacman.GetComponent<SpriteRenderer>().enabled = false;
 		lives--;
-		healthBar.RemoveLives(1);
 		if(lives == 0)
 		{
 			audioSource.Stop();
@@ -155,6 +189,7 @@ public class GameBoard : MonoBehaviour
 			readyText.GetComponent<SpriteRenderer>().enabled = true;
 			yield return new WaitForSeconds(delay);
 			StartCoroutine(RestartShowObjectsAfter(1));
+			healthBar.RemoveLives(1);
 		}
 	}
 
@@ -235,6 +270,23 @@ public class GameBoard : MonoBehaviour
 	IEnumerator ProcessGameOver(float delay)
 	{
 		yield return new WaitForSeconds(delay);
+		level = 1;
+		lives = 3;
+		score = 0;
 		SceneManager.LoadScene("MainMenu");
+	}
+
+	IEnumerator ChangeLevel(float delay)
+	{
+		int iterations = 6;
+		delay = delay / (iterations * 2);
+		for (int i=0; i < iterations; i++)
+		{
+			pacman.transform.GetComponent<Player>().direction = Vector2.right;
+			yield return new WaitForSeconds(delay);
+			pacman.transform.GetComponent<Player>().direction = Vector2.left;
+			yield return new WaitForSeconds(delay);
+		}
+		SceneManager.LoadScene("Level1");
 	}
 }

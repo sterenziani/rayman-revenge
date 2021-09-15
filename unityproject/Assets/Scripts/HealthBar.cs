@@ -16,12 +16,6 @@ public class HealthBar : MonoBehaviour
 		lifeContainers = new List<GameObject>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 	public void SetupLives(int lives)
 	{
 		lifeContainers.Clear();
@@ -29,6 +23,8 @@ public class HealthBar : MonoBehaviour
 		{
 			Destroy(transform.GetChild(i).gameObject);
 		}
+		if (lives <= 0)
+			return;
 		totalLives = lives;
 		currentLives = lives;
 		for(int i=0; i < lives; i++)

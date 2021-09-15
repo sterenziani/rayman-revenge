@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
 	public Vector2 direction = Vector2.zero;
 	private Vector2 nextDirection = Vector2.zero;
 	private Node prevNode, currentNode, targetNode;
-	private int pelletsConsumed = 0;
 	private bool dead = false;
+	private bool winning = false;
 	private KeyCode PACMAN_LEFT_KEY = KeyCode.LeftArrow;
 	private KeyCode PACMAN_RIGHT_KEY = KeyCode.RightArrow;
 	private KeyCode PACMAN_UP_KEY = KeyCode.UpArrow;
@@ -44,9 +44,11 @@ public class Player : MonoBehaviour
 
 	public void moveToSpawn()
 	{
+		SetDifficultyForLevel(GameBoard.level);
 		transform.position = startingPosition.transform.position;
 		direction = Vector2.left;
 		dead = false;
+		winning = false;
 	}
 
 	public void Restart()
@@ -151,6 +153,9 @@ public class Player : MonoBehaviour
 		}
 		else
 			_anmCtrl.SetBool("dead", false);
+
+		if (winning)
+			_anmCtrl.SetBool("won", true);
 		if (direction == Vector2.down) {
 			_anmCtrl.SetBool("move", true);
 			_sprRnd.flipX = true;
@@ -189,8 +194,8 @@ public class Player : MonoBehaviour
 				{
 					o.GetComponent<SpriteRenderer>().enabled = false;
 					tile.consumed = true;
-					gameBoard.score += PELLET_SCORE;
-					pelletsConsumed++;
+					GameBoard.score += PELLET_SCORE;
+					gameBoard.pelletsConsumed++;
 					PlayMunchSound();
 					if (tile.isSuperPellet)
 					{
@@ -233,6 +238,19 @@ public class Player : MonoBehaviour
 	{
 		dead = true;
 		StartCoroutine(PlayDeathAudio(1.65f));	// 1.65 secs for deathSound
+	}
+
+	public void Celebrate()
+	{
+		winning = true;
+	}
+
+	void SetDifficultyForLevel(int level)
+	{
+		float[] speeds = { 5.75f, 6.05f, 6.35f, 6.6f * level / 4 };
+		if (level > speeds.Length)
+			level = speeds.Length;
+		speed = speeds[level - 1];
 	}
 
 	IEnumerator PlayDeathAudio(float delay)
