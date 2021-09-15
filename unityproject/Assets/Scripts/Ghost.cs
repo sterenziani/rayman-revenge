@@ -48,9 +48,6 @@ public class Ghost : MonoBehaviour
 	private int scaredModeDuration;
 	private int releaseWait;
 
-
-	private static int EATEN_SCORE = 200;
-
 	public RuntimeAnimatorController regularAnimatorController;
 	public RuntimeAnimatorController scaredAnimatorController;
 	public RuntimeAnimatorController whiteAnimatorController;
@@ -144,7 +141,10 @@ public class Ghost : MonoBehaviour
 	public void StartScaredMode()
 	{
 		gameBoard.PlayScaredAlarm();
+		GameBoard.ghostEatenScore = 200;
 		scaredModeTimer = 0;
+		if(!isInGhostCage)
+			TurnAround();
 		ChangeMode(Mode.SCARED);
 	}
 
@@ -158,8 +158,9 @@ public class Ghost : MonoBehaviour
 	void StartEatenMode()
 	{
 		ChangeMode(Mode.EATEN);
-		GameBoard.score += EATEN_SCORE;
+		GameBoard.score += GameBoard.ghostEatenScore;
 		gameBoard.StartEaten(this.GetComponent<Ghost>());
+		GameBoard.ghostEatenScore *= 2;
 	}
 
 	void ExitEatenMode()
@@ -328,6 +329,24 @@ public class Ghost : MonoBehaviour
 			case Mode.EATEN:
 				targetTile = retreatNode.transform.position;
 				break;
+			case Mode.SCARED:
+				int r = Random.Range(1, 4);
+				switch(r)
+				{
+					case 1:
+						targetTile = GetBlinkyTargetTile();
+						break;
+					case 2:
+						targetTile = GetPinkyTargetTile();
+						break;
+					case 3:
+						targetTile = GetInkyTargetTile();
+						break;
+					case 4:
+						targetTile = GetClydeTargetTile();
+						break;
+				}
+				break;
 		}
 		Node destinationNode = null;
 		int destinationCounter = 0;
@@ -438,5 +457,17 @@ public class Ghost : MonoBehaviour
 		ghostReleaseTimer += Time.deltaTime;
 		if (releaseWait < ghostReleaseTimer)
 			isInGhostCage = false;
+	}
+
+	void TurnAround()
+	{
+		// If prevNode has no other neighbors, the ghost will get stuck as they can't go backwards
+		if(prevNode.neighbors.Length > 1)
+		{
+			Node temp = prevNode;
+			prevNode = targetNode;
+			targetNode = temp;
+			direction = -direction;
+		}
 	}
 }

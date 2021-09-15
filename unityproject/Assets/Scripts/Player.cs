@@ -6,32 +6,36 @@ public class Player : MonoBehaviour
 {
 	private Animator _anmCtrl;
 	private SpriteRenderer _sprRnd;
-	
-	public float speed = 5.75f;
-	public bool canMove = true;
+	private GameBoard gameBoard;
+	private GameObject[] ghosts;
+
 	public Node startingPosition;
+	private int PELLET_SCORE = 10;
+	private int SUPER_PELLET_SCORE = 50;
+
+	public float speed = 5.75f;
 	public Vector2 direction = Vector2.zero;
 	private Vector2 nextDirection = Vector2.zero;
 	private Node prevNode, currentNode, targetNode;
+
+	public bool canMove = true;
 	private bool dead = false;
 	private bool winning = false;
+
+	// KEYS
 	private KeyCode PACMAN_LEFT_KEY = KeyCode.LeftArrow;
 	private KeyCode PACMAN_RIGHT_KEY = KeyCode.RightArrow;
 	private KeyCode PACMAN_UP_KEY = KeyCode.UpArrow;
 	private KeyCode PACMAN_DOWN_KEY = KeyCode.DownArrow;
-	private int PELLET_SCORE = 10;
-	private GameBoard gameBoard;
-	private GameObject[] ghosts;
 
-	// SONIDOS
+	// SOUNDS
 	private bool playedFirstMunch = false;
 	private AudioSource audioSource;
 	public AudioClip munch1;
 	public AudioClip munch2;
 	public AudioClip deathSound;
 	public AudioClip deathQuack;
-
-	// Start is called before the first frame update
+	
 	void Start()
 	{
 		_anmCtrl = GetComponent<Animator>();
@@ -42,6 +46,7 @@ public class Player : MonoBehaviour
 		Restart();
 	}
 
+	// Reset position and state
 	public void moveToSpawn()
 	{
 		SetDifficultyForLevel(GameBoard.level);
@@ -51,6 +56,16 @@ public class Player : MonoBehaviour
 		winning = false;
 	}
 
+	// Change speed to match level
+	void SetDifficultyForLevel(int level)
+	{
+		float[] speeds = { 5.75f, 6.05f, 6.35f, 6.6f * level / 4 };
+		if (level > speeds.Length)
+			level = speeds.Length;
+		speed = speeds[level - 1];
+	}
+
+	// Respawn and get ready to move
 	public void Restart()
 	{
 		moveToSpawn();
@@ -61,8 +76,7 @@ public class Player : MonoBehaviour
 		transform.GetComponent<SpriteRenderer>().enabled = true;
 		transform.GetComponent<Animator>().enabled = true;
 	}
-
-	// Update is called once per frame
+	
 	void Update()
 	{
 		if(canMove)
@@ -82,7 +96,6 @@ public class Player : MonoBehaviour
 			audioSource.PlayOneShot(munch1);
 		playedFirstMunch = !playedFirstMunch;
 	}
-
 
 	void ReadInput()
 	{
@@ -194,15 +207,17 @@ public class Player : MonoBehaviour
 				{
 					o.GetComponent<SpriteRenderer>().enabled = false;
 					tile.consumed = true;
-					GameBoard.score += PELLET_SCORE;
+					if(tile.isSuperPellet)
+						GameBoard.score += SUPER_PELLET_SCORE;
+					else
+						GameBoard.score += PELLET_SCORE;
+					
 					gameBoard.pelletsConsumed++;
 					PlayMunchSound();
 					if (tile.isSuperPellet)
 					{
 						foreach (GameObject g in ghosts)
-						{
 							g.GetComponent<Ghost>().StartScaredMode();
-						}
 					}
 				}
 			}
@@ -225,43 +240,36 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	// Called when Pacman hits a ghost
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		Ghost ghost = other.GetComponent<Ghost>();
 		if (ghost != null)
-		{
 			ghost.TouchPacman();
-		}
 	}
 
+	// Kill Pacman and call PlayDeathAudio
 	public void Die()
 	{
 		dead = true;
 		StartCoroutine(PlayDeathAudio(1.65f));	// 1.65 secs for deathSound
 	}
 
-	public void Celebrate()
-	{
-		winning = true;
-	}
-
-	void SetDifficultyForLevel(int level)
-	{
-		float[] speeds = { 5.75f, 6.05f, 6.35f, 6.6f * level / 4 };
-		if (level > speeds.Length)
-			level = speeds.Length;
-		speed = speeds[level - 1];
-	}
-
+	// Plays death sounds and resurrects afterwards
 	IEnumerator PlayDeathAudio(float delay)
 	{
 		audioSource.PlayOneShot(deathSound);
 		yield return new WaitForSeconds(delay); // {delay} secs for deathSound
 		audioSource.PlayOneShot(deathQuack);
-		yield return new WaitForSeconds(0.19f);	// 0.19 secs between deathQuacks
+		yield return new WaitForSeconds(0.19f); // 0.19 secs between deathQuacks
 		audioSource.PlayOneShot(deathQuack);
 		yield return new WaitForSeconds(0.5f);
 		transform.GetComponent<SpriteRenderer>().enabled = false;
 		dead = false;
+	}
+
+	public void Celebrate()
+	{
+		winning = true;
 	}
 }

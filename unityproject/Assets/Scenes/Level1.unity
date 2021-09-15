@@ -1065,7 +1065,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1676085788}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2964,6 +2964,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &77867328 stripped
@@ -3773,6 +3777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &105279640 stripped
@@ -4541,7 +4549,7 @@ GameObject:
   - component: {fileID: 148045138}
   m_Layer: 0
   m_Name: LeftArrow 2
-  m_TagString: Untagged
+  m_TagString: WalkableTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5203,7 +5211,7 @@ GameObject:
   - component: {fileID: 169530320}
   m_Layer: 0
   m_Name: RightArrow 2
-  m_TagString: Untagged
+  m_TagString: WalkableTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6650,6 +6658,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &205888311 stripped
@@ -6711,6 +6723,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -7618,6 +7634,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -9077,6 +9097,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &296473837 stripped
@@ -9447,7 +9471,7 @@ GameObject:
   - component: {fileID: 322288356}
   m_Layer: 0
   m_Name: RightArrow 1
-  m_TagString: Untagged
+  m_TagString: WalkableTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15511,6 +15535,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &499551780 stripped
@@ -15958,11 +15986,11 @@ RectTransform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 1676085788}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50.000004, y: 147.50002}
+  m_AnchoredPosition: {x: -50.00001, y: 147.49998}
   m_SizeDelta: {x: 100, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &510562827
@@ -15987,14 +16015,14 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: f9780eae824625a44b0fa0396d31377f, type: 3}
-    m_FontSize: 80
+    m_FontSize: 81
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 80
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
+    m_MaxSize: 160
+    m_Alignment: 1
+    m_AlignByGeometry: 1
+    m_RichText: 0
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
@@ -19016,101 +19044,6 @@ Transform:
   m_Father: {fileID: 1673307888}
   m_RootOrder: 288
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &613843089
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 613843090}
-  - component: {fileID: 613843092}
-  - component: {fileID: 613843091}
-  - component: {fileID: 613843093}
-  m_Layer: 5
-  m_Name: HighScoreValue
-  m_TagString: UI
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &613843090
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613843089}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1676085788}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50, y: 122.50002}
-  m_SizeDelta: {x: 100, y: 25}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &613843091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613843089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: f7d2f529b7a7a4f4d86a3169d87e478a, type: 3}
-    m_FontSize: 100
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 100
-    m_Alignment: 1
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: 10000
---- !u!222 &613843092
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613843089}
-  m_CullTransparentMesh: 1
---- !u!114 &613843093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613843089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.13333334, g: 0, b: 1, a: 1}
-  m_EffectDistance: {x: 5, y: -5}
-  m_UseGraphicAlpha: 1
 --- !u!1 &618602093
 GameObject:
   m_ObjectHideFlags: 0
@@ -21831,6 +21764,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &705620772 stripped
@@ -21952,7 +21889,7 @@ RectTransform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 1676085788}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -23216,6 +23153,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &748715818 stripped
@@ -24014,6 +23955,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -26518,6 +26463,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &873846177 stripped
@@ -26795,11 +26744,11 @@ RectTransform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 1676085788}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 49.999996, y: 122.500015}
+  m_AnchoredPosition: {x: -49.99999, y: 122.499985}
   m_SizeDelta: {x: 100, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &877821431
@@ -26829,7 +26778,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 100
-    m_Alignment: 1
+    m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -26857,7 +26806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0.13333334, g: 0, b: 1, a: 1}
-  m_EffectDistance: {x: 5, y: -5}
+  m_EffectDistance: {x: 10, y: -10}
   m_UseGraphicAlpha: 1
 --- !u!1 &878058472
 GameObject:
@@ -27558,6 +27507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &899401897 stripped
@@ -28162,7 +28115,7 @@ RectTransform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 1676085788}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -29419,6 +29372,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &949265062 stripped
@@ -30359,6 +30316,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -33123,6 +33084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &1059735955 stripped
@@ -33805,6 +33770,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &1077739668 stripped
@@ -34210,6 +34179,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -36570,6 +36543,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &1162928131 stripped
@@ -37165,85 +37142,6 @@ Transform:
   m_Father: {fileID: 1673307888}
   m_RootOrder: 301
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1178494270
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1178494271}
-  - component: {fileID: 1178494273}
-  - component: {fileID: 1178494272}
-  m_Layer: 5
-  m_Name: HighScoreSign
-  m_TagString: UI
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1178494271
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1178494270}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1676085788}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50.000004, y: 147.50002}
-  m_SizeDelta: {x: 100, y: 25}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1178494272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1178494270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: f9780eae824625a44b0fa0396d31377f, type: 3}
-  m_Color: {r: 0.8490566, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: f9780eae824625a44b0fa0396d31377f, type: 3}
-    m_FontSize: 80
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 80
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: HI-SCORE
---- !u!222 &1178494273
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1178494270}
-  m_CullTransparentMesh: 1
 --- !u!1 &1179934560
 GameObject:
   m_ObjectHideFlags: 0
@@ -38729,7 +38627,7 @@ GameObject:
   - component: {fileID: 1222964268}
   m_Layer: 0
   m_Name: LeftArrow 3
-  m_TagString: Untagged
+  m_TagString: WalkableTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38872,6 +38770,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &1224455484 stripped
@@ -38908,7 +38810,7 @@ Transform:
   m_LocalScale: {x: 7.151132, y: 7.151132, z: 7.151132}
   m_Children: []
   m_Father: {fileID: 1676085788}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1225511538
 SpriteRenderer:
@@ -39094,6 +38996,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -39561,6 +39467,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -40439,6 +40349,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &1264103066 stripped
@@ -40910,6 +40824,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -41897,7 +41815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8132958657117643455, guid: 74822d0afae91cb4d90a8daa91d09ecf, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74822d0afae91cb4d90a8daa91d09ecf, type: 3}
@@ -43878,6 +43796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &1348424862 stripped
@@ -44613,6 +44535,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -46547,6 +46473,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -48637,6 +48567,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &1478606858 stripped
@@ -48698,6 +48632,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -50333,7 +50271,7 @@ GameObject:
   - component: {fileID: 1535613067}
   m_Layer: 0
   m_Name: LeftArrow 1
-  m_TagString: Untagged
+  m_TagString: WalkableTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50802,6 +50740,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -54736,8 +54678,6 @@ RectTransform:
   m_Children:
   - {fileID: 592821086}
   - {fileID: 632897016}
-  - {fileID: 1178494271}
-  - {fileID: 613843090}
   - {fileID: 510562826}
   - {fileID: 877821430}
   - {fileID: 1225511537}
@@ -56923,6 +56863,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &1738471265 stripped
@@ -58671,7 +58615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8132958657117643455, guid: 74822d0afae91cb4d90a8daa91d09ecf, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74822d0afae91cb4d90a8daa91d09ecf, type: 3}
@@ -58917,6 +58861,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -60160,6 +60108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &1837260278 stripped
@@ -60221,6 +60173,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -62785,6 +62741,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &1904392870 stripped
@@ -63114,6 +63074,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -63890,7 +63854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 126221781}
-  pelletsConsumed: 240
+  pelletsConsumed: 0
   backgroundAudioNormal: {fileID: 8300000, guid: c8edfa1536f0fca449ee33c5b462d6ec, type: 3}
   backgroundAudioScared: {fileID: 8300000, guid: 5f964d70de6c080448edb198f4c50038, type: 3}
   startupSound: {fileID: 8300000, guid: 91774db592b5d1041a99a57119896541, type: 3}
@@ -63899,8 +63863,8 @@ MonoBehaviour:
   readyText: {fileID: 592821085}
   gameOverText: {fileID: 632897015}
   scoreText: {fileID: 877821431}
-  eatenGhostScoreText: {fileID: 31160566}
   levelText: {fileID: 706295428}
+  eatenGhostScoreText: {fileID: 31160566}
 --- !u!4 &1960994174
 Transform:
   m_ObjectHideFlags: 0
@@ -64143,6 +64107,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -65675,6 +65643,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &2010866897 stripped
@@ -66562,6 +66534,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PathTile (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
 --- !u!4 &2042000245 stripped
@@ -66701,6 +66677,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
@@ -68501,7 +68481,7 @@ GameObject:
   - component: {fileID: 2103161867}
   m_Layer: 0
   m_Name: RightArrow 3
-  m_TagString: Untagged
+  m_TagString: WalkableTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69266,7 +69246,7 @@ PrefabInstance:
       objectReference: {fileID: 733667315}
     - target: {fileID: 829827172967371429, guid: b6139900c55341946b1fc6bb4889178d, type: 3}
       propertyPath: baseReleaseWait
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 829827172967371429, guid: b6139900c55341946b1fc6bb4889178d, type: 3}
       propertyPath: eyesAnimatorController
@@ -69355,7 +69335,7 @@ PrefabInstance:
       objectReference: {fileID: 733667315}
     - target: {fileID: 5819299698614698946, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
       propertyPath: baseReleaseWait
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5819299698614698946, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
       propertyPath: eyesAnimatorController
@@ -69513,7 +69493,7 @@ PrefabInstance:
       objectReference: {fileID: 41951355}
     - target: {fileID: 1487520486345691677, guid: 37a809de73034244da44edaca81f252e, type: 3}
       propertyPath: baseReleaseWait
-      value: 12
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1487520486345691677, guid: 37a809de73034244da44edaca81f252e, type: 3}
       propertyPath: eyesAnimatorController
@@ -69582,7 +69562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4025294100735532496, guid: be9a7d3acbf50cc478ff818c769de27f, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4025294100735532496, guid: be9a7d3acbf50cc478ff818c769de27f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -69724,6 +69704,10 @@ PrefabInstance:
     - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
       propertyPath: m_Name
       value: PathTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604959212316800397, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}
+      propertyPath: m_TagString
+      value: WalkableTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7767ccf051816314a821f3524cd2fc8a, type: 3}

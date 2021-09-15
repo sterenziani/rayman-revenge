@@ -11,6 +11,7 @@ public class GameBoard : MonoBehaviour
 	public static int level = 1;
 	public static int lives = 3;
 	public static int score = 0;
+	public static int ghostEatenScore;
 	public static int boardWidth = 30;
 	public static int boardHeight = 33;
 
@@ -46,11 +47,6 @@ public class GameBoard : MonoBehaviour
         foreach (GameObject o in objects)
         {
             Vector2 pos = o.transform.position;
-			// Pellet, InvisibleNode, WalkableTile
-			/*
-			if (o.name != "Nodes" && o.name != "Non-Nodes" && o.name != "Maze" && o.name != "Pellets" && o.name != "PathTiles" && o.name != "PacMan Spawn Node"
-				 && o.tag != "Player" && o.tag != "Enemy" && o.tag != "Maze" && o.tag != "MainCamera" && o.tag != "GhostHomeNode" && o.tag != "UI")
-			*/
 			if(o.tag == "Pellet" || o.tag == "InvisibleNode" || o.tag == "WalkableTile")
 			{
 				if(o.GetComponent<Tile>() != null)
@@ -65,8 +61,40 @@ public class GameBoard : MonoBehaviour
 		ghosts = GameObject.FindGameObjectsWithTag("Enemy");
 		audioSource = transform.GetComponent<AudioSource>();
 		healthBar.SetupLives(lives-1);
-		Debug.Log("There's " +totalPellets +" pellets");
 		StartGame();
+	}
+
+	///// STARTUP METHODS /////
+	public void StartGame()
+	{
+		levelText.text = level.ToString();
+		audioSource.PlayOneShot(startupSound);
+		// Hide ghosts and Pacman, make them unable to move
+		foreach (GameObject g in ghosts)
+		{
+			g.GetComponent<Ghost>().canMove = false;
+			g.GetComponent<SpriteRenderer>().enabled = false;
+		}
+		pacman.transform.GetComponent<Player>().canMove = false;
+		pacman.transform.GetComponent<SpriteRenderer>().enabled = false;
+		StartCoroutine(ShowCharactersUponStartupAfter(2.25f));
+	}
+
+	// Shows static sprites for a bit and starts game
+	IEnumerator ShowCharactersUponStartupAfter(float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		foreach (GameObject g in ghosts)
+			g.GetComponent<SpriteRenderer>().enabled = true;
+		pacman.transform.GetComponent<SpriteRenderer>().enabled = true;
+		pacman.transform.GetComponent<Animator>().enabled = false;
+		// Pause for 2 seconds and allow everyone to move
+		yield return new WaitForSeconds(2);
+		foreach (GameObject g in ghosts)
+			g.GetComponent<Ghost>().canMove = true;
+		pacman.transform.GetComponent<Player>().canMove = true;
+		pacman.transform.GetComponent<Animator>().enabled = true;
+		readyText.transform.GetComponent<SpriteRenderer>().enabled = false;
 	}
 
 	void Update()
@@ -75,9 +103,14 @@ public class GameBoard : MonoBehaviour
 		CheckPelletsConsumed();
 	}
 
+	void UpdateUI()
+	{
+		scoreText.text = score.ToString();
+	}
+
 	void CheckPelletsConsumed()
 	{
-		if(!winning && totalPellets == pelletsConsumed)
+		if (!winning && totalPellets == pelletsConsumed)
 		{
 			winning = true;
 			PlayerWin();
@@ -99,48 +132,24 @@ public class GameBoard : MonoBehaviour
 		StartCoroutine(ChangeLevel(6));
 	}
 
-	void UpdateUI()
+	// Makes Pacman dance for {delay} seconds and loads next scene
+	IEnumerator ChangeLevel(float delay)
 	{
-		scoreText.text = score.ToString();
-	}
-
-	public void PlayNormalAlarm()
-	{
-		audioSource.clip = backgroundAudioNormal;
-		audioSource.Play();
-	}
-
-	public void PlayScaredAlarm()
-	{
-		audioSource.clip = backgroundAudioScared;
-		audioSource.Play();
-	}
-
-	public void Restart()
-	{
-		readyText.GetComponent<SpriteRenderer>().enabled = false;
-		dying = false;
-		winning = false;
-		pacman.transform.GetComponent<Player>().Restart();
-		foreach (GameObject g in ghosts)
-			g.GetComponent<Ghost>().Restart();
-	}
-
-	public void StartGame()
-	{
-		levelText.text = level.ToString();
-		audioSource.PlayOneShot(startupSound);
-		// Hide ghosts and Pacman, make them unable to move
-		foreach (GameObject g in ghosts)
+		int iterations = 6;
+		delay = delay / (iterations * 2);
+		for (int i = 0; i < iterations; i++)
 		{
-			g.GetComponent<Ghost>().canMove = false;
-			g.GetComponent<SpriteRenderer>().enabled = false;
+			pacman.transform.GetComponent<Player>().direction = Vector2.right;
+			yield return new WaitForSeconds(delay);
+			pacman.transform.GetComponent<Player>().direction = Vector2.left;
+			yield return new WaitForSeconds(delay);
 		}
-		pacman.transform.GetComponent<Player>().canMove = false;
-		pacman.transform.GetComponent<SpriteRenderer>().enabled = false;
-		StartCoroutine(ShowObjectsAfter(2.25f));
+		SceneManager.LoadScene("Level1");
 	}
 
+
+
+	///// DEATH METHODS /////
 	public void StartDeath()
 	{
 		if(!dying)
@@ -155,30 +164,24 @@ public class GameBoard : MonoBehaviour
 		}
 	}
 
-	// Hides all Ghosts and calls ProcessDeathAnimation
+	// Pauses for {delay} seconds, hides all ghosts and calls ProcessRestartAfter
 	IEnumerator ProcessDeathAfter(float delay)
 	{
 		yield return new WaitForSeconds(delay);
 		foreach (GameObject g in ghosts)
 			g.GetComponent<SpriteRenderer>().enabled = false;
-		StartCoroutine(ProcessDeathAnimation(2.3f));	// 2.3 = Time that death animation takes
-	}
-
-	// Kills PacMan and calls ProcessRestart
-	IEnumerator ProcessDeathAnimation(float delay)
-	{
 		pacman.transform.GetComponent<Animator>().enabled = true;
 		pacman.transform.GetComponent<Player>().Die();
-		yield return new WaitForSeconds(delay);
-		StartCoroutine(ProcessRestart(1));				// Freeze for 2 seconds after death
+		StartCoroutine(ProcessRestartAfter(2.3f));	// 2.3 = Time that death animation takes
 	}
 
-	// Shows ReadyText and calls RestartShowObjectsAfter
-	IEnumerator ProcessRestart(float delay)
+	// Pauses for {delay} seconds and either restarts or quits. Calls ProcessGameOver and ShowCharactersUponRestartAfter
+	IEnumerator ProcessRestartAfter(float delay)
 	{
+		yield return new WaitForSeconds(delay);
 		pacman.GetComponent<SpriteRenderer>().enabled = false;
 		lives--;
-		if(lives == 0)
+		if (lives == 0)
 		{
 			audioSource.Stop();
 			gameOverText.GetComponent<SpriteRenderer>().enabled = true;
@@ -187,14 +190,14 @@ public class GameBoard : MonoBehaviour
 		else
 		{
 			readyText.GetComponent<SpriteRenderer>().enabled = true;
-			yield return new WaitForSeconds(delay);
-			StartCoroutine(RestartShowObjectsAfter(1));
+			yield return new WaitForSeconds(1);
+			StartCoroutine(ShowCharactersUponRestartAfter(1));
 			healthBar.RemoveLives(1);
 		}
 	}
 
 	// Hides ReadyText and resets ghosts and PacMan
-	IEnumerator RestartShowObjectsAfter(float delay)
+	IEnumerator ShowCharactersUponRestartAfter(float delay)
 	{
 		readyText.GetComponent<SpriteRenderer>().enabled = false;
 		foreach (GameObject g in ghosts)
@@ -209,29 +212,30 @@ public class GameBoard : MonoBehaviour
 		Restart();
 	}
 
-	// Shows  static sprites before start of game and calls StartGameAfter
-	IEnumerator ShowObjectsAfter(float delay)
+	// Pauses for {delay} seconds, resets all variables and returns to main menu
+	IEnumerator ProcessGameOver(float delay)
 	{
 		yield return new WaitForSeconds(delay);
-		foreach (GameObject g in ghosts)
-			g.GetComponent<SpriteRenderer>().enabled = true;
-		pacman.transform.GetComponent<SpriteRenderer>().enabled = true;
-		pacman.transform.GetComponent<Animator>().enabled = false;
-		StartCoroutine(StartGameAfter(2));
+		level = 1;
+		lives = 3;
+		score = 0;
+		SceneManager.LoadScene("MainMenu");
 	}
 
-	// Allows everyone to move
-	IEnumerator StartGameAfter(float delay)
+	public void Restart()
 	{
-		yield return new WaitForSeconds(delay);
+		readyText.GetComponent<SpriteRenderer>().enabled = false;
+		dying = false;
+		winning = false;
+		pacman.transform.GetComponent<Player>().Restart();
 		foreach (GameObject g in ghosts)
-			g.GetComponent<Ghost>().canMove = true;
-		pacman.transform.GetComponent<Player>().canMove = true;
-		pacman.transform.GetComponent<Animator>().enabled = true;
-		readyText.transform.GetComponent<SpriteRenderer>().enabled = false;
+			g.GetComponent<Ghost>().Restart();
 	}
 
-	// Freezes screen and hides ghost while showing score. Calls ProcessEatenAfter
+
+
+	///// EATING METHODS /////
+	// Freezes screen and hides {ghost} while showing score. Calls ProcessEatenAfter
 	public void StartEaten(Ghost ghost)
 	{
 		if(!eatingGhost)
@@ -247,13 +251,14 @@ public class GameBoard : MonoBehaviour
 			Vector2 viewPortPoint = Camera.main.WorldToViewportPoint(pos);
 			eatenGhostScoreText.GetComponent<RectTransform>().anchorMin = viewPortPoint;
 			eatenGhostScoreText.GetComponent<RectTransform>().anchorMax = viewPortPoint;
+			eatenGhostScoreText.GetComponent<Text>().text = ghostEatenScore.ToString();
 			eatenGhostScoreText.GetComponent<Text>().enabled = true;
 			audioSource.PlayOneShot(eatGhostSound);
 			StartCoroutine(ProcessEatenAfter(0.75f, ghost));
 		}
 	}
 
-	// Unfreeze screen after ghost has been eaten
+	// Pause for {delay} seconds and unfreeze screen after {ghost} has been eaten
 	IEnumerator ProcessEatenAfter(float delay, Ghost ghost)
 	{
 		yield return new WaitForSeconds(delay);
@@ -267,26 +272,18 @@ public class GameBoard : MonoBehaviour
 		eatingGhost = false;
 	}
 
-	IEnumerator ProcessGameOver(float delay)
+
+
+	///// MUSIC METHODS /////
+	public void PlayNormalAlarm()
 	{
-		yield return new WaitForSeconds(delay);
-		level = 1;
-		lives = 3;
-		score = 0;
-		SceneManager.LoadScene("MainMenu");
+		audioSource.clip = backgroundAudioNormal;
+		audioSource.Play();
 	}
 
-	IEnumerator ChangeLevel(float delay)
+	public void PlayScaredAlarm()
 	{
-		int iterations = 6;
-		delay = delay / (iterations * 2);
-		for (int i=0; i < iterations; i++)
-		{
-			pacman.transform.GetComponent<Player>().direction = Vector2.right;
-			yield return new WaitForSeconds(delay);
-			pacman.transform.GetComponent<Player>().direction = Vector2.left;
-			yield return new WaitForSeconds(delay);
-		}
-		SceneManager.LoadScene("Level1");
+		audioSource.clip = backgroundAudioScared;
+		audioSource.Play();
 	}
 }
