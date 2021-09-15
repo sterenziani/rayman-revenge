@@ -44,10 +44,12 @@ public class GameBoard : MonoBehaviour
 		board = new GameObject[boardWidth, boardHeight];
 		// Load all interactive tiles into the array and place them on the board
 		Object[] objects = GameObject.FindObjectsOfType(typeof(GameObject));
-        foreach (GameObject o in objects)
+		pacman = pacman = GameObject.FindGameObjectWithTag("Player");
+		ghosts = GameObject.FindGameObjectsWithTag("Enemy");
+		foreach (GameObject o in objects)
         {
             Vector2 pos = o.transform.position;
-			if(o.tag == "Pellet" || o.tag == "InvisibleNode" || o.tag == "WalkableTile")
+			if(o.tag == "Pellet" || o.tag == "WalkableTile" || (o.tag == "InvisibleNode" && o.GetComponent<Node>() != pacman.GetComponent<Player>().startingPosition))
 			{
 				if(o.GetComponent<Tile>() != null)
 				{
@@ -57,8 +59,6 @@ public class GameBoard : MonoBehaviour
 				board[(int)pos.x, (int)pos.y] = o;
 			}
         }
-		pacman = pacman = GameObject.FindGameObjectWithTag("Player");
-		ghosts = GameObject.FindGameObjectsWithTag("Enemy");
 		audioSource = transform.GetComponent<AudioSource>();
 		healthBar.SetupLives(lives-1);
 		StartGame();
