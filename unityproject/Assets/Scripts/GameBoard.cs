@@ -144,7 +144,8 @@ public class GameBoard : MonoBehaviour
 			pacman.transform.GetComponent<Player>().direction = Vector2.left;
 			yield return new WaitForSeconds(delay);
 		}
-		SceneManager.LoadScene("Level1");
+		int nextLevel = 1 + ((level+1) % 2);
+		SceneManager.LoadScene("Level" +nextLevel.ToString());
 	}
 
 
@@ -185,7 +186,7 @@ public class GameBoard : MonoBehaviour
 		{
 			audioSource.Stop();
 			gameOverText.GetComponent<SpriteRenderer>().enabled = true;
-			StartCoroutine(ProcessGameOver(2));
+			StartCoroutine(ProcessGameOver(5));
 		}
 		else
 		{
