@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1283432553045216696}
   - component: {fileID: 1283432553045216697}
   - component: {fileID: 5819299698614698946}
-  - component: {fileID: 1430079680}
   - component: {fileID: 8436277998487922347}
+  - component: {fileID: 1430079680}
   m_Layer: 0
   m_Name: Ghost - Pinky
   m_TagString: Enemy
@@ -101,13 +101,35 @@ MonoBehaviour:
   regularSpeed: 5.6
   scaredSpeed: 3
   type: 1
+  canMove: 1
   isInGhostCage: 1
-  releaseWait: 7
+  baseReleaseWait: 7
   spawnNode: {fileID: 0}
+  retreatNode: {fileID: 0}
   homeNode: {fileID: 0}
+  prevNode: {fileID: 0}
+  currentNode: {fileID: 0}
+  targetNode: {fileID: 0}
   regularAnimatorController: {fileID: 22100000, guid: 2e5cd5fb8c85e0c458a23cf466b10fee, type: 2}
   scaredAnimatorController: {fileID: 22100000, guid: dd5f1818313b51b4ca6e2f841521f4dc, type: 2}
   whiteAnimatorController: {fileID: 22100000, guid: eecba63fceef08844b2ed7086dceddb9, type: 2}
+  eyesAnimatorController: {fileID: 22100000, guid: 878f4c56b04daf64cb443982ccfefbee, type: 2}
+--- !u!58 &8436277998487922347
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283432553045216710}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.8
 --- !u!95 &1430079680
 Animator:
   serializedVersion: 3
@@ -127,19 +149,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &8436277998487922347
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1283432553045216710}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.8

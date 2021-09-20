@@ -120,13 +120,19 @@ MonoBehaviour:
   regularSpeed: 5.6
   scaredSpeed: 3
   type: 3
+  canMove: 1
   isInGhostCage: 1
-  releaseWait: 21
+  baseReleaseWait: 16
   spawnNode: {fileID: 0}
+  retreatNode: {fileID: 0}
   homeNode: {fileID: 0}
+  prevNode: {fileID: 0}
+  currentNode: {fileID: 0}
+  targetNode: {fileID: 0}
   regularAnimatorController: {fileID: 22100000, guid: 97295733a0f7b7d4cafadacadfd71424, type: 2}
   scaredAnimatorController: {fileID: 22100000, guid: dd5f1818313b51b4ca6e2f841521f4dc, type: 2}
   whiteAnimatorController: {fileID: 22100000, guid: eecba63fceef08844b2ed7086dceddb9, type: 2}
+  eyesAnimatorController: {fileID: 22100000, guid: 878f4c56b04daf64cb443982ccfefbee, type: 2}
 --- !u!58 &1446497834945818221
 CircleCollider2D:
   m_ObjectHideFlags: 0

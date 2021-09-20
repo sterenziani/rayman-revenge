@@ -100,10 +100,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1650f64041aaa424ca1e06afc6d6c4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingPosition: {fileID: 0}
   speed: 6
   direction: {x: 0, y: 0}
+  canMove: 1
   munch1: {fileID: 8300000, guid: 6a161cc1404918e4a9c949a86d014073, type: 3}
   munch2: {fileID: 8300000, guid: e0675fd93754d9744b00450d60d514da, type: 3}
+  deathSound: {fileID: 8300000, guid: 54e8d3b8030bc3d4b9e9bcc57a6b7e14, type: 3}
+  deathQuack: {fileID: 8300000, guid: e8017e7c11c3976439ae18f9ac7bb57b, type: 3}
 --- !u!95 &1410519910486947570
 Animator:
   serializedVersion: 3
@@ -135,7 +139,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -234,7 +238,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 0.6
 --- !u!50 &53247549
 Rigidbody2D:
   serializedVersion: 4

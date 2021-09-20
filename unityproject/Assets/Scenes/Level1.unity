@@ -46759,30 +46759,6 @@ Transform:
   m_Father: {fileID: 1673307888}
   m_RootOrder: 444
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1430079679 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1283432553045216710, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
-  m_PrefabInstance: {fileID: 1283432552288454009}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1430079680
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1430079679}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 2e5cd5fb8c85e0c458a23cf466b10fee, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1432325664
 GameObject:
   m_ObjectHideFlags: 0
@@ -69244,14 +69220,6 @@ PrefabInstance:
       propertyPath: retreatNode
       value: 
       objectReference: {fileID: 733667315}
-    - target: {fileID: 829827172967371429, guid: b6139900c55341946b1fc6bb4889178d, type: 3}
-      propertyPath: baseReleaseWait
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 829827172967371429, guid: b6139900c55341946b1fc6bb4889178d, type: 3}
-      propertyPath: eyesAnimatorController
-      value: 
-      objectReference: {fileID: 22100000, guid: 878f4c56b04daf64cb443982ccfefbee, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6139900c55341946b1fc6bb4889178d, type: 3}
 --- !u!1001 &1283432552288454009
@@ -69305,14 +69273,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1283432553045216697, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1283432553045216697, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1730625283
-      objectReference: {fileID: 0}
     - target: {fileID: 1283432553045216710, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
       propertyPath: m_Name
       value: Ghost - Pinky
@@ -69326,33 +69286,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1742619273}
     - target: {fileID: 5819299698614698946, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
-      propertyPath: releaseWait
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5819299698614698946, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
       propertyPath: retreatNode
       value: 
       objectReference: {fileID: 733667315}
-    - target: {fileID: 5819299698614698946, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
-      propertyPath: baseReleaseWait
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5819299698614698946, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
-      propertyPath: eyesAnimatorController
-      value: 
-      objectReference: {fileID: 22100000, guid: 878f4c56b04daf64cb443982ccfefbee, type: 2}
-    - target: {fileID: 5819299698614698946, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
-      propertyPath: whiteAnimatorController
-      value: 
-      objectReference: {fileID: 22100000, guid: eecba63fceef08844b2ed7086dceddb9, type: 2}
-    - target: {fileID: 5819299698614698946, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
-      propertyPath: scaredAnimatorController
-      value: 
-      objectReference: {fileID: 22100000, guid: dd5f1818313b51b4ca6e2f841521f4dc, type: 2}
-    - target: {fileID: 5819299698614698946, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
-      propertyPath: regularAnimatorController
-      value: 
-      objectReference: {fileID: 22100000, guid: 2e5cd5fb8c85e0c458a23cf466b10fee, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d383b3e2f0fb0c644b924987380d741b, type: 3}
 --- !u!1001 &1410519910677399509
@@ -69362,14 +69298,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 53247547, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
-      propertyPath: m_Volume
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 53247549, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1410519910486947568, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -69414,57 +69342,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1410519910486947569, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1410519910486947569, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1730625283
-      objectReference: {fileID: 0}
-    - target: {fileID: 1410519910486947571, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
-      propertyPath: speed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1410519910486947571, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
-      propertyPath: munch1
-      value: 
-      objectReference: {fileID: 8300000, guid: 6a161cc1404918e4a9c949a86d014073, type: 3}
-    - target: {fileID: 1410519910486947571, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
-      propertyPath: munch2
-      value: 
-      objectReference: {fileID: 8300000, guid: e0675fd93754d9744b00450d60d514da, type: 3}
-    - target: {fileID: 1410519910486947571, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
-      propertyPath: deathQuack
-      value: 
-      objectReference: {fileID: 8300000, guid: e8017e7c11c3976439ae18f9ac7bb57b, type: 3}
-    - target: {fileID: 1410519910486947571, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
-      propertyPath: deathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 54e8d3b8030bc3d4b9e9bcc57a6b7e14, type: 3}
     - target: {fileID: 1410519910486947571, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
       propertyPath: startingPosition
       value: 
       objectReference: {fileID: 56586843}
     - target: {fileID: 1410519910486947574, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1410519910486947574, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
       propertyPath: m_Name
       value: PacMan
-      objectReference: {fileID: 0}
-    - target: {fileID: 1410519910486947574, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1410519910486947574, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8994442607719573495, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
-      propertyPath: m_Radius
-      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf5df9353375cc945bda18d5602353c7, type: 3}
@@ -69491,14 +69375,6 @@ PrefabInstance:
       propertyPath: retreatNode
       value: 
       objectReference: {fileID: 41951355}
-    - target: {fileID: 1487520486345691677, guid: 37a809de73034244da44edaca81f252e, type: 3}
-      propertyPath: baseReleaseWait
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487520486345691677, guid: 37a809de73034244da44edaca81f252e, type: 3}
-      propertyPath: eyesAnimatorController
-      value: 
-      objectReference: {fileID: 22100000, guid: 878f4c56b04daf64cb443982ccfefbee, type: 2}
     - target: {fileID: 1487520486345691678, guid: 37a809de73034244da44edaca81f252e, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -69728,10 +69604,6 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2811702661410107997, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2811702661410107997, guid: 6248da98482622e47a0762b22d27d844, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.5
       objectReference: {fileID: 0}
@@ -69772,22 +69644,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3145930596932714253, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: speed
-      value: 5.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3145930596932714253, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: white
-      value: 
-      objectReference: {fileID: 22100000, guid: eecba63fceef08844b2ed7086dceddb9, type: 2}
-    - target: {fileID: 3145930596932714253, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: scared
-      value: 
-      objectReference: {fileID: 22100000, guid: dd5f1818313b51b4ca6e2f841521f4dc, type: 2}
-    - target: {fileID: 3145930596932714253, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: regular
-      value: 
-      objectReference: {fileID: 22100000, guid: dd5f1818313b51b4ca6e2f841521f4dc, type: 2}
-    - target: {fileID: 3145930596932714253, guid: 6248da98482622e47a0762b22d27d844, type: 3}
       propertyPath: homeNode
       value: 
       objectReference: {fileID: 1097403873}
@@ -69799,45 +69655,9 @@ PrefabInstance:
       propertyPath: retreatNode
       value: 
       objectReference: {fileID: 41951355}
-    - target: {fileID: 3145930596932714253, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: isInGhostCage
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3145930596932714253, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: eyesAnimatorController
-      value: 
-      objectReference: {fileID: 22100000, guid: 878f4c56b04daf64cb443982ccfefbee, type: 2}
-    - target: {fileID: 3145930596932714253, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: whiteAnimatorController
-      value: 
-      objectReference: {fileID: 22100000, guid: eecba63fceef08844b2ed7086dceddb9, type: 2}
-    - target: {fileID: 3145930596932714253, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: scaredAnimatorController
-      value: 
-      objectReference: {fileID: 22100000, guid: dd5f1818313b51b4ca6e2f841521f4dc, type: 2}
-    - target: {fileID: 3145930596932714253, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: regularAnimatorController
-      value: 
-      objectReference: {fileID: 9100000, guid: 6cb4b844d012e1246ab7088622f6b61c, type: 2}
-    - target: {fileID: 3284546087666818806, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 6cb4b844d012e1246ab7088622f6b61c, type: 2}
     - target: {fileID: 4893616283789833485, guid: 6248da98482622e47a0762b22d27d844, type: 3}
       propertyPath: m_Name
       value: Ghost - Blinky
-      objectReference: {fileID: 0}
-    - target: {fileID: 4893616283789833485, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7226184024727434700, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7226184024727434700, guid: 6248da98482622e47a0762b22d27d844, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1730625283
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6248da98482622e47a0762b22d27d844, type: 3}
