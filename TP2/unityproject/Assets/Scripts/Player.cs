@@ -68,21 +68,22 @@ public class Player : Vulnerable
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpSpeed, rigidBody.velocity.z);
         }
 
-        if (isGrounded || (jumpInput && isUsingHelicopter))
+        if (isGrounded)
         {
             //audioSource.Stop();
             isUsingHelicopter = false;
         }
 
-        if (jumpInput && !isGrounded && !isUsingHelicopter)
+        if(jumpInput)
         {
-            //audioSource.Play();
-            isUsingHelicopter = true;
-        }
-
-        if (jumpInput && isUsingHelicopter)
-        {
-            //AudioSource.PlayClipAtPoint (helicopterStopSound, transform.position, 0.75f);
+            if(isUsingHelicopter)
+            {
+                isUsingHelicopter = false;
+            }
+            else if(!isGrounded && !isUsingHelicopter)
+            {
+                isUsingHelicopter = true;
+            }
         }
 
         if (isUsingHelicopter)
