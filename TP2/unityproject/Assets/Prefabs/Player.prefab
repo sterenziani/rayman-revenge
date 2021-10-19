@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1202638868780641028}
   - component: {fileID: 1202638868780641035}
   - component: {fileID: 1202638868780641030}
-  - component: {fileID: 1202638868780641024}
+  - component: {fileID: 3623617884206134615}
   m_Layer: 0
   m_Name: Fist
   m_TagString: Untagged
@@ -144,7 +144,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1202638868780641024
+--- !u!114 &3623617884206134615
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,8 +156,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f839995356d695947a6025a87a908c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  range: 5
+  hitDamage: 5
+  useGravity: 0
+  bounciness: 0
+  maxRange: Infinity
+  maxCollisions: 2147483647
+  maxLifetime: Infinity
+  explodeOnTouch: 1
+  explosion: {fileID: 0}
+  explosionDamage: 0
+  explosionRange: 0
+  explosionForce: 0
 --- !u!1 &1202638869175757334
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   cooldownTime: 0
-  bullet: {fileID: 1202638868780641024}
+  bullet: {fileID: 3623617884206134615}
   shootForce: 10
   upwardForce: 0
   spread: 0
@@ -286,7 +295,6 @@ MonoBehaviour:
   infiniteMagazine: 1
   playerRb: {fileID: 0}
   recoilForce: 0
-  fpsCam: {fileID: 0}
   muzzleFlash: {fileID: 0}
   bulletSource: {fileID: 1202638867578510306}
   allowInvoke: 1

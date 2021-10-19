@@ -48,7 +48,7 @@ public class Creature : Vulnerable
         if (!playerInSightRange && !playerInAttackRange && patrolWaypoints.Length == 0) Idling();
         if (!playerInSightRange && !playerInAttackRange && patrolWaypoints.Length > 0) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange && weapon != null) AttackPlayer();
+        if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
 
     private void Idling()
@@ -79,11 +79,17 @@ public class Creature : Vulnerable
 
         manualAnimator.PlayContinuous("Taunting");
 
-        if (weapon.CanUse)
+        if (weapon != null && weapon.CanUse)
         {
             manualAnimator.PlayAbrupt("Punching");
-            weapon.Attack(player);
+
+            Invoke(nameof(PerformAttack), manualAnimator.GetCurrentAnimationTotalDuration() / 3);
         }
+    }
+
+    private void PerformAttack()
+    {
+        weapon.Attack(player);
     }
 
     private void ChasePlayer()
@@ -108,7 +114,7 @@ public class Creature : Vulnerable
     {
         float remainingLife = base.TakeDamage(damage);
 
-        if(IsAlive())
+        if (damage > 0 && IsAlive())
         {
             agent.isStopped = true;
             manualAnimator.PlayAbrupt("Taking hit");
