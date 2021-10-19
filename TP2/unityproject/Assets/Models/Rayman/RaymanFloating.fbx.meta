@@ -11,12 +11,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Helicopter Hair
-    second: {fileID: 2100000, guid: a3b987c731d4231418b4f83c4a9ced8b, type: 2}
+    second: {fileID: 2100000, guid: 90fa84dcbf8f0904da1c94ddbb0a5cd1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Top Teeth
-    second: {fileID: 2100000, guid: 3e91e9b81207370478fa9ef4c6c6f8e4, type: 2}
+    second: {fileID: 2100000, guid: c35356b317fbd704b865660b86536fb3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
