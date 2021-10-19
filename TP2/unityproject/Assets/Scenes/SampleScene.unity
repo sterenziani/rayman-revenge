@@ -191,6 +191,10 @@ PrefabInstance:
       value: newRayman
       objectReference: {fileID: 0}
     - target: {fileID: 1630794972795428178, guid: 2897a6d3b42214a42aa8c5a1ada8f726, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 48f3102698442f74a805ee45f2984918, type: 2}
+    - target: {fileID: 1630794972795428178, guid: 2897a6d3b42214a42aa8c5a1ada8f726, type: 3}
       propertyPath: m_BlendShapeWeights.Array.size
       value: 23
       objectReference: {fileID: 0}
@@ -1350,6 +1354,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1202638867317274455, guid: 76c8d011b92f35a468d1c882b5686d61, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ef4a05735de61e42b0947b2570b02a7, type: 2}
     - target: {fileID: 1202638868780641024, guid: 76c8d011b92f35a468d1c882b5686d61, type: 3}
       propertyPath: maxRange
       value: 5
