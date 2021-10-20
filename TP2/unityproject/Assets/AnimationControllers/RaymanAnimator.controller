@@ -952,7 +952,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GroundRoll
-  m_Speed: 1.5
+  m_Speed: 1.93
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101608229978913602}
@@ -967,7 +967,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 6b4ea8dae9b68504c81b1e6a92d80c68, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 86c7ffadcabe9474aa8c0a9cf2b7d932, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
