@@ -81,11 +81,13 @@ public class Player : Vulnerable
             if(isUsingHelicopter)
             {
                 isUsingHelicopter = false;
-            }
+				raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 0);
+			}
             else if(!isGrounded && !isUsingHelicopter)
             {
                 isUsingHelicopter = true;
-            }
+				raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 100);
+			}
         }
 
         if (isUsingHelicopter)
