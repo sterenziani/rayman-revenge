@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 6b4ea8dae9b68504c81b1e6a92d80c68
+guid: 6ce8806474a45f047b7283ccc0d702e5
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: RaymanFalling
+    second: RaymanFall
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Helicopter Hair
-    second: {fileID: 2100000, guid: c91fd704264a6974e958821e80e02e0b, type: 2}
+    second: {fileID: 2100000, guid: 2850b95be17aebf47b51115112565638, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Top Teeth
-    second: {fileID: 2100000, guid: cde8a0e2c53267244ad2afd213f0020f, type: 2}
+    second: {fileID: 2100000, guid: e88dfe94b0d6f364c9d34247c4ec2c66, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -51,11 +51,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: RaymanFalling
+      name: RaymanFall
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 21
+      lastFrame: 107
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

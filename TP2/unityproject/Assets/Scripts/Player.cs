@@ -142,7 +142,7 @@ public class Player : Vulnerable
     void GetInputs()
     {
         horizontalAxisInput = Input.GetAxisRaw("Horizontal");
-        verticalAxisInput = Input.GetAxisRaw("Vertical");
+		verticalAxisInput = Input.GetAxisRaw("Vertical");
         jumpInput = Input.GetButtonDown("Jump");
         hitInput = Input.GetMouseButtonDown(0);
     }
