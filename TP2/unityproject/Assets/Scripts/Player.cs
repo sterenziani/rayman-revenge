@@ -24,18 +24,19 @@ public class Player : Vulnerable
 
     private new Collider collider;
     private float rotation = 80;
+	private GameObject raymanBody;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         collider = GetComponent<Collider>();
         distToGround = collider.bounds.extents.y;
         fistShooter = GetComponent<Gun>();
-    }
+		raymanBody = this.gameObject.transform.Find("rayman").gameObject.transform.Find("Body").gameObject;
+	}
 
     // Update is called once per frame
     protected override void Update()
@@ -72,13 +73,15 @@ public class Player : Vulnerable
         {
             //audioSource.Stop();
             isUsingHelicopter = false;
-        }
+			raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 0);
+		}
 
         if (jumpInput && !isGrounded && !isUsingHelicopter)
         {
             //audioSource.Play();
             isUsingHelicopter = true;
-        }
+			raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 100);
+		}
 
         if (jumpInput && isUsingHelicopter)
         {
