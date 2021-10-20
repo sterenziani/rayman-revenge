@@ -23,6 +23,13 @@ public class Vulnerable : MonoBehaviour
         return LifePoints > 0;
     }
 
+    public virtual float Cure(float points)
+    {
+        LifePoints = Mathf.Min(LifePoints + points, lifePointsTotal);
+        
+        return LifePoints;
+    }
+
     public virtual float TakeDamage(float damage)
     {
         LifePoints -= damage;
