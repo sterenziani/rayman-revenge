@@ -981,7 +981,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DescendingFromJump
-  m_Speed: 1.95
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101235540291467580}
@@ -998,7 +998,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 6ce8806474a45f047b7283ccc0d702e5, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 6b4ea8dae9b68504c81b1e6a92d80c68, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
