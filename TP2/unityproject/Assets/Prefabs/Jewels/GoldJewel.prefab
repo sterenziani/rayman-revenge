@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7306046487350986192}
   - component: {fileID: 7306046487350986197}
   m_Layer: 8
-  m_Name: Goldjewel
+  m_Name: GoldJewel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
