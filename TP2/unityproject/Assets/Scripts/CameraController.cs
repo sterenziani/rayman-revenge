@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -8,8 +6,12 @@ public class CameraController : MonoBehaviour
 	public Transform target;
 	public Player playerMovement;
 	public float distance = 5.0f;
-	public float xSpeed = 120.0f;
-	public float ySpeed = 120.0f;
+
+	[Range(0f, 1f)]
+	public float mouseSensitivity = 1;
+
+	private float xSpeed = 120.0f;
+	private float ySpeed = 120.0f;
 
 	public float yMinLimit = -20f;
 	public float yMaxLimit = 80f;
@@ -31,7 +33,7 @@ public class CameraController : MonoBehaviour
 
 		rigidBody = GetComponent<Rigidbody>();
 
-		// Make the rigid body not change rotation
+		// Que el cuerpo rigido no rote
 		if (rigidBody != null)
 		{
 			rigidBody.freezeRotation = true;
@@ -42,14 +44,14 @@ public class CameraController : MonoBehaviour
 	{
 		if (target)
 		{
-			x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
-			y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+			x += Input.GetAxis("Mouse X") * xSpeed * mouseSensitivity * distance * 0.02f;
+			y -= Input.GetAxis("Mouse Y") * ySpeed * mouseSensitivity * 0.02f;
 
 			y = ClampAngle(y, yMinLimit, yMaxLimit);
 
 			Quaternion rotation = Quaternion.Euler(y, x, 0);
 
-			distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5, distanceMin, distanceMax);
+			distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5 * mouseSensitivity, distanceMin, distanceMax);
 
 			Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
 			Vector3 position = rotation * negDistance + target.position;

@@ -26,6 +26,14 @@ public class Player : Vulnerable
     private float rotation = 80;
 	private GameObject raymanBody;
 
+    private float recurrentHealthLost = 1;
+    private float recurrentHealthLostTime = 1;
+
+    private void ReduceHealthByTime()
+    {
+        LifePoints -= recurrentHealthLost;
+    }
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -36,6 +44,9 @@ public class Player : Vulnerable
         distToGround = collider.bounds.extents.y;
         fistShooter = GetComponent<Gun>();
 		raymanBody = this.gameObject.transform.Find("rayman").gameObject.transform.Find("Body").gameObject;
+
+        //TODO va a traer problemas cuando se recargue la escena?
+        InvokeRepeating(nameof(ReduceHealthByTime), recurrentHealthLostTime, recurrentHealthLostTime);
 	}
 
     // Update is called once per frame
