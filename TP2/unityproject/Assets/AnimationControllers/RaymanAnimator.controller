@@ -390,9 +390,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.071239494
   m_TransitionOffset: 0
-  m_ExitTime: 0.1428572
+  m_ExitTime: 0.071617715
   m_HasExitTime: 0
   m_HasFixedDuration: 0
   m_InterruptionSource: 0
@@ -474,9 +474,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.45454544
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0.81138456
+  m_ExitTime: 0.99805695
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -536,9 +536,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.70000005
+  m_TransitionDuration: 1.0019853
+  m_TransitionOffset: 0.4009124
+  m_ExitTime: 0.66036415
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 2
@@ -952,7 +952,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GroundRoll
-  m_Speed: 2
+  m_Speed: 1.76
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101608229978913602}
@@ -1040,8 +1040,8 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Ascending
-  m_Speed: 1
-  m_CycleOffset: 0
+  m_Speed: 0.99
+  m_CycleOffset: 0.42
   m_Transitions:
   - {fileID: 1101206077686474564}
   - {fileID: 1101068009789113738}
@@ -1054,11 +1054,11 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 9999650b35903c445be3d6c4cef12b8c, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: bdb860a6876a3d14ca383caa38a310bc, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
+  m_CycleOffsetParameter: FlatSpeedAbsoluteValue
   m_TimeParameter: 
 --- !u!1102 &1102891152578175764
 AnimatorState:

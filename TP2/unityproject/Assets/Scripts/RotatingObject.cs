@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class RotatingObject : MonoBehaviour
 {
-    [SerializeField] float degreesPerSecondX = 0;
-    [SerializeField] float degreesPerSecondY = 25;
-    [SerializeField] float degreesPerSecondZ = 0;
+    public float degreesPerSecondX = 0;
+    public float degreesPerSecondY = 25;
+    public float degreesPerSecondZ = 0;
 
     void Update()
     {

@@ -152,12 +152,12 @@ public class Player : Vulnerable
         hitInput = Input.GetMouseButtonDown(0);
     }
 
-    bool IsGrounded()
-    {
-        return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.001f) || Mathf.Abs(rigidBody.velocity.y) < 0.001f;
-    }
+	bool IsGrounded()
+	{
+		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.001f) || Mathf.Abs(rigidBody.velocity.y) < 0.001f;
+	}
 
-    public void SetRotation(float rotation)
+	public void SetRotation(float rotation)
     {
         this.rotation = rotation;
     }
