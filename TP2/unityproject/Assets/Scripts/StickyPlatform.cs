@@ -1,31 +1,29 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class StickyPlatform : MonoBehaviour
 {
-    private GameObject target = null;
-    private Vector3 offset;
-
-    void Start()
-    {
-        target = null;
-    }
+    private Dictionary<GameObject, Vector3> targetsAndOffsets = new Dictionary<GameObject, Vector3>();
 
     private void OnCollisionStay(Collision collision)
     {
-        target = collision.gameObject;
-        offset = target.transform.position - transform.position;
+        GameObject target = collision.gameObject;
+        Vector3 offset = target.transform.position - transform.position;
+
+        targetsAndOffsets[target] = offset;
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        target = null;
+        GameObject target = collision.gameObject;
+        targetsAndOffsets.Remove(target);
     }
 
     void LateUpdate()
     {
-        if (target != null)
+        foreach (GameObject target in targetsAndOffsets.Keys)
         {
-            target.transform.position = transform.position + offset;
+            target.transform.position = transform.position + targetsAndOffsets[target];
         }
     }
 }

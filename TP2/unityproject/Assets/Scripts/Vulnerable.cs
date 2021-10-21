@@ -14,7 +14,7 @@ public class Vulnerable : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (transform.position.y < -100)
+        if (transform.position.y < -50)
             Die();
     }
 
