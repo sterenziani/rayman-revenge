@@ -60,7 +60,10 @@ public class FallingPlatform : MonoBehaviour
 				if (transform.position.y >= startingHeight - lowestHeight)
 					transform.position -= new Vector3(0, 1, 0) * fallSpeed * Time.deltaTime;
 				else
+				{
+					// TODO: Warn it's about to explode
 					timer += Time.deltaTime;
+				}
 				if (timer > explodeTime)
 				{
 					foreach (Transform child in transform)
