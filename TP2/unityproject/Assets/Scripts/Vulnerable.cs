@@ -1,15 +1,14 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Vulnerable : MonoBehaviour
 {
-    [SerializeField] float lifePointsTotal = 10;
-    public float LifePoints { get; private set; }
+    public float LifePointsTotal = 10;
+    public float LifePoints { get; protected set; }
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        LifePoints = lifePointsTotal;
+        LifePoints = LifePointsTotal;
     }
 
     protected virtual void Update()
@@ -25,7 +24,7 @@ public class Vulnerable : MonoBehaviour
 
     public virtual float Cure(float points)
     {
-        LifePoints = Mathf.Min(LifePoints + points, lifePointsTotal);
+        LifePoints = Mathf.Min(LifePoints + points, LifePointsTotal);
         
         return LifePoints;
     }
