@@ -13,4 +13,10 @@ public class PowerUpObject : MonoBehaviour
             player.ApplyPowerUp(PowerUp, Duration, Material);
         }
     }
+
+    private void Start()
+    {
+
+
+    }
 }

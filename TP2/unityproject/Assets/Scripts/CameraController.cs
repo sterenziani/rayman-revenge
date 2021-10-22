@@ -59,6 +59,7 @@ public class CameraController : MonoBehaviour
 			transform.rotation = rotation;
 			transform.position = position;
 			playerMovement.SetRotation(x);
+			playerMovement.SetMouseLookingAt(position);
 		}
 	}
 

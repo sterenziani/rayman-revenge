@@ -18,7 +18,6 @@ public class Player : Vulnerable
     private float horizontalAxisInput;
     private float verticalAxisInput;
     private bool jumpInput;
-    private bool jumpInputHeld;
     private bool isUsingHelicopter;
     private bool isGrounded;
 
@@ -27,7 +26,10 @@ public class Player : Vulnerable
     private Gun fistShooterStrengthPowerUp;
 
     private new Collider collider;
+
     private float rotation = 80;
+    private Vector3 mouseLookingAt;
+
 	private GameObject raymanBody;
 
     private float recurrentHealthLost = 1;
@@ -181,12 +183,6 @@ public class Player : Vulnerable
 		verticalAxisInput = Input.GetAxisRaw("Vertical");
         jumpInput = Input.GetButtonDown("Jump");
 
-        if (jumpInput && !jumpInputHeld)
-            jumpInputHeld = true;
-
-        if (Input.GetButtonUp("Jump"))
-            jumpInputHeld = false;
-
         hitInput = Input.GetMouseButtonDown(0);
     }
 
@@ -198,6 +194,11 @@ public class Player : Vulnerable
 	public void SetRotation(float rotation)
     {
         this.rotation = rotation;
+    }
+
+    public void SetMouseLookingAt(Vector3 mouseLookingAt)
+    {
+        this.mouseLookingAt = mouseLookingAt;
     }
 
     protected override void Die()
