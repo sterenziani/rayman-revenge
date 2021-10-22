@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1317009168962053978}
   - component: {fileID: 1317009168962053979}
   - component: {fileID: 1317009168962053976}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1317009169615425533}
   - component: {fileID: 3882242282029217835}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 1317009170760110565}
   - component: {fileID: 8293355443564244676}
   - component: {fileID: 8843850123556069068}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 4445433191754951886}
   - component: {fileID: 151440927467545769}
   - component: {fileID: 8144400893333966711}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}

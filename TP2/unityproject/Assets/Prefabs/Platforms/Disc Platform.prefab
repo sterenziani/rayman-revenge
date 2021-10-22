@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4339455598313461454}
   - component: {fileID: 708483633611593719}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Disc Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 4339455599555779256}
   - component: {fileID: 8941030206221764394}
   - component: {fileID: 1721457166093077626}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 4339455600171663746}
   - component: {fileID: 4339455600171663749}
   - component: {fileID: 4339455600171663748}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 6058750322665385705}
   - component: {fileID: 8151110287744813804}
   - component: {fileID: 3374561350519314195}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}

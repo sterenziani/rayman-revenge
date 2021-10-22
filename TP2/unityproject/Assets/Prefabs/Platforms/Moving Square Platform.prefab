@@ -27,7 +27,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7928814900452074657}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Moving Square Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,9 +118,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7928814900452074657}
     m_Modifications:
+    - target: {fileID: 1317009168962053974, guid: 749df9d9cda706b439d32b994be45d62, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1317009169615425530, guid: 749df9d9cda706b439d32b994be45d62, type: 3}
       propertyPath: m_Name
       value: Square Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317009169615425530, guid: 749df9d9cda706b439d32b994be45d62, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1317009169615425533, guid: 749df9d9cda706b439d32b994be45d62, type: 3}
       propertyPath: m_RootOrder
@@ -166,6 +174,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1317009170760110560, guid: 749df9d9cda706b439d32b994be45d62, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3202085415668933767, guid: 749df9d9cda706b439d32b994be45d62, type: 3}
       propertyPath: waypoints.Array.size
       value: 2
@@ -178,6 +190,10 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 7928814901528248961}
+    - target: {fileID: 5731614232623096939, guid: 749df9d9cda706b439d32b994be45d62, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3882242282029217835, guid: 749df9d9cda706b439d32b994be45d62, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 749df9d9cda706b439d32b994be45d62, type: 3}

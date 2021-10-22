@@ -15,9 +15,21 @@ PrefabInstance:
       propertyPath: lowestHeight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4530187083882817944, guid: 747e91abf981500469b110aada542688, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7138848883611917331, guid: 747e91abf981500469b110aada542688, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7138848884623360521, guid: 747e91abf981500469b110aada542688, type: 3}
       propertyPath: m_Name
-      value: Exploding Platform
+      value: Exploding Platform Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7138848884623360521, guid: 747e91abf981500469b110aada542688, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7138848884623360526, guid: 747e91abf981500469b110aada542688, type: 3}
       propertyPath: m_RootOrder
@@ -62,6 +74,10 @@ PrefabInstance:
     - target: {fileID: 7138848884623360526, guid: 747e91abf981500469b110aada542688, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7138848885276748453, guid: 747e91abf981500469b110aada542688, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 747e91abf981500469b110aada542688, type: 3}

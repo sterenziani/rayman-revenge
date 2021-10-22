@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6209847430221729521}
   - component: {fileID: 7603923358838507158}
   - component: {fileID: 1916897159039315272}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 8780438612092351450}
   - component: {fileID: 1768644084274498811}
   - component: {fileID: 1236023065170640115}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8780438613070048706}
   - component: {fileID: 6808572305093925396}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WireBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 8780438613488797029}
   - component: {fileID: 8780438613488797028}
   - component: {fileID: 8780438613488797031}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

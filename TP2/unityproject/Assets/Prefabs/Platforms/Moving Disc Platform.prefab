@@ -27,7 +27,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3654380627789707231}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Moving Disc Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Disc Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 4339455598313461441, guid: fc506589b8e6aaf4fad4efad6b0ca73c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4339455598313461454, guid: fc506589b8e6aaf4fad4efad6b0ca73c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -182,10 +186,22 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 86a6fc689bb0ab74da2e5181a452e2f0, type: 2}
+    - target: {fileID: 4339455599555779261, guid: fc506589b8e6aaf4fad4efad6b0ca73c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4339455600171663749, guid: fc506589b8e6aaf4fad4efad6b0ca73c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3faf67481a8ac964482e0d103a6dfefa, type: 2}
+    - target: {fileID: 4339455600171663750, guid: fc506589b8e6aaf4fad4efad6b0ca73c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5965841701983237847, guid: fc506589b8e6aaf4fad4efad6b0ca73c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6058750322665385705, guid: fc506589b8e6aaf4fad4efad6b0ca73c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

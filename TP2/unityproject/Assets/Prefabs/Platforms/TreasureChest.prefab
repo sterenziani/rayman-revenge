@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2491364261743132873}
   - component: {fileID: 4882469969925373928}
   - component: {fileID: 5363299595453566944}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 2491364262487881334}
   - component: {fileID: 2491364262487881335}
   - component: {fileID: 2491364262487881332}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2491364262870982353}
   - component: {fileID: 375365079589284103}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TreasureChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 965098165585051106}
   - component: {fileID: 3661401194602149253}
   - component: {fileID: 4743230706519416411}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,6 +8,8 @@ public class Player : Vulnerable
     [SerializeField] float movementSpeed = 9f;
     [SerializeField] float helicopterMovementSpeed = 3.0f;
 
+    private PowerUpsEnum powerUp = PowerUpsEnum.NONE;
+
     float playerSpeedMultiplier;
     private float helicopterDescendingSpeed = -1.0f;
 
@@ -16,6 +18,7 @@ public class Player : Vulnerable
     private float horizontalAxisInput;
     private float verticalAxisInput;
     private bool jumpInput;
+    private bool jumpInputHeld;
     private bool isUsingHelicopter;
     private bool isGrounded;
 
@@ -29,9 +32,11 @@ public class Player : Vulnerable
     private float recurrentHealthLost = 1;
     private float recurrentHealthLostTime = 1;
 
+    private Material defaultMaterial;
+
     private void ReduceHealthByTime()
     {
-        LifePoints -= recurrentHealthLost;
+        TakeDamage(recurrentHealthLost);
     }
 
     // Start is called before the first frame update
@@ -44,6 +49,8 @@ public class Player : Vulnerable
         distToGround = collider.bounds.extents.y;
         fistShooter = GetComponent<Gun>();
 		raymanBody = this.gameObject.transform.Find("rayman").gameObject.transform.Find("Body").gameObject;
+
+        defaultMaterial = raymanBody.GetComponent<Renderer>().material;
 
         //TODO va a traer problemas cuando se recargue la escena?
         InvokeRepeating(nameof(ReduceHealthByTime), recurrentHealthLostTime, recurrentHealthLostTime);
@@ -104,7 +111,15 @@ public class Player : Vulnerable
         if (isUsingHelicopter)
         {
             playerSpeedMultiplier = helicopterMovementSpeed;
-            rigidBody.velocity = new Vector3(rigidBody.velocity.x, helicopterDescendingSpeed, GetComponent<Rigidbody>().velocity.z);
+
+            if(powerUp != PowerUpsEnum.HELICOPTER)
+            {
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, helicopterDescendingSpeed, rigidBody.velocity.z);
+            }
+            else
+            {
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpSpeed, rigidBody.velocity.z);
+            }
         }
         else
         {
@@ -160,12 +175,19 @@ public class Player : Vulnerable
         horizontalAxisInput = Input.GetAxisRaw("Horizontal");
 		verticalAxisInput = Input.GetAxisRaw("Vertical");
         jumpInput = Input.GetButtonDown("Jump");
+
+        if (jumpInput && !jumpInputHeld)
+            jumpInputHeld = true;
+
+        if (Input.GetButtonUp("Jump"))
+            jumpInputHeld = false;
+
         hitInput = Input.GetMouseButtonDown(0);
     }
 
 	bool IsGrounded()
 	{
-		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.001f) || Mathf.Abs(rigidBody.velocity.y) < 0.001f;
+		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.001f, (int)LayersEnum.Ground) || Mathf.Abs(rigidBody.velocity.y) < 0.001f;
 	}
 
 	public void SetRotation(float rotation)
@@ -176,5 +198,19 @@ public class Player : Vulnerable
     protected override void Die()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ApplyPowerUp(PowerUpsEnum powerUp, float duration, Material material)
+    {
+        CancelInvoke(nameof(UndoPowerUp));
+        raymanBody.GetComponent<Renderer>().material = material;
+        this.powerUp = powerUp;
+        Invoke(nameof(UndoPowerUp), duration);
+    }
+
+    private void UndoPowerUp()
+    {
+        raymanBody.GetComponent<Renderer>().material = defaultMaterial;
+        this.powerUp = PowerUpsEnum.NONE;
     }
 }

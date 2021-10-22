@@ -39,7 +39,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1317009169615425530, guid: 749df9d9cda706b439d32b994be45d62, type: 3}
       propertyPath: m_Name
-      value: Weighted Platform
+      value: Weighted Platform Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1317009169615425533, guid: 749df9d9cda706b439d32b994be45d62, type: 3}
       propertyPath: m_RootOrder
