@@ -21,9 +21,9 @@ public class Gun : Weapon
 
     public GameObject muzzleFlash;
 
-    public Transform bulletSource;
+    //public Transform bulletSource;
 
-    public bool allowInvoke = true;
+    private bool allowInvoke = true;
 
     private void Awake()
     {
@@ -61,8 +61,8 @@ public class Gun : Weapon
     {
         CanUse = false;
 
-        Vector3 source = bulletSource.transform.position;
-        Vector3 target = bulletSource.forward;//new Vector3(bulletSource.transform.forward.x, bulletSource.forward.y, bulletSource.transform.forward.z).normalized * bullet.range;
+        Vector3 source = transform.position;
+        Vector3 target = transform.forward;//new Vector3(bulletSource.transform.forward.x, bulletSource.forward.y, bulletSource.transform.forward.z).normalized * bullet.range;
 
         GameObject currentBullet = Instantiate(bullet.gameObject, source, Quaternion.Euler(target));
         currentBullet.SetActive(true);
@@ -110,8 +110,8 @@ public class Gun : Weapon
 
     private void OnDrawGizmosSelected()
     {
-        Vector3 source = bulletSource.transform.position;
-        Vector3 target = new Vector3(transform.forward.x, bulletSource.forward.y, transform.forward.z).normalized * bullet.maxRange;
+        Vector3 source = transform.position;
+        Vector3 target = new Vector3(transform.forward.x, transform.forward.y, transform.forward.z).normalized * bullet.maxRange;
 
         Gizmos.DrawRay(source, target);
     }

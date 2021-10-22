@@ -13,6 +13,7 @@ public class Balloon : MonoBehaviour
         {
             gameObject.SetActive(false);
 
+            rigidBody.velocity = Vector3.zero;
             rigidBody.AddForce(Vector3.up * bouncingForce);
 
             if (respawnSeconds == float.PositiveInfinity)

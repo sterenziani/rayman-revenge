@@ -24,6 +24,7 @@ public class Player : Vulnerable
 
     private bool hitInput;
     private Gun fistShooter;
+    private Gun fistShooterStrengthPowerUp;
 
     private new Collider collider;
     private float rotation = 80;
@@ -49,6 +50,8 @@ public class Player : Vulnerable
         distToGround = collider.bounds.extents.y;
         fistShooter = GetComponent<Gun>();
 		raymanBody = this.gameObject.transform.Find("rayman").gameObject.transform.Find("Body").gameObject;
+        fistShooter = this.gameObject.transform.Find("FistShooter").GetComponent<Gun>();
+        fistShooterStrengthPowerUp = this.gameObject.transform.Find("FistShooterStrengthPowerUp").GetComponent<Gun>();
 
         defaultMaterial = raymanBody.GetComponent<Renderer>().material;
 
@@ -73,9 +76,11 @@ public class Player : Vulnerable
     {
         if (hitInput)
         {
-            if(fistShooter != null)
+            Gun gun = powerUp == PowerUpsEnum.STRENGTH ? fistShooterStrengthPowerUp : fistShooter;
+
+            if(gun != null)
             {
-                fistShooter.Attack(null);
+                gun.Attack(null);
             }
         }
     }
