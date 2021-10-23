@@ -188,7 +188,7 @@ public class Player : Vulnerable
 
 	bool IsGrounded()
 	{
-		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.001f, (int)LayersEnum.Ground) || Mathf.Abs(rigidBody.velocity.y) < 0.001f;
+        return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f); // || Mathf.Abs(rigidBody.velocity.y) < 0.01f;  // ELIMINE ESTO PORQUE A VECES PERMITÍA UN DOBLE SALTO
 	}
 
 	public void SetRotation(float rotation)

@@ -14,9 +14,13 @@ public class StickyPlatform : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-		Debug.Log("Bye");
 		GameObject target = collision.gameObject;
         targetsAndOffsets.Remove(target);
+    }
+
+    public void ResetCollisions()
+    {
+        targetsAndOffsets = new Dictionary<GameObject, Vector3>();
     }
 
     void LateUpdate()
