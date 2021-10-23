@@ -126,10 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f839995356d695947a6025a87a908c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitDamage: 5
+  hitDamage: 6
   useGravity: 0
   bounciness: 0
-  maxRange: Infinity
+  maxRange: 8
   maxCollisions: 2147483647
   maxLifetime: Infinity
   explodeOnTouch: 1
@@ -195,6 +195,7 @@ MonoBehaviour:
   playerRb: {fileID: 0}
   recoilForce: 0
   muzzleFlash: {fileID: 0}
+  bulletSource: {fileID: 0}
 --- !u!1 &1537748882246807263
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +254,7 @@ MonoBehaviour:
   playerRb: {fileID: 0}
   recoilForce: 0
   muzzleFlash: {fileID: 0}
+  bulletSource: {fileID: 0}
 --- !u!1 &5436521851339916390
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +384,7 @@ MonoBehaviour:
   hitDamage: 10
   useGravity: 0
   bounciness: 0
-  maxRange: Infinity
+  maxRange: 10
   maxCollisions: 2147483647
   maxLifetime: Infinity
   explodeOnTouch: 1
