@@ -73,20 +73,16 @@ public class FallingPlatform : MonoBehaviour
 				}
 				if (timer > explodeTime)
 				{
+					GetComponent<Collider>().enabled = false;
 					foreach (Transform child in transform)
 					{
-						child.gameObject.GetComponent<Collider>().enabled = false;
-						Rigidbody rb = child.gameObject.GetComponent<Rigidbody>();
-						if (rb != null)
-							rb.detectCollisions = false;
 						StickyPlatform sp = child.gameObject.GetComponent<StickyPlatform>();
 						if(sp != null)
 						{
 							sp.ResetCollisions();
 							sp.enabled = false;
 						}
-						child.gameObject.GetComponent<Renderer>().enabled = false;
-						//child.gameObject.SetActive(false);
+						child.gameObject.SetActive(false);
 					}
 					activated = false;
 					exploded = true;
@@ -100,21 +96,16 @@ public class FallingPlatform : MonoBehaviour
 				if(timer > respawnWait)
 				{
 					transform.position = new Vector3(transform.position.x, startingHeight, transform.position.z);
+					GetComponent<Collider>().enabled = true;
 					foreach (Transform child in transform)
 					{
-						child.gameObject.GetComponent<Collider>().enabled = true;
-						Rigidbody rb = child.GetComponent<Rigidbody>();
-						if(rb != null)
-							rb.detectCollisions = true;
 						StickyPlatform sp = child.gameObject.GetComponent<StickyPlatform>();
 						if (sp != null)
                         {
 							sp.ResetCollisions();
 							sp.enabled = true;
 						}
-							
-						child.gameObject.GetComponent<Renderer>().enabled = true;
-						//child.gameObject.SetActive(true);
+						child.gameObject.SetActive(true);
 					}
 					activated = false;
 					exploded = false;
