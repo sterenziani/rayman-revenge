@@ -1276,7 +1276,7 @@ GameObject:
   - component: {fileID: 257951216}
   - component: {fileID: 257951215}
   - component: {fileID: 257951214}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1579,7 +1579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 308918052}
   - component: {fileID: 308918053}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1720,7 +1720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520874, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 110
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520874, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1728,7 +1728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520874, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520874, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2164,7 +2164,7 @@ GameObject:
   - component: {fileID: 509439990}
   - component: {fileID: 509439989}
   - component: {fileID: 509439988}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6570,7 +6570,7 @@ GameObject:
   - component: {fileID: 2120447960}
   - component: {fileID: 2120447959}
   - component: {fileID: 2120447958}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6928,7 +6928,7 @@ GameObject:
   - component: {fileID: 1317009168951150988}
   - component: {fileID: 1317009168951150989}
   - component: {fileID: 1317009168951150990}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7039,7 +7039,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1317009169608499499}
   - component: {fileID: 3882242282039285501}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7123,7 +7123,7 @@ GameObject:
   - component: {fileID: 1317009170770755379}
   - component: {fileID: 8293355443554385938}
   - component: {fileID: 8843850123566182426}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7397,7 +7397,7 @@ GameObject:
   - component: {fileID: 4445433191765279256}
   - component: {fileID: 151440927473715839}
   - component: {fileID: 8144400893327303073}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom Lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
