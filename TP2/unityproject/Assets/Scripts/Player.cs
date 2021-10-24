@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Player : Vulnerable
 {
@@ -79,9 +80,9 @@ public class Player : Vulnerable
         if (hitInput)
         {
             Gun gun = powerUp == PowerUpsEnum.STRENGTH ? fistShooterStrengthPowerUp : fistShooter;
-
             if(gun != null)
             {
+                StartCoroutine(AnimatePunch());
                 gun.Attack(null);
             }
         }
@@ -219,5 +220,12 @@ public class Player : Vulnerable
     {
         raymanBody.GetComponent<Renderer>().material = defaultMaterial;
         this.powerUp = PowerUpsEnum.NONE;
+    }
+
+    IEnumerator AnimatePunch()
+    {
+        animator.SetBool("isPunching", true);
+        yield return new WaitForSeconds(0.4f);
+        animator.SetBool("isPunching", false);
     }
 }

@@ -3,26 +3,17 @@ using UnityEngine;
 public class Gun : Weapon
 {
     public Projectile bullet;
-
     public float shootForce, upwardForce;
-
     public float spread = 0, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
     public bool infiniteMagazine;
-
     int bulletsLeft, bulletsShot;
-
     public Rigidbody playerRb;
     public float recoilForce;
-
     bool reloading;
-
     //public Camera fpsCam;
-
     public GameObject muzzleFlash;
-
     public Transform bulletSource;
-
     private bool allowInvoke = true;
 
     private void Awake()
@@ -32,23 +23,23 @@ public class Gun : Weapon
 
     public void TryReload() 
     {
-        if ((bulletsLeft < magazineSize) && !infiniteMagazine && !reloading) Reload();
-        if (CanUse && !reloading && bulletsLeft <= 0 && !infiniteMagazine) Reload();
+        if ((bulletsLeft < magazineSize) && !infiniteMagazine && !reloading)
+            Reload();
+        if (CanUse && !reloading && bulletsLeft <= 0 && !infiniteMagazine)
+            Reload();
     }
 
     public override bool Attack(GameObject target)
     {
         if (CanUse && !reloading)
         {
-            if(bulletsLeft <= 0 && !infiniteMagazine) {
+            if(bulletsLeft <= 0 && !infiniteMagazine)
+            {
                 TryReload();
                 return false;
             }
-
             bulletsShot = 0;
-
             Shoot();
-
             return true;
         } 
         else
