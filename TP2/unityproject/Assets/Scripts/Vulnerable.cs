@@ -5,10 +5,13 @@ public class Vulnerable : MonoBehaviour
     public float LifePointsTotal = 10;
     public float LifePoints { get; protected set; }
 
+    private HealthBar healthBar;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
         LifePoints = LifePointsTotal;
+        healthBar = GetComponent<HealthBar>();
     }
 
     protected virtual void Update()
@@ -42,11 +45,15 @@ public class Vulnerable : MonoBehaviour
 
     protected virtual void Die()
     {
+
         DestroyObject();
     }
 
     protected void DestroyObject()
     {
+        if(healthBar != null)
+            Destroy(healthBar.gameObject);
+
         Destroy(gameObject);
     }
 
