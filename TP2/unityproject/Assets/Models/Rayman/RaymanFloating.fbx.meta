@@ -16,7 +16,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Top Teeth
-    second: {fileID: 2100000, guid: c35356b317fbd704b865660b86536fb3, type: 2}
+    second: {fileID: 2100000, guid: 6e56c91ce492800438f5d2c16551dbfc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -31,7 +31,13 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'mixamo.com' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Neck' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'Left shoulder' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'Right
+      shoulder' is inbetween humanoid transforms and has rotation animation that
+      will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
