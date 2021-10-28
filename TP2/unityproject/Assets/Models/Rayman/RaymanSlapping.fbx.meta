@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: f0c07a9019fe93b489f4d9da601a0dfb
+guid: 5ac0a5fb43bc9274d82cd9005d7f2fb7
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: RaymanPunching2
+    second: RaymanSlapping
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Helicopter Hair
-    second: {fileID: 2100000, guid: 03fd46c009fd38a42ac4a91688cea308, type: 2}
+    second: {fileID: 2100000, guid: e1b9e4471c991e84183db1e2d802289a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Top Teeth
-    second: {fileID: 2100000, guid: a64ed67523d81da44b2375e8555cc676, type: 2}
+    second: {fileID: 2100000, guid: 98d90f8537e8e8f40a87a19ce725d9e1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -41,7 +41,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 1
+    importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -51,11 +51,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: RaymanPunching2
+      name: RaymanSlapping
       takeName: mixamo.com
       internalID: 0
-      firstFrame: 0
-      lastFrame: 38
+      firstFrame: 5
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
