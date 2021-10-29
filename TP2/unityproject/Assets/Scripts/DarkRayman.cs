@@ -15,11 +15,11 @@ public class DarkRayman : Vulnerable
         manualAnimator = GetComponent<ManualAnimator>();
         player = GameObject.Find("Player");
 
-        forceFieldTemplate = transform.Find("ForceField").gameObject;
+        forceFieldTemplate = transform.Find("ForceField")?.gameObject;
+
+        manualAnimator.PlayContinuous("Floating");
 
         ActivateForceField();
-
-        //manualAnimator.PlayContinuous("Floating");
     }
 
     protected override void Update()
@@ -35,6 +35,8 @@ public class DarkRayman : Vulnerable
         {
             return;
         }
+
+        manualAnimator.PlayAbrupt("Spell Charge");
 
         forceField = Instantiate(forceFieldTemplate, forceFieldTemplate.transform.position, Quaternion.identity);
         forceField.GetComponent<ForceField>().setDeathCallback(ForceFieldDestroyed);

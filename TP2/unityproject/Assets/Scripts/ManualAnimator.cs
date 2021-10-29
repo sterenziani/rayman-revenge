@@ -9,7 +9,7 @@ public class ManualAnimator : MonoBehaviour
     private string continuousAnimationName;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         animator = gameObject.GetComponent<Animator>();
     }
