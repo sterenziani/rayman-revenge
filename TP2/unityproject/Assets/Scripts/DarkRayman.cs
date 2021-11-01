@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class DarkRayman : Vulnerable
 {
-    private GameObject forceFieldTemplate;
+    [SerializeField] GameObject forceFieldTemplate;
+    [SerializeField] AreaSpawner lightningSpawner;
+
     private ManualAnimator manualAnimator;
     private GameObject player;
 
@@ -13,6 +15,7 @@ public class DarkRayman : Vulnerable
         base.Start();
 
         manualAnimator = GetComponent<ManualAnimator>();
+
         player = GameObject.Find("Player");
 
         forceFieldTemplate = transform.Find("ForceField")?.gameObject;
@@ -45,6 +48,24 @@ public class DarkRayman : Vulnerable
 
     void ForceFieldDestroyed()
     {
-        Invoke(nameof(ActivateForceField), 5f);
+        Invoke(nameof(StartShootingLightning), 0f);
+    }
+
+    void StartShootingLightning()
+    {
+        Invoke(nameof(StopShootingLightning), 12f);
+
+        manualAnimator.PlayContinuous("Spell Up");
+        
+        lightningSpawner.BeginSpawning(0.7f);
+    }
+
+    void StopShootingLightning()
+    {
+        manualAnimator.PlayContinuous("Floating");
+
+        lightningSpawner.StopSpawning();
+
+        Invoke(nameof(ActivateForceField), 0f);
     }
 }
