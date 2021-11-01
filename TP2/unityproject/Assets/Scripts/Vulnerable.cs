@@ -28,18 +28,27 @@ public class Vulnerable : MonoBehaviour
     public virtual float Cure(float points)
     {
         LifePoints = Mathf.Min(LifePoints + points, LifePointsTotal);
-        
         return LifePoints;
     }
 
     public virtual float TakeDamage(float damage)
     {
+        return TakeDamage(damage, false);
+    }
+
+    public virtual float TakeDamage(float damage, bool flinch)
+    {
         LifePoints -= damage;
-        if(LifePoints <= 0)
+        if (LifePoints <= 0)
         {
             Die();
         }
-
+        else if(flinch)
+        {
+            Player p = this.GetComponent<Player>();
+            if (p != null)
+                p.GetHurt();
+        }
         return LifePoints;
     }
 

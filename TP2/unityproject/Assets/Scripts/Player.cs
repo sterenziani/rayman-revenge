@@ -40,7 +40,7 @@ public class Player : Vulnerable
 
     private void ReduceHealthByTime()
     {
-        TakeDamage(recurrentHealthLost);
+        TakeDamage(recurrentHealthLost, false);
     }
 
     // Start is called before the first frame update
@@ -227,5 +227,17 @@ public class Player : Vulnerable
         animator.SetBool("isPunching", true);
         yield return new WaitForSeconds(0.4f);
         animator.SetBool("isPunching", false);
+    }
+
+    public void GetHurt()
+    {
+        StartCoroutine(AnimateTakeDamage());
+    }
+
+    IEnumerator AnimateTakeDamage()
+    {
+        animator.SetBool("isTakingDamage", true);
+        yield return new WaitForSeconds(0.2f);
+        animator.SetBool("isTakingDamage", false);
     }
 }

@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
         if(vulnerable == null)
             return false;
 
-        vulnerable.TakeDamage(damage);
+        vulnerable.TakeDamage(damage, true);
 
         CanUse = false;
         Invoke(nameof(CooldownFinished), cooldownTime);
