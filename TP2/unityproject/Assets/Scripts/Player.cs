@@ -36,6 +36,9 @@ public class Player : Vulnerable
     private float recurrentHealthLost = 1;
     private float recurrentHealthLostTime = 1;
 
+    private float remainingPowerUpTime = 0;
+    private float currentPowerupDuration = 100;
+
     private Material defaultMaterial;
 
     private void ReduceHealthByTime()
@@ -73,6 +76,7 @@ public class Player : Vulnerable
         HandleMovementCases();
         HandleShoot();
         SetAnimatorParameters();
+        DecreasePowerupTime();
     }
 
     void HandleShoot()
@@ -213,6 +217,8 @@ public class Player : Vulnerable
         CancelInvoke(nameof(UndoPowerUp));
         raymanBody.GetComponent<Renderer>().material = material;
         this.powerUp = powerUp;
+        remainingPowerUpTime = duration;
+        currentPowerupDuration = duration;
         Invoke(nameof(UndoPowerUp), duration);
     }
 
@@ -220,6 +226,20 @@ public class Player : Vulnerable
     {
         raymanBody.GetComponent<Renderer>().material = defaultMaterial;
         this.powerUp = PowerUpsEnum.NONE;
+        remainingPowerUpTime = 0;
+    }
+
+    private void DecreasePowerupTime()
+    {
+        if(remainingPowerUpTime >= 0)
+            remainingPowerUpTime -= Time.deltaTime;
+        if (remainingPowerUpTime < 0)
+            remainingPowerUpTime = 0;
+    }
+
+    public float GetRemainingPowerUpPercentage()
+    {
+        return remainingPowerUpTime / currentPowerupDuration;
     }
 
     IEnumerator AnimatePunch()
