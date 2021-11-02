@@ -18,8 +18,6 @@ public class DarkRayman : Vulnerable
 
         player = GameObject.Find("Player");
 
-        forceFieldTemplate = transform.Find("ForceField")?.gameObject;
-
         manualAnimator.PlayContinuous("Floating");
 
         ActivateForceField();
