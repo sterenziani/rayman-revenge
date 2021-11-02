@@ -58,10 +58,10 @@ public class Player : Vulnerable
 		raymanBody = this.gameObject.transform.Find("rayman").gameObject.transform.Find("Body").gameObject;
         fistShooter = this.gameObject.transform.Find("FistShooter").GetComponent<Gun>();
         fistShooterStrengthPowerUp = this.gameObject.transform.Find("FistShooterStrengthPowerUp").GetComponent<Gun>();
-
         defaultMaterial = raymanBody.GetComponent<Renderer>().material;
 
         //TODO va a traer problemas cuando se recargue la escena?
+        animator.SetBool("isAlive", true);
         InvokeRepeating(nameof(ReduceHealthByTime), recurrentHealthLostTime, recurrentHealthLostTime);
 	}
 
@@ -69,7 +69,6 @@ public class Player : Vulnerable
     protected override void Update()
     {
         base.Update();
-
         GetInputs();
         GetCircumstances();
         CalculateMovingSpeedAndApplyRotation();
@@ -209,6 +208,13 @@ public class Player : Vulnerable
 
     protected override void Die()
     {
+        StartCoroutine(AnimateDeath());
+    }
+
+    IEnumerator AnimateDeath()
+    {
+        animator.SetBool("isAlive", false);
+        yield return new WaitForSeconds(5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
