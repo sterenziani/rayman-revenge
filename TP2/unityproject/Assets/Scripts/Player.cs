@@ -14,6 +14,8 @@ public class Player : Vulnerable
     float playerSpeedMultiplier;
     private float helicopterDescendingSpeed = -1.0f;
 
+    private bool stunned = false;
+
     private Animator animator;
     private float distToGround;
     private float horizontalAxisInput;
@@ -33,8 +35,8 @@ public class Player : Vulnerable
 
 	private GameObject raymanBody;
 
-    private float recurrentHealthLost = 1;
-    private float recurrentHealthLostTime = 1;
+    public float recurrentHealthLost = 1;
+    public float recurrentHealthLostTime = 1;
 
     private float remainingPowerUpTime = 0;
     private float currentPowerupDuration = 100;
@@ -44,6 +46,19 @@ public class Player : Vulnerable
     private void ReduceHealthByTime()
     {
         TakeDamage(recurrentHealthLost, false);
+    }
+
+    public void Stun(float time)
+    {
+        stunned = true;
+        isUsingHelicopter = false;
+
+        Invoke(nameof(RemoveStun), time);
+    }
+
+    public void RemoveStun()
+    {
+        stunned = false;
     }
 
     // Start is called before the first frame update
@@ -93,7 +108,7 @@ public class Player : Vulnerable
 
     void HandleMovementCases()
     {
-        if (jumpInput && isGrounded)
+        if (jumpInput && isGrounded && !stunned)
         {
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpSpeed, rigidBody.velocity.z);
         }
@@ -105,7 +120,7 @@ public class Player : Vulnerable
 			raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 0);
 		}
 
-        if(jumpInput)
+        if(jumpInput && !stunned)
         {
             if(isUsingHelicopter)
             {
@@ -140,7 +155,7 @@ public class Player : Vulnerable
 
     void CalculateMovingSpeedAndApplyRotation()
     {
-        Vector3 resultVelocity = new Vector3(horizontalAxisInput, 0, verticalAxisInput);
+        Vector3 resultVelocity = !stunned ? new Vector3(horizontalAxisInput, 0, verticalAxisInput) : Vector3.zero;
         resultVelocity.Normalize();
         resultVelocity = Quaternion.AngleAxis(rotation, Vector3.up) * resultVelocity;
         resultVelocity *= playerSpeedMultiplier;
@@ -174,6 +189,7 @@ public class Player : Vulnerable
         animator.SetBool("JumpPressed", jumpInput);
         animator.SetFloat("VerticalSpeedValue", rigidBody.velocity.y);
         animator.SetBool("IsUsingHelicopter", isUsingHelicopter);
+        animator.SetBool("isStunned", stunned);
     }
 
     void GetCircumstances()

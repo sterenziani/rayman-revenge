@@ -17,8 +17,10 @@ public class Creature : Vulnerable
     private Weapon weapon;
 
     [SerializeField] GameObject[] patrolWaypoints;
+    private Vector3 currentPatrollingDestination;
     int currentPatrolWaypointIndex = 0;
     private bool walkPointSet;
+    [SerializeField] bool randomPatrol;
 
     private bool playerInSightRange, playerInAttackRange;
 
@@ -46,27 +48,41 @@ public class Creature : Vulnerable
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
         if (!playerInSightRange && !playerInAttackRange && patrolWaypoints.Length == 0) Idling();
-        if (!playerInSightRange && !playerInAttackRange && patrolWaypoints.Length > 0) Patroling();
+        if (!playerInSightRange && !playerInAttackRange && (patrolWaypoints.Length > 0 || randomPatrol)) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
 
     private void Idling()
     {
-        manualAnimator.PlayContinuous("Idle");
+        manualAnimator?.PlayContinuous("Idle");
         agent.isStopped = true;
     }
 
     private void Patroling()
     {
         agent.isStopped = false;
-        manualAnimator.PlayContinuous("Walking");
+        manualAnimator?.PlayContinuous("Walking");
         agent.speed = walkingSpeed;
-        agent.SetDestination(patrolWaypoints[currentPatrolWaypointIndex].transform.position);
+        agent.SetDestination(currentPatrollingDestination);
 
-        if (Vector3.Distance(transform.position, patrolWaypoints[currentPatrolWaypointIndex].transform.position) < 0.5f)
+        if (Vector3.Distance(transform.position, currentPatrollingDestination) < 0.5f)
+        {
+            SetNextPatrollingDestination();
+        }
+    }
+
+    private void SetNextPatrollingDestination()
+    {
+        if(randomPatrol)
+        {
+            currentPatrollingDestination = GetRandomNavMeshPoint(transform.position, (int)Random.Range(1, 20)) ?? transform.position;
+        }
+        else if(patrolWaypoints.Length > 0)
         {
             currentPatrolWaypointIndex = (currentPatrolWaypointIndex + 1) % patrolWaypoints.Length;
+
+            currentPatrollingDestination = patrolWaypoints[currentPatrolWaypointIndex].transform.position;
         }
     }
 
@@ -77,11 +93,11 @@ public class Creature : Vulnerable
 
         transform.LookAt(player.transform);
 
-        manualAnimator.PlayContinuous("Taunting");
+        manualAnimator?.PlayContinuous("Taunting");
 
         if (weapon != null && weapon.CanUse)
         {
-            manualAnimator.PlayAbrupt("Punching");
+            manualAnimator?.PlayAbrupt("Punching");
 
             Invoke(nameof(PerformAttack), manualAnimator.GetCurrentAnimationTotalDuration() / 3);
         }
@@ -95,7 +111,7 @@ public class Creature : Vulnerable
     private void ChasePlayer()
     {
         agent.isStopped = false;
-        manualAnimator.PlayContinuous("Running");
+        manualAnimator?.PlayContinuous("Running");
         agent.speed = runningSpeed;
         agent.SetDestination(player.transform.position);
     }
@@ -103,22 +119,25 @@ public class Creature : Vulnerable
     protected override void Die()
     {
         agent.isStopped = true;
-        manualAnimator.PlayForceContinuous("Dying");
+        manualAnimator?.PlayForceContinuous("Dying");
 
         gameObject.GetComponent<Collider>().enabled = false;
 
-        Invoke(nameof(DestroyObject), manualAnimator.GetCurrentAnimationTotalDuration() + 3);
+        if(manualAnimator != null)
+            Invoke(nameof(DestroyObject), manualAnimator.GetCurrentAnimationTotalDuration() + 3);
     }
 
     public override float TakeDamage(float damage)
     {
-        float remainingLife = base.TakeDamage(damage);
+        float remainingLife = base.TakeDamage(damage, false);
 
         if (damage > 0 && IsAlive())
         {
             agent.isStopped = true;
-            manualAnimator.PlayAbrupt("Taking hit");
-            Invoke(nameof(RemoveAgentStop), manualAnimator.GetCurrentAnimationTotalDuration());
+            manualAnimator?.PlayAbrupt("Taking hit");
+
+            if(manualAnimator != null)
+                Invoke(nameof(RemoveAgentStop), manualAnimator.GetCurrentAnimationTotalDuration());
         }
 
         return remainingLife;
@@ -138,7 +157,19 @@ public class Creature : Vulnerable
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
 
-
+    Vector3? GetRandomNavMeshPoint(Vector3 center, float range)
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = center + Random.insideUnitSphere * range;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                return hit.position;
+            }
+        }
+        return null;
+    }
 
 
 

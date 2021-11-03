@@ -42,7 +42,9 @@ public class LightningStrike : MonoBehaviour
 
                 if(stunSeconds > 0)
                 {
-                    //TODO STUN
+                    Player player = v.gameObject.GetComponent<Player>();
+                    if(player != null)
+                        player.Stun(stunSeconds);
                 }
             }
         }

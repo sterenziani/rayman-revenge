@@ -5,6 +5,8 @@ public class Vulnerable : MonoBehaviour
     public float LifePointsTotal = 10;
     public float LifePoints { get; protected set; }
 
+    public float MinDamageToTake = 0;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -30,12 +32,12 @@ public class Vulnerable : MonoBehaviour
 
     public virtual float TakeDamage(float damage)
     {
-        return TakeDamage(damage, false);
+        return TakeDamage(damage, true);
     }
 
-    public virtual float TakeDamage(float damage, bool flinch)
+    public virtual float TakeDamage(float damage, bool flinch = true)
     {
-        LifePoints -= damage;
+        LifePoints -= damage >= MinDamageToTake ? damage : 0;
         if (LifePoints <= 0)
         {
             Die();

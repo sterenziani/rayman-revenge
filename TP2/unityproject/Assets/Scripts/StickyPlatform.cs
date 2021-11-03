@@ -28,14 +28,17 @@ public class StickyPlatform : MonoBehaviour
 		RotatingObject rotObj = transform.parent.GetComponent<RotatingObject>();
 		foreach (GameObject target in targetsAndOffsets.Keys)
         {
-			if (rotObj != null && rotObj.degreesPerSecondY != 0)
-			{
-				target.transform.RotateAround(transform.position, new Vector3(0, 1, 0), rotObj.degreesPerSecondY * Time.deltaTime);
-			}
-			else
-			{
-				target.transform.position = transform.position + targetsAndOffsets[target];
-			}
+            if(target != null)
+            {
+                if (rotObj != null && rotObj.degreesPerSecondY != 0)
+                {
+                    target.transform.RotateAround(transform.position, new Vector3(0, 1, 0), rotObj.degreesPerSecondY * Time.deltaTime);
+                }
+                else
+                {
+                    target.transform.position = transform.position + targetsAndOffsets[target];
+                }
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float explosionDamage = 0;
     [SerializeField] float explosionRange = 0;
     [SerializeField] float explosionForce = 0;
+    [SerializeField] bool onlyCollideWithPlayer = false;
 
     private Rigidbody rigidBody;
     private Vector3 startPosition;
@@ -93,8 +94,12 @@ public class Projectile : MonoBehaviour
     {
         collisionCount++;
 
+        if (onlyCollideWithPlayer && !collision.gameObject.GetComponent<Player>())
+            return;
+
         Vulnerable vulnerable = collision.gameObject.GetComponent<Vulnerable>();
-        if(vulnerable != null)
+
+        if(vulnerable != null && vulnerable.MinDamageToTake <= hitDamage)
         {
             vulnerable.TakeDamage(hitDamage);
 

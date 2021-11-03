@@ -7,6 +7,9 @@ public class ForceField : Vulnerable
     private Vector3 startLocalScale;
     private Action callback;
 
+    public float damageOnTouch = 5;
+    public float stunSeconds = 1;
+
     protected override void Start()
     {
         base.Start();
@@ -47,6 +50,25 @@ public class ForceField : Vulnerable
         else
         {
             resizable.ScaleOverTime(Vector3.zero, 1.5f, base.Die);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (damageOnTouch == 0 && stunSeconds == 0)
+            return;
+
+        Player v = collision.gameObject.GetComponent<Player>();
+        if (v != null && v.gameObject != null)
+        {
+            v.TakeDamage(damageOnTouch);
+
+            if (stunSeconds > 0)
+            {
+                Player player = v.gameObject.GetComponent<Player>();
+                if (player != null)
+                    player.Stun(stunSeconds);
+            }
         }
     }
 }
