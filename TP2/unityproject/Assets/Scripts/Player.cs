@@ -43,6 +43,13 @@ public class Player : Vulnerable
 
     private Material defaultMaterial;
 
+    private AudioSource audioSource;
+    [SerializeField] AudioClip helicopterSound;
+    [SerializeField] AudioClip helicopterPowerUpSound;
+    [SerializeField] AudioClip powerUpSound;
+    [SerializeField] AudioClip endPowerUpSound;
+    [SerializeField] AudioClip punchSound;
+
     private void ReduceHealthByTime()
     {
         TakeDamage(recurrentHealthLost, false);
@@ -65,6 +72,10 @@ public class Player : Vulnerable
     protected override void Start()
     {
         base.Start();
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = helicopterSound;
+
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         collider = GetComponent<Collider>();
@@ -100,8 +111,11 @@ public class Player : Vulnerable
             Gun gun = powerUp == PowerUpsEnum.STRENGTH ? fistShooterStrengthPowerUp : fistShooter;
             if(gun != null)
             {
-                StartCoroutine(AnimatePunch());
-                gun.Attack(null);
+                if(gun.Attack(null))
+                {
+                    StartCoroutine(AnimatePunch());
+                    audioSource.PlayOneShot(punchSound);
+                }
             }
         }
     }
@@ -115,7 +129,7 @@ public class Player : Vulnerable
 
         if (isGrounded)
         {
-            //audioSource.Stop();
+            audioSource.clip = null;
             isUsingHelicopter = false;
 			raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 0);
 		}
@@ -124,11 +138,14 @@ public class Player : Vulnerable
         {
             if(isUsingHelicopter)
             {
+                audioSource.clip = null;
                 isUsingHelicopter = false;
 				raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 0);
 			}
             else if(!isGrounded && !isUsingHelicopter)
             {
+                audioSource.clip = this.powerUp == PowerUpsEnum.HELICOPTER ? helicopterPowerUpSound : helicopterSound;
+                audioSource.Play();
                 isUsingHelicopter = true;
 				raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 100);
 			}
@@ -237,15 +254,36 @@ public class Player : Vulnerable
     public void ApplyPowerUp(PowerUpsEnum powerUp, float duration, Material material)
     {
         CancelInvoke(nameof(UndoPowerUp));
-        raymanBody.GetComponent<Renderer>().material = material;
-        this.powerUp = powerUp;
+
         remainingPowerUpTime = duration;
         currentPowerupDuration = duration;
         Invoke(nameof(UndoPowerUp), duration);
+
+        if (this.powerUp != powerUp)
+        {
+            audioSource.PlayOneShot(powerUpSound);
+
+            raymanBody.GetComponent<Renderer>().material = material;
+            this.powerUp = powerUp;
+
+            if (this.powerUp == PowerUpsEnum.HELICOPTER && isUsingHelicopter)
+            {
+                audioSource.clip = helicopterPowerUpSound;
+                audioSource.Play();
+            }
+        }
     }
 
     private void UndoPowerUp()
     {
+        audioSource.PlayOneShot(endPowerUpSound);
+
+        if(this.powerUp == PowerUpsEnum.HELICOPTER && isUsingHelicopter)
+        {
+            audioSource.clip = helicopterSound;
+            audioSource.Play();
+        }
+
         raymanBody.GetComponent<Renderer>().material = defaultMaterial;
         this.powerUp = PowerUpsEnum.NONE;
         remainingPowerUpTime = 0;

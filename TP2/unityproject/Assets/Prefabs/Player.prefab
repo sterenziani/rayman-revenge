@@ -137,6 +137,7 @@ MonoBehaviour:
   explosionDamage: 0
   explosionRange: 0
   explosionForce: 0
+  onlyCollideWithPlayer: 0
 --- !u!1 &939166342084880786
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +393,7 @@ MonoBehaviour:
   explosionDamage: 0
   explosionRange: 0
   explosionForce: 0
+  onlyCollideWithPlayer: 0
 --- !u!114 &8986412475279219150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,9 +462,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LifePointsTotal: 200
+  MinDamageToTake: 0
   jumpSpeed: 6
   movementSpeed: 4
   helicopterMovementSpeed: 3
+  recurrentHealthLost: 1
+  recurrentHealthLostTime: 1
+  helicopterSound: {fileID: 8300000, guid: 9d19baf4f6c453840be2712b9cdca585, type: 3}
+  helicopterPowerUpSound: {fileID: 8300000, guid: 1dea8e045eb0d85449004a26ea017a2a, type: 3}
+  powerUpSound: {fileID: 8300000, guid: 5bbffc84be226294b90997f69ee569af, type: 3}
+  endPowerUpSound: {fileID: 8300000, guid: 94ce8bc875e38e84ea41b6d61493ef29, type: 3}
+  punchSound: {fileID: 8300000, guid: 9d6812a19b6244342a14d416b699e258, type: 3}
 --- !u!54 &8986412475655520872
 Rigidbody:
   m_ObjectHideFlags: 0
