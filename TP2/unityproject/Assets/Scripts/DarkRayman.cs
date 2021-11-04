@@ -10,9 +10,11 @@ public class DarkRayman : Vulnerable
     [SerializeField] float initialVulnerableTime = 10;
     [SerializeField] float minVulnerableTime = 4;
     [SerializeField] float initialDarkBallsTimeBetween = 2;
-    [SerializeField] float minDarkBallsTimeBetween = 0.5f;
-    [SerializeField] float initialLightningTimeBetween = 0.7f;
-    [SerializeField] float minLightningTimeBetween = 0.2f;
+    [SerializeField] float minDarkBallsTimeBetween = 0.3f;
+    [SerializeField] float initialDarkBallsSpeed = 2f;
+    [SerializeField] float maxDarkBallsSpeed = 8f;
+    [SerializeField] float initialLightningTimeBetween = 0.8f;
+    [SerializeField] float minLightningTimeBetween = 0.3f;
 
     private ManualAnimator manualAnimator;
     private GameObject player;
@@ -33,7 +35,9 @@ public class DarkRayman : Vulnerable
 
         manualAnimator.PlayContinuous("Floating");
 
-        StartForceFieldPhase();
+        ActivateForceField(StartVulnerablePhase);
+
+        Invoke(nameof(StartForceFieldPhase), 4f);
     }
 
     void StartForceFieldPhase()
@@ -90,6 +94,8 @@ public class DarkRayman : Vulnerable
         while (amount == null || amount > 0)
         {
             manualAnimator.PlayAbrupt("Spell Front");
+            fistShooter.bullet.gameObject.GetComponent<Creature>().walkingSpeed = Math.Min(maxDarkBallsSpeed, initialDarkBallsSpeed * (LifePointsTotal / LifePoints));
+            fistShooter.bullet.gameObject.GetComponent<Creature>().runningSpeed = Math.Min(maxDarkBallsSpeed, initialDarkBallsSpeed * (LifePointsTotal / LifePoints));
             fistShooter.Attack(player);
 
             if(amount.HasValue)

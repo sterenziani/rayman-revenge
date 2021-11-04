@@ -7,6 +7,11 @@ public class LightningStrike : MonoBehaviour
     [SerializeField] ParticleSystem strikeFX;
     [SerializeField] ParticleSystem summonFX;
 
+    [SerializeField] List<Vulnerable> immuneList;
+
+    private AudioSource audioSource;
+    [SerializeField] AudioClip impactSound;
+
     public float damage = 10;
     public float stunSeconds = 0;
 
@@ -15,7 +20,7 @@ public class LightningStrike : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Vulnerable vulnerable = other.GetComponent<Vulnerable>();
-        if(vulnerable != null)
+        if(vulnerable != null && !immuneList.Contains(vulnerable))
         {
             VulnerablesInRange.Add(vulnerable);
         }
@@ -38,14 +43,14 @@ public class LightningStrike : MonoBehaviour
         {
             if(v != null && v.gameObject != null)
             {
-                v.TakeDamage(damage);
-
                 if(stunSeconds > 0)
                 {
                     Player player = v.gameObject.GetComponent<Player>();
                     if(player != null)
                         player.Stun(stunSeconds);
                 }
+
+                v.TakeDamage(damage);
             }
         }
 
@@ -60,6 +65,13 @@ public class LightningStrike : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
+        if(audioSource != null && impactSound != null)
+        {
+            audioSource.PlayOneShot(impactSound);
+        }
+
         summonFX.Play();
 
         Invoke(nameof(Strike), summonFX.main.duration);

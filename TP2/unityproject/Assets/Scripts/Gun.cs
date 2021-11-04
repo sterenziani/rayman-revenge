@@ -50,6 +50,11 @@ public class Gun : Weapon
 
     private void Shoot()
     {
+        if(audioSource != null && attackSound != null)
+        {
+            audioSource.PlayOneShot(attackSound);
+        }
+
         CanUse = false;
 
         Vector3 source = bulletSource != null ? bulletSource.position : transform.position;

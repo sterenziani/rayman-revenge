@@ -8,6 +8,8 @@ public class AreaSpawner : MonoBehaviour
     public float YSpread = 0;
     public float ZSpread = 10;
 
+    [SerializeField] List<Collider> exclusionZones;
+
     public GameObject item;
 
     private IEnumerator spawningCoroutine;
@@ -33,7 +35,7 @@ public class AreaSpawner : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(origin, Vector3.down, out hit, YSpread))
         {
-            if(hit.collider.gameObject.GetComponent<DarkRayman>() == null)
+            if(!exclusionZones.Contains(hit.collider))
             {
                 GameObject obj = Instantiate(item, hit.point, Quaternion.identity);
                 obj.SetActive(true);

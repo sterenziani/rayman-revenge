@@ -48,7 +48,9 @@ public class Player : Vulnerable
     [SerializeField] AudioClip helicopterPowerUpSound;
     [SerializeField] AudioClip powerUpSound;
     [SerializeField] AudioClip endPowerUpSound;
-    [SerializeField] AudioClip punchSound;
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip hittedSound;
+    [SerializeField] AudioClip stunnedSound;
 
     private void ReduceHealthByTime()
     {
@@ -59,6 +61,11 @@ public class Player : Vulnerable
     {
         stunned = true;
         isUsingHelicopter = false;
+
+        if (audioSource != null && stunnedSound != null)
+        {
+            audioSource.PlayOneShot(stunnedSound);
+        }
 
         Invoke(nameof(RemoveStun), time);
     }
@@ -114,7 +121,6 @@ public class Player : Vulnerable
                 if(gun.Attack(null))
                 {
                     StartCoroutine(AnimatePunch());
-                    audioSource.PlayOneShot(punchSound);
                 }
             }
         }
@@ -124,6 +130,11 @@ public class Player : Vulnerable
     {
         if (jumpInput && isGrounded && !stunned)
         {
+            if (audioSource != null && jumpSound != null)
+            {
+                audioSource.PlayOneShot(jumpSound);
+            }
+
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpSpeed, rigidBody.velocity.z);
         }
 
@@ -316,6 +327,11 @@ public class Player : Vulnerable
 
     IEnumerator AnimateTakeDamage()
     {
+        if(!stunned && audioSource != null && hittedSound != null)
+        {
+            audioSource.PlayOneShot(hittedSound);
+        }
+
         animator.SetBool("isTakingDamage", true);
         yield return new WaitForSeconds(0.2f);
         animator.SetBool("isTakingDamage", false);

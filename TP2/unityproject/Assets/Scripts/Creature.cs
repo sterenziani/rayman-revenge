@@ -9,8 +9,8 @@ public class Creature : Vulnerable
 
     [SerializeField] float sightRange;
     [SerializeField] float attackRange;
-    [SerializeField] float walkingSpeed = 1;
-    [SerializeField] float runningSpeed = 3;
+    public float walkingSpeed = 1;
+    public float runningSpeed = 3;
 
     private ManualAnimator manualAnimator;
 
