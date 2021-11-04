@@ -78,7 +78,7 @@ public class Vulnerable : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(transform.position, Vector3.down, out hit, collider.bounds.size.y))
             {
-                Platform platform = hit.collider.gameObject.GetComponent<Platform>();
+                Platform platform = hit.collider.gameObject.GetComponentInParent<Platform>();
                 if(platform != null)
                 {
                     platform.StepOn();

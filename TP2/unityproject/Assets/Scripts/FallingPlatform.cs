@@ -33,8 +33,10 @@ public class FallingPlatform : Platform
 			activated = true;
 	}
 
-	private void OnTriggerExit(Collider collision)
+	protected override void OnTriggerExit(Collider collision)
 	{
+		base.OnTriggerExit(collision);
+
 		GameObject target = collision.gameObject;
 		if (weighted && target.GetComponent<Player>() != null)
 			activated = false;

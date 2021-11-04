@@ -24,13 +24,23 @@ public class Platform : MonoBehaviour
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
+        OnTriggerEnter(collision.collider);
+    }
+
+    protected virtual void OnCollisionExit(Collision collision)
+    {
+        OnTriggerExit(collision.collider);
+    }
+
+    protected virtual void OnTriggerEnter(Collider other)
+    {
         if (audioSource != null && enterSound != null)
         {
             audioSource.PlayOneShot(enterSound);
         }
     }
 
-    protected virtual void OnCollisionExit(Collision collision)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if (audioSource != null && leaveSound != null)
         {

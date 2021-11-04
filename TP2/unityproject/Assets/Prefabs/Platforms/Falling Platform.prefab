@@ -172,8 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2d7c2fbf12bbb4fbda19c873c5e3e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepSound: {fileID: 0}
-  enterSound: {fileID: 0}
+  stepSound: {fileID: 8300000, guid: a38bcc71695fb4f479ceb3ca9ed9fad9, type: 3}
+  enterSound: {fileID: 8300000, guid: a38bcc71695fb4f479ceb3ca9ed9fad9, type: 3}
   leaveSound: {fileID: 0}
   weighted: 1
   lowestHeight: 2
