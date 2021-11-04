@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingPlatform : MonoBehaviour
+public class FallingPlatform : Platform
 {
 	public bool weighted = false;
 	public float lowestHeight = 0;
@@ -18,8 +18,10 @@ public class FallingPlatform : MonoBehaviour
 	private bool exploded = false;
 
 
-	void Start()
+	protected override void Start()
 	{
+		base.Start();
+
 		startingHeight = transform.position.y;
 	}
 

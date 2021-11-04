@@ -25,11 +25,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2d7c2fbf12bbb4fbda19c873c5e3e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stepSound: {fileID: 0}
+  enterSound: {fileID: 0}
+  leaveSound: {fileID: 0}
   weighted: 1
   lowestHeight: 5
   explodeTime: 2
   fallSpeed: 1
   respawnWait: 5
+  blinkFrequency: 0
 --- !u!1001 &8166360795877690867
 PrefabInstance:
   m_ObjectHideFlags: 0

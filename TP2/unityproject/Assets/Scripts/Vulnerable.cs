@@ -7,9 +7,12 @@ public class Vulnerable : MonoBehaviour
 
     public float MinDamageToTake = 0;
 
+    private MeshExploder exploder;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        exploder = GetComponent<MeshExploder>();
         LifePoints = LifePointsTotal;
     }
 
@@ -53,6 +56,10 @@ public class Vulnerable : MonoBehaviour
 
     protected virtual void Die()
     {
+        if(exploder != null)
+        {
+            exploder.Explode();
+        }
 
         DestroyObject();
     }
@@ -60,6 +67,24 @@ public class Vulnerable : MonoBehaviour
     protected void DestroyObject()
     {
         Destroy(gameObject);
+    }
+
+    public void Step()
+    {
+        Collider collider = gameObject.GetComponent<Collider>();
+
+        if(collider != null)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, collider.bounds.size.y))
+            {
+                Platform platform = hit.collider.gameObject.GetComponent<Platform>();
+                if(platform != null)
+                {
+                    platform.StepOn();
+                }
+            }
+        }
     }
 
 
