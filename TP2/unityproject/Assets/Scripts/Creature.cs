@@ -13,7 +13,6 @@ public class Creature : Vulnerable
     public float runningSpeed = 3;
 
     private ManualAnimator manualAnimator;
-
     private Weapon weapon;
 
     [SerializeField] GameObject[] patrolWaypoints;
@@ -28,7 +27,6 @@ public class Creature : Vulnerable
     protected override void Start()
     {
         base.Start();
-
         player = GameObject.Find("Player");
         agent = GetComponent<NavMeshAgent>();
         weapon = GetComponent<Weapon>();
@@ -119,12 +117,14 @@ public class Creature : Vulnerable
     protected override void Die()
     {
         agent.isStopped = true;
+        LifePoints = 0;
         manualAnimator?.PlayForceContinuous("Dying");
 
         gameObject.GetComponent<Collider>().enabled = false;
 
         if(manualAnimator != null)
             Invoke(nameof(DestroyObject), manualAnimator.GetCurrentAnimationTotalDuration() + 3);
+        StartCoroutine(SpawnLoot(manualAnimator.GetCurrentAnimationTotalDuration()));
     }
 
     public override float TakeDamage(float damage)

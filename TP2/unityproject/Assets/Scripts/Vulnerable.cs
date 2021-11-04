@@ -1,24 +1,29 @@
 using UnityEngine;
+using System.Collections;
 
 public class Vulnerable : MonoBehaviour
 {
     public float LifePointsTotal = 10;
     public float LifePoints { get; protected set; }
-
     public float MinDamageToTake = 0;
-
     private MeshExploder exploder;
+    private AreaSpawner spawner;
+    private new Collider collider;
+    private Vector3 spawnPosition;
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
         exploder = GetComponent<MeshExploder>();
+        collider = GetComponent<Collider>();
+        spawner = GetComponent<AreaSpawner>();
+        spawnPosition = transform.position;
         LifePoints = LifePointsTotal;
     }
 
     protected virtual void Update()
     {
-        if (transform.position.y < -50)
+        if (IsAlive() && transform.position.y < -50)
             Die();
     }
 
@@ -60,8 +65,31 @@ public class Vulnerable : MonoBehaviour
         {
             exploder.Explode();
         }
-
+        LifePoints = 0;
+        StartCoroutine(SpawnLoot(0.2f));
         DestroyObject();
+    }
+
+    bool IsGrounded()
+    {
+        int layers = LayerMask.GetMask("Ground");
+        float distToGround = collider.bounds.extents.y;
+        return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f, layers);
+    }
+
+    public IEnumerator SpawnLoot(float delay)
+    {
+        if (IsGrounded())
+        {
+            yield return new WaitForSeconds(delay);
+            if(spawner != null)
+                spawner.BeginSpawning(0, 1, transform.position);
+        }
+        else
+        {
+            if (spawner != null)
+                spawner.BeginSpawning(0, 1, spawnPosition);
+        }
     }
 
     protected void DestroyObject()
@@ -71,8 +99,6 @@ public class Vulnerable : MonoBehaviour
 
     public void Step()
     {
-        Collider collider = gameObject.GetComponent<Collider>();
-
         if(collider != null)
         {
             RaycastHit hit;

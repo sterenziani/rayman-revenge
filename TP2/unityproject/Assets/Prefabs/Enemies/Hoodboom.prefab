@@ -773,6 +773,7 @@ GameObject:
   - component: {fileID: 3543287322294789333}
   - component: {fileID: 3543287322294789332}
   - component: {fileID: 4600550165558602126}
+  - component: {fileID: -3193466014771035272}
   m_Layer: 8
   m_Name: Hoodboom
   m_TagString: Untagged
@@ -860,6 +861,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LifePointsTotal: 10
+  MinDamageToTake: 0
+  deathSound: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -868,6 +871,7 @@ MonoBehaviour:
   walkingSpeed: 1
   runningSpeed: 3
   patrolWaypoints: []
+  randomPatrol: 0
 --- !u!195 &3543287322294789333
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -916,6 +920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   cooldownTime: 6
+  attackSound: {fileID: 0}
   bullet: {fileID: 3543287321945039923}
   shootForce: 5
   upwardForce: 5
@@ -929,6 +934,23 @@ MonoBehaviour:
   recoilForce: 0
   muzzleFlash: {fileID: 0}
   bulletSource: {fileID: 3543287322339350292}
+--- !u!114 &-3193466014771035272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4462258926531348533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4beef2572e2d95478012f44c787619f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XSpread: 1
+  YSpread: 3
+  ZSpread: 1
+  exclusionZones: []
+  items: []
 --- !u!54 &3543287321945039922
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -981,6 +1003,7 @@ MonoBehaviour:
   explosionDamage: 5
   explosionRange: 1
   explosionForce: 200
+  onlyCollideWithPlayer: 0
 --- !u!1 &4479192218893445998
 GameObject:
   m_ObjectHideFlags: 0

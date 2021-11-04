@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class AreaSpawner : MonoBehaviour
 {
-    public float XSpread = 10;
+    public float XSpread = 10f;
     public float YSpread = 0;
-    public float ZSpread = 10;
+    public float ZSpread = 10f;
 
     [SerializeField] List<Collider> exclusionZones;
 
-    public GameObject item;
+    public GameObject[] items;
 
     private IEnumerator spawningCoroutine;
 
-    public void BeginSpawning(float timeBetweenSpawns, int? spawnsMax = null)
+    public void BeginSpawning(float timeBetweenSpawns, int? spawnsMax = null, Vector3? origin = null)
     {
-        spawningCoroutine = SpawnCoroutine(timeBetweenSpawns, spawnsMax);
+        Vector3 location = transform.position;
+        if (origin != null)
+            location = origin.Value;
+        spawningCoroutine = SpawnCoroutine(timeBetweenSpawns, spawnsMax, location);
         StartCoroutine(spawningCoroutine);
     }
 
@@ -25,12 +28,13 @@ public class AreaSpawner : MonoBehaviour
         StopCoroutine(spawningCoroutine);
     }
 
-    private bool SpawnItem()
+    private bool SpawnItem(GameObject item, Vector3? vec = null)
     {
-        Vector3 offset = new Vector3(Random.Range(-XSpread, XSpread), 0, Random.Range(-ZSpread, ZSpread));
-        Vector3 origin = transform.position + offset;
-
-        Debug.DrawRay(origin, Vector3.down);
+        Vector3 location = transform.position;
+        if (vec != null)
+            location = vec.Value;
+        Vector3 offset = new Vector3(Random.Range(-XSpread, XSpread), 1, Random.Range(-ZSpread, ZSpread));
+        Vector3 origin = location + offset;
 
         RaycastHit hit;
         if(Physics.Raycast(origin, Vector3.down, out hit, YSpread))
@@ -39,23 +43,26 @@ public class AreaSpawner : MonoBehaviour
             {
                 GameObject obj = Instantiate(item, hit.point, Quaternion.identity);
                 obj.SetActive(true);
-
                 return true;
             }
         }
-
         return false;
     }
 
-    private IEnumerator SpawnCoroutine(float timeBetweenSpawns, int? remainingSpawns = null)
+    private IEnumerator SpawnCoroutine(float timeBetweenSpawns, int? remainingSpawns = null, Vector3? origin = null)
     {
         while (remainingSpawns == null || remainingSpawns > 0)
         {
             if (remainingSpawns.HasValue)
                 remainingSpawns--;
-
-            while (!SpawnItem()) ;
-
+            for (int i = 0; i < items.Length; i++)
+            {
+                int attempts = 0;
+                while (attempts < 100 && !SpawnItem(items[i]))
+                {
+                    attempts++;
+                }
+            }
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }
