@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StickyPlatform : MonoBehaviour
+public class StickyPlatform : Platform
 {
     private Dictionary<GameObject, Vector3> targetsAndOffsets = new Dictionary<GameObject, Vector3>();
 
@@ -12,8 +12,10 @@ public class StickyPlatform : MonoBehaviour
         targetsAndOffsets[target] = offset;
     }
 
-    private void OnCollisionExit(Collision collision)
+    protected override void OnCollisionExit(Collision collision)
     {
+        base.OnCollisionExit(collision);
+
 		GameObject target = collision.gameObject;
         targetsAndOffsets.Remove(target);
     }

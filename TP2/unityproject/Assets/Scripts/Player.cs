@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class Player : Vulnerable
 {
     private Rigidbody rigidBody;
@@ -28,8 +29,6 @@ public class Player : Vulnerable
     private Gun fistShooter;
     private Gun fistShooterStrengthPowerUp;
 
-    private new Collider collider;
-
     private float rotation = 80;
     private Vector3 mouseLookingAt;
 
@@ -43,7 +42,6 @@ public class Player : Vulnerable
 
     private Material defaultMaterial;
 
-    private AudioSource audioSource;
     [SerializeField] AudioClip helicopterSound;
     [SerializeField] AudioClip helicopterPowerUpSound;
     [SerializeField] AudioClip powerUpSound;
@@ -80,13 +78,12 @@ public class Player : Vulnerable
     {
         base.Start();
 
-        audioSource = GetComponent<AudioSource>();
         audioSource.clip = helicopterSound;
 
         rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         collider = GetComponent<Collider>();
-        distToGround = collider.bounds.extents.y;
+        distToGround = GetComponent<Collider>().bounds.extents.y;
         fistShooter = GetComponent<Gun>();
 		raymanBody = this.gameObject.transform.Find("rayman").gameObject.transform.Find("Body").gameObject;
         fistShooter = this.gameObject.transform.Find("FistShooter").GetComponent<Gun>();
@@ -253,6 +250,8 @@ public class Player : Vulnerable
     protected override void Die()
     {
         StartCoroutine(AnimateDeath());
+
+        base.Die();
     }
 
     IEnumerator AnimateDeath()

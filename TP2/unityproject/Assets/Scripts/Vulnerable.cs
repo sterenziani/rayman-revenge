@@ -8,8 +8,13 @@ public class Vulnerable : MonoBehaviour
     public float MinDamageToTake = 0;
     private MeshExploder exploder;
     private AreaSpawner spawner;
-    private new Collider collider;
+    protected new Collider collider;
     private Vector3 spawnPosition;
+
+    protected AudioSource audioSource;
+    [SerializeField] AudioClip spawnSound;
+    [SerializeField] AudioClip deathSound;
+    [SerializeField] AudioClip hitSound;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -19,6 +24,12 @@ public class Vulnerable : MonoBehaviour
         spawner = GetComponent<AreaSpawner>();
         spawnPosition = transform.position;
         LifePoints = LifePointsTotal;
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource != null && spawnSound != null)
+        {
+            audioSource.PlayOneShot(spawnSound);
+        }
     }
 
     protected virtual void Update()
@@ -50,24 +61,42 @@ public class Vulnerable : MonoBehaviour
         {
             Die();
         }
-        else if(flinch)
+        else
         {
-            Player p = this.GetComponent<Player>();
-            if (p != null)
+            if (audioSource != null && hitSound != null)
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
+
+            if (flinch)
+            {
+                Player p = this.GetComponent<Player>();
+                if (p != null)
                 p.GetHurt();
+            }
         }
         return LifePoints;
     }
 
     protected virtual void Die()
     {
+        float timeToDestroy = 0f;
+        if(audioSource != null && deathSound != null)
+        {
+            timeToDestroy = deathSound.length;
+            audioSource.PlayOneShot(deathSound);
+        }
+
         if(exploder != null)
         {
             exploder.Explode();
         }
+
+        gameObject.transform.localScale = Vector3.zero;
+
         LifePoints = 0;
         StartCoroutine(SpawnLoot(0.2f));
-        DestroyObject();
+        Invoke(nameof(DestroyObject), timeToDestroy);
     }
 
     bool IsGrounded()

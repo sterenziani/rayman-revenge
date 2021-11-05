@@ -123,7 +123,7 @@ public class Creature : Vulnerable
         gameObject.GetComponent<Collider>().enabled = false;
 
         if(manualAnimator != null)
-            Invoke(nameof(DestroyObject), manualAnimator.GetCurrentAnimationTotalDuration() + 3);
+            Invoke(nameof(base.Die), manualAnimator.GetCurrentAnimationTotalDuration() + 3);
         StartCoroutine(SpawnLoot(manualAnimator.GetCurrentAnimationTotalDuration()));
     }
 
@@ -170,38 +170,4 @@ public class Creature : Vulnerable
         }
         return null;
     }
-
-
-
-
-
-
-
-
-    /*WaypointFollower defaultWaypointFollower;
-    WaypointFollower waypointFollower;
-
-    new Collider collider;
-
-    [SerializeField] float maxViewDistance = 200;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //waypointFollower = defaultWaypointFollower = GetComponent<WaypointFollower>();
-        collider = GetComponent<Collider>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        bool m_HitDetect = Physics.BoxCast(collider.bounds.center, transform.localScale, transform.forward, out RaycastHit m_Hit, transform.rotation, maxViewDistance);
-        if (m_HitDetect)
-        {
-            if(m_Hit.collider.name == "Player")
-            {
-                
-            }
-        }
-    }*/
 }
