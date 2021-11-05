@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class Creature : Vulnerable
 {
     private NavMeshAgent agent;
@@ -116,7 +117,9 @@ public class Creature : Vulnerable
 
     protected override void Die()
     {
-        agent.isStopped = true;
+        if(agent != null)
+            agent.isStopped = true;
+
         LifePoints = 0;
         manualAnimator?.PlayForceContinuous("Dying");
 

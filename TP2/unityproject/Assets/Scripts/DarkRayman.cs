@@ -20,13 +20,26 @@ public class DarkRayman : Vulnerable
     private GameObject player;
     private Gun fistShooter;
 
-    private IEnumerator darkBallsCoroutine;
+    private Coroutine darkBallsCoroutine;
 
     private GameObject forceField;
+
+    private Vector3 initialPosition;
+
+    private float CalculateCurrentValueBasedOnBossHealth(float start, float finish)
+    {
+        float bossProgressPercentage = 1 - (LifePoints / LifePointsTotal);
+
+        float difference = finish - start;
+
+        return start + (difference * bossProgressPercentage); 
+    }
 
     protected override void Start()
     {
         base.Start();
+
+        initialPosition = transform.position;
 
         manualAnimator = GetComponent<ManualAnimator>();
         fistShooter = GetComponent<Gun>();
@@ -44,15 +57,15 @@ public class DarkRayman : Vulnerable
     {
         StopReleasingDarkBalls();
         ActivateForceField(StartVulnerablePhase);
-        StartShootingLightning(Math.Max(initialLightningTimeBetween * (LifePoints / LifePointsTotal), minLightningTimeBetween));
+        StartShootingLightning(CalculateCurrentValueBasedOnBossHealth(initialLightningTimeBetween, minLightningTimeBetween));
     }
 
     void StartVulnerablePhase()
     {
         StopShootingLightning();
-        StartReleasingDarkBalls(Math.Max(initialDarkBallsTimeBetween * (LifePoints / LifePointsTotal), minDarkBallsTimeBetween));
+        StartReleasingDarkBalls(CalculateCurrentValueBasedOnBossHealth(initialDarkBallsTimeBetween, minDarkBallsTimeBetween));
 
-        Invoke(nameof(StartForceFieldPhase), Math.Max(initialVulnerableTime * (LifePoints / LifePointsTotal), minVulnerableTime));
+        Invoke(nameof(StartForceFieldPhase), CalculateCurrentValueBasedOnBossHealth(initialVulnerableTime, minVulnerableTime));
     }
 
     protected override void Update()
@@ -60,6 +73,7 @@ public class DarkRayman : Vulnerable
         base.Update();
 
         transform.LookAt(player.transform);
+        transform.transform.position = initialPosition;
     }
 
     void ActivateForceField(Action callback = null)
@@ -79,8 +93,9 @@ public class DarkRayman : Vulnerable
 
     void StartReleasingDarkBalls(float timeInBetween, int? amount = null, Action callback = null)
     {
-        darkBallsCoroutine = DarkBallsCoroutine(timeInBetween, amount, callback);
-        StartCoroutine(darkBallsCoroutine);
+        StopReleasingDarkBalls();
+
+        darkBallsCoroutine = StartCoroutine(DarkBallsCoroutine(timeInBetween, amount, callback));
     }
 
     void StopReleasingDarkBalls()
@@ -94,8 +109,8 @@ public class DarkRayman : Vulnerable
         while (amount == null || amount > 0)
         {
             manualAnimator.PlayAbrupt("Spell Front");
-            fistShooter.bullet.gameObject.GetComponent<Creature>().walkingSpeed = Math.Min(maxDarkBallsSpeed, initialDarkBallsSpeed * (LifePointsTotal / LifePoints));
-            fistShooter.bullet.gameObject.GetComponent<Creature>().runningSpeed = Math.Min(maxDarkBallsSpeed, initialDarkBallsSpeed * (LifePointsTotal / LifePoints));
+            fistShooter.bullet.gameObject.GetComponent<Creature>().walkingSpeed = CalculateCurrentValueBasedOnBossHealth(initialDarkBallsSpeed, maxDarkBallsSpeed);
+            fistShooter.bullet.gameObject.GetComponent<Creature>().runningSpeed = CalculateCurrentValueBasedOnBossHealth(initialDarkBallsSpeed, maxDarkBallsSpeed);
             fistShooter.Attack(player);
 
             if(amount.HasValue)

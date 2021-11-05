@@ -12,20 +12,23 @@ public class AreaSpawner : MonoBehaviour
 
     public GameObject[] items;
 
-    private IEnumerator spawningCoroutine;
+    private Coroutine spawningCoroutine;
 
     public void BeginSpawning(float timeBetweenSpawns, int? spawnsMax = null, Vector3? origin = null)
     {
+        StopSpawning();
+
         Vector3 location = transform.position;
         if (origin != null)
             location = origin.Value;
-        spawningCoroutine = SpawnCoroutine(timeBetweenSpawns, spawnsMax, location);
-        StartCoroutine(spawningCoroutine);
+
+        spawningCoroutine = StartCoroutine(SpawnCoroutine(timeBetweenSpawns, spawnsMax, location));
     }
 
     public void StopSpawning()
     {
-        StopCoroutine(spawningCoroutine);
+        if(spawningCoroutine != null)
+            StopCoroutine(spawningCoroutine);
     }
 
     private bool SpawnItem(GameObject item, Vector3? vec = null)

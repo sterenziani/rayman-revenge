@@ -578,7 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f839995356d695947a6025a87a908c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitDamage: 10
+  hitDamage: 20
   useGravity: 0
   bounciness: 0
   maxRange: 10
@@ -756,6 +756,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LifePointsTotal: 200
   MinDamageToTake: 0
+  spawnSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  hitSound: {fileID: 0}
   jumpSpeed: 6
   movementSpeed: 4
   helicopterMovementSpeed: 3

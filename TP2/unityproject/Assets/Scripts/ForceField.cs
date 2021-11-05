@@ -7,12 +7,6 @@ public class ForceField : Vulnerable
     private Vector3 startLocalScale;
     private Action callback;
 
-    private AudioSource audioSource;
-
-    [SerializeField] AudioClip activationSound;
-    [SerializeField] AudioClip deactivationSound;
-    [SerializeField] AudioClip impactSound;
-
     public float damageOnTouch = 5;
     public float stunSeconds = 1;
 
@@ -23,33 +17,11 @@ public class ForceField : Vulnerable
         startLocalScale = transform.localScale;
         resizable = gameObject.GetComponent<Resizable>();
 
-        audioSource = gameObject.GetComponent<AudioSource>();
-
-        if (audioSource != null && activationSound != null)
-        {
-            audioSource.PlayOneShot(activationSound);
-        }
-
         if (resizable != null)
         {
             transform.localScale = Vector3.zero;
             resizable.ScaleOverTime(startLocalScale, 1.5f);
         }
-    }
-
-    public override float TakeDamage(float damage)
-    {
-        float lifePointsOld = LifePoints;
-        float lifePointsNew = base.TakeDamage(damage);
-        if (lifePointsOld > lifePointsNew)
-        {
-            if (audioSource != null && impactSound != null)
-            {
-                audioSource.PlayOneShot(activationSound);
-            }
-        }
-
-        return lifePointsNew;
     }
 
     public void Deactivate()
@@ -77,11 +49,6 @@ public class ForceField : Vulnerable
         }
         else
         {
-            if(audioSource != null && deactivationSound != null)
-            {
-                audioSource.PlayOneShot(deactivationSound);
-            }
-
             resizable.ScaleOverTime(Vector3.zero, 1.5f, base.Die);
         }
     }

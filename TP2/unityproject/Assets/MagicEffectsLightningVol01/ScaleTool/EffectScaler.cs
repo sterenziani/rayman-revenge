@@ -42,33 +42,38 @@ public class EffectScaler : MonoBehaviour {
 	}
 
 
-  void ScaleParticeSystems(float scaleValue) {
-    ParticleSystem[] psSystems = GetComponentsInChildren<ParticleSystem>();
-    if (psSystems != null) {
-      for (int i = 0; i < psSystems.Length; i++) {
-        psSystems[i].startSpeed *= scaleValue;
-        psSystems[i].startSize *= scaleValue;
-        psSystems[i].gravityModifier *= scaleValue;
 
-        SerializedObject otherProperties = new SerializedObject(psSystems[i]);
-        otherProperties.FindProperty("VelocityModule.x.scalar").floatValue *= scaleValue;
-        otherProperties.FindProperty("VelocityModule.y.scalar").floatValue *= scaleValue;
-        otherProperties.FindProperty("VelocityModule.z.scalar").floatValue *= scaleValue;
-        otherProperties.FindProperty("ClampVelocityModule.magnitude.scalar").floatValue *= scaleValue;
-        otherProperties.FindProperty("ClampVelocityModule.x.scalar").floatValue *= scaleValue;
-        otherProperties.FindProperty("ClampVelocityModule.y.scalar").floatValue *= scaleValue;
-        otherProperties.FindProperty("ClampVelocityModule.z.scalar").floatValue *= scaleValue;
-        otherProperties.FindProperty("ForceModule.x.scalar").floatValue *= scaleValue;
-        otherProperties.FindProperty("ForceModule.y.scalar").floatValue *= scaleValue;
-        otherProperties.FindProperty("ForceModule.z.scalar").floatValue *= scaleValue;
-        otherProperties.FindProperty("ColorBySpeedModule.range").vector2Value *= scaleValue;
-        otherProperties.FindProperty("SizeBySpeedModule.range").vector2Value *= scaleValue;
-        otherProperties.FindProperty("RotationBySpeedModule.range").vector2Value *= scaleValue;
-        otherProperties.ApplyModifiedProperties();
-      }
+    void ScaleParticeSystems(float scaleValue) {
+        ParticleSystem[] psSystems = GetComponentsInChildren<ParticleSystem>();
+        if (psSystems != null) {
+            for (int i = 0; i < psSystems.Length; i++) {
+                ParticleSystem.MainModule _main = psSystems[i].main;
+                _main.startSpeed = _main.startSpeed.constant * scaleValue;
+                _main.startSize = _main.startSize.constant * scaleValue;
+                _main.gravityModifier = _main.gravityModifier.constant * scaleValue;
+                /*psSystems[i].startSpeed *= scaleValue;
+                psSystems[i].startSize *= scaleValue;
+                psSystems[i].gravityModifier *= scaleValue;*/
+
+                SerializedObject otherProperties = new SerializedObject(psSystems[i]);
+                otherProperties.FindProperty("VelocityModule.x.scalar").floatValue *= scaleValue;
+                otherProperties.FindProperty("VelocityModule.y.scalar").floatValue *= scaleValue;
+                otherProperties.FindProperty("VelocityModule.z.scalar").floatValue *= scaleValue;
+                otherProperties.FindProperty("ClampVelocityModule.magnitude.scalar").floatValue *= scaleValue;
+                otherProperties.FindProperty("ClampVelocityModule.x.scalar").floatValue *= scaleValue;
+                otherProperties.FindProperty("ClampVelocityModule.y.scalar").floatValue *= scaleValue;
+                otherProperties.FindProperty("ClampVelocityModule.z.scalar").floatValue *= scaleValue;
+                otherProperties.FindProperty("ForceModule.x.scalar").floatValue *= scaleValue;
+                otherProperties.FindProperty("ForceModule.y.scalar").floatValue *= scaleValue;
+                otherProperties.FindProperty("ForceModule.z.scalar").floatValue *= scaleValue;
+                otherProperties.FindProperty("ColorBySpeedModule.range").vector2Value *= scaleValue;
+                otherProperties.FindProperty("SizeBySpeedModule.range").vector2Value *= scaleValue;
+                otherProperties.FindProperty("RotationBySpeedModule.range").vector2Value *= scaleValue;
+                otherProperties.ApplyModifiedProperties();
+            }
+        }
+
     }
-
-  }
 
   void ScaleLights(float scaleValue) {
     Light[] ligths = GetComponentsInChildren<Light>();

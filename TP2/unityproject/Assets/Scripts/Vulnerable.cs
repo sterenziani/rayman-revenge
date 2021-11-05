@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Vulnerable : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Vulnerable : MonoBehaviour
     [SerializeField] AudioClip spawnSound;
     [SerializeField] AudioClip deathSound;
     [SerializeField] AudioClip hitSound;
+
+    [SerializeField] List<GameObject> inmuneTo;
 
     // Start is called before the first frame update
     protected virtual void Start()

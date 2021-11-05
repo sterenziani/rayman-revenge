@@ -465,7 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PowerUp: 2
   Material: {fileID: 2100000, guid: 7b5abf0645894964fb6fd0995361fb66, type: 2}
-  Duration: 8
+  Duration: 9
   rechargeSound: {fileID: 8300000, guid: 4b4e313f1918bbc4e86ca1c937d4afb3, type: 3}
 --- !u!114 &5092757190332010544
 MonoBehaviour:

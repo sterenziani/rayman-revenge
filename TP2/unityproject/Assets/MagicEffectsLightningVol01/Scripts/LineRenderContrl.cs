@@ -22,7 +22,7 @@ public class LineRenderContrl : MonoBehaviour {
 
   void Awake() {
     lineRer = GetComponent<LineRenderer>();
-    lineRer.SetVertexCount(2);
+    lineRer.positionCount = 2;
     lineRer.SetPosition(0, Vector3.zero);
     lineRer.useWorldSpace = false;
     mat = lineRer.materials[0];
