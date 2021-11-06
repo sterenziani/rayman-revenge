@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Creature : Vulnerable
@@ -117,17 +118,20 @@ public class Creature : Vulnerable
 
     protected override void Die()
     {
-        if(agent != null)
+        if (agent != null)
             agent.isStopped = true;
 
         LifePoints = 0;
-        manualAnimator?.PlayForceContinuous("Dying");
 
         gameObject.GetComponent<Collider>().enabled = false;
+        StartCoroutine(AnimateDeath());
+    }
 
-        if(manualAnimator != null)
-            Invoke(nameof(base.Die), manualAnimator.GetCurrentAnimationTotalDuration() + 3);
-        StartCoroutine(SpawnLoot(manualAnimator.GetCurrentAnimationTotalDuration()));
+    IEnumerator AnimateDeath()
+    {
+        manualAnimator?.PlayForceContinuous("Dying");
+        yield return new WaitForSeconds(5f);
+        base.Die();
     }
 
     public override float TakeDamage(float damage)

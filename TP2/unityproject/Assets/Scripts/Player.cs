@@ -250,7 +250,6 @@ public class Player : Vulnerable
     protected override void Die()
     {
         StartCoroutine(AnimateDeath());
-
         base.Die();
     }
 

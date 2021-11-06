@@ -91,15 +91,15 @@ public class Vulnerable : MonoBehaviour
         }
 
         if(exploder != null)
-        {
             exploder.Explode();
-        }
-
-        gameObject.transform.localScale = Vector3.zero;
 
         LifePoints = 0;
         StartCoroutine(SpawnLoot(0.2f));
-        Invoke(nameof(DestroyObject), timeToDestroy);
+        if (GetComponent<Player>() == null)
+        {
+            gameObject.transform.localScale = Vector3.zero;
+            Invoke(nameof(DestroyObject), timeToDestroy);
+        }
     }
 
     bool IsGrounded()
