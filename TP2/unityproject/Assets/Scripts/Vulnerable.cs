@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Vulnerable : MonoBehaviour
 {
@@ -94,26 +95,28 @@ public class Vulnerable : MonoBehaviour
             exploder.Explode();
 
         LifePoints = 0;
-        StartCoroutine(SpawnLoot(0.2f));
+
+        SpawnLoot();
+
         if (GetComponent<Player>() == null)
         {
             gameObject.transform.localScale = Vector3.zero;
+
             Invoke(nameof(DestroyObject), timeToDestroy);
         }
     }
 
-    bool IsGrounded()
+    protected bool IsGrounded()
     {
-        int layers = LayerMask.GetMask("Ground");
+        int layers = LayerMask.GetMask("Ground", "Enemies");
         float distToGround = collider.bounds.extents.y;
         return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f, layers);
     }
 
-    public IEnumerator SpawnLoot(float delay)
+    private void SpawnLoot()
     {
         if (IsGrounded())
         {
-            yield return new WaitForSeconds(delay);
             if(spawner != null)
                 spawner.BeginSpawning(0, 1, transform.position);
         }

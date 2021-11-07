@@ -231,12 +231,6 @@ public class Player : Vulnerable
         hitInput = Input.GetMouseButtonDown(0);
     }
 
-	bool IsGrounded()
-	{
-        int layers = LayerMask.GetMask("Ground", "Enemies");
-        return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f, layers);
-	}
-
 	public void SetRotation(float rotation)
     {
         this.rotation = rotation;

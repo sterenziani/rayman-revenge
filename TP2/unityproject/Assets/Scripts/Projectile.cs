@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float maxLifetime = float.PositiveInfinity;
 
     [SerializeField] bool explodeOnTouch = false;
-    [SerializeField] ParticleSystem explosion;
+    [SerializeField] ParticleSystem explosionEffect;
     [SerializeField] float explosionDamage = 0;
     [SerializeField] float explosionRange = 0;
     [SerializeField] float explosionForce = 0;
@@ -43,9 +43,9 @@ public class Projectile : MonoBehaviour
     private void Explode()
     {
         //GameObject grafico explision
-        if (explosion != null)
+        if (explosionEffect != null)
         {
-            GameObject expInstance = Instantiate(explosion.gameObject, transform.position, Quaternion.identity);
+            GameObject expInstance = Instantiate(explosionEffect.gameObject, transform.position, Quaternion.identity);
             expInstance.SetActive(true);
             ParticleSystem particleSystem = expInstance.GetComponent<ParticleSystem>();
             if (particleSystem != null)
