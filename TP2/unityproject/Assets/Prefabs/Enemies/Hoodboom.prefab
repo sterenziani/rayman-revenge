@@ -869,7 +869,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  sightRange: 8
+  sightRange: 9
   attackRange: 6
   walkingSpeed: 1
   runningSpeed: 3

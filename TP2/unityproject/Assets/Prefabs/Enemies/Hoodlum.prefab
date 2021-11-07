@@ -119,7 +119,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  sightRange: 2
+  sightRange: 6.5
   attackRange: 0.4
   walkingSpeed: 1
   runningSpeed: 3

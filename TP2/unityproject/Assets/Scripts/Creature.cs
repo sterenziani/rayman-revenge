@@ -66,7 +66,7 @@ public class Creature : Vulnerable
         agent.speed = walkingSpeed;
         agent.SetDestination(currentPatrollingDestination);
 
-        if (Vector3.Distance(transform.position, currentPatrollingDestination) < 0.5f)
+        if (Vector3.Distance(transform.position, currentPatrollingDestination) < 0.5f || agent.path.status != NavMeshPathStatus.PathComplete)
         {
             SetNextPatrollingDestination();
         }

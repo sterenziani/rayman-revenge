@@ -1773,7 +1773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &623675656
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4904,6 +4904,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 171650206716919210, guid: de81bd6051c9fb3468f36e11477e4d62, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 594d0443d6d2a2043913be53755a905d, type: 2}
     - target: {fileID: 171650206716919211, guid: de81bd6051c9fb3468f36e11477e4d62, type: 3}
       propertyPath: m_Name
       value: NavMesh
