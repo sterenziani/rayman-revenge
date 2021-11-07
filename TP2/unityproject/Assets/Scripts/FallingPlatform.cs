@@ -10,6 +10,7 @@ public class FallingPlatform : Platform
 	public float fallSpeed = 0;
 	public float respawnWait = 0;
 	public float blinkFrequency = 0;
+	public bool ignorePlayerWeight = false;
 
 	private float startingHeight = 0;
 	private float timer = 0;
@@ -29,7 +30,7 @@ public class FallingPlatform : Platform
 	{
 		activated = false;
 		GameObject target = collision.gameObject;
-		if (target.GetComponent<Player>() != null && !exploded)
+		if (((!ignorePlayerWeight && target.GetComponent<Player>() != null) || target.tag == "Crate") && !exploded)
 			activated = true;
 	}
 
@@ -38,7 +39,7 @@ public class FallingPlatform : Platform
 		base.OnTriggerExit(collision);
 
 		GameObject target = collision.gameObject;
-		if (weighted && target.GetComponent<Player>() != null)
+		if (weighted && ((!ignorePlayerWeight && target.GetComponent<Player>() != null) || target.tag == "Crate"))
 			activated = false;
 	}
 
