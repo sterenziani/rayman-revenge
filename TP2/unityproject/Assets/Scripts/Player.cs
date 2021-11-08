@@ -335,9 +335,22 @@ public class Player : Vulnerable
         animator.SetBool("isTakingDamage", false);
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        GameObject target = collision.gameObject;
+        if(target.tag == "Finish")
+        {
+            rigidBody.velocity = new Vector3(0,0,0);
+            StartCoroutine(Celebrate());
+        }
+    }
+
     IEnumerator Celebrate()
     {
         hasWon = true;
+        isUsingHelicopter = false;
+        raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 0);
+
         GameObject soundtrack = GameObject.Find("Soundtrack");
         AudioSource soundtrackSource = null;
         if (soundtrack != null)
@@ -353,6 +366,7 @@ public class Player : Vulnerable
         }
 
         transform.rotation = Quaternion.Euler(0, 180, 0);
+        animator.SetBool("IsUsingHelicopter", isUsingHelicopter);
         animator.SetBool("isCelebrating", true);
         animator.SetInteger("celebrationStage", 0);
         yield return new WaitForSeconds(1.5f);
