@@ -20,6 +20,10 @@ public class Projectile : MonoBehaviour
     [SerializeField] float explosionForce = 0;
     [SerializeField] bool onlyCollideWithPlayer = false;
 
+    private AudioSource audioSource;
+    [SerializeField] AudioClip collideSound;
+    [SerializeField] AudioClip explosionSound;
+
     private Rigidbody rigidBody;
     private Vector3 startPosition;
 
@@ -30,6 +34,7 @@ public class Projectile : MonoBehaviour
     {
         startPosition = transform.position;
         rigidBody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
 
         rigidBody.useGravity = useGravity;
 
@@ -69,8 +74,16 @@ public class Projectile : MonoBehaviour
                 enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange);
         }
 
+        float timeToExplode = 0.05f;
+        if(audioSource != null && explosionSound != null)
+        {
+            audioSource.clip = explosionSound;
+            audioSource.Play();
+            timeToExplode = explosionSound.length;
+        }
+
         //Para estar seguros de que llegamos a hacer todo
-        Invoke(nameof(DestroyObject), 0.05f);
+        Invoke(nameof(DestroyObject), timeToExplode);
     }
     private void DestroyObject()
     {
@@ -93,6 +106,11 @@ public class Projectile : MonoBehaviour
     protected virtual private void OnCollisionEnter(Collision collision)
     {
         collisionCount++;
+
+        if(audioSource != null && collideSound != null)
+        {
+            audioSource.PlayOneShot(collideSound);
+        }
 
         if (onlyCollideWithPlayer && !collision.gameObject.GetComponent<Player>())
             return;

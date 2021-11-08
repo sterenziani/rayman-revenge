@@ -16,7 +16,7 @@ public class Vulnerable : MonoBehaviour
     protected AudioSource audioSource;
     [SerializeField] AudioClip spawnSound;
     [SerializeField] AudioClip deathSound;
-    [SerializeField] AudioClip hitSound;
+    [SerializeField] protected AudioClip hittedSound;
 
     [SerializeField] List<GameObject> inmuneTo;
 
@@ -58,7 +58,7 @@ public class Vulnerable : MonoBehaviour
         return TakeDamage(damage, true);
     }
 
-    public virtual float TakeDamage(float damage, bool flinch = true)
+    public virtual float TakeDamage(float damage, bool flinch = true, bool playSound = true)
     {
         LifePoints -= damage >= MinDamageToTake ? damage : 0;
         if (LifePoints <= 0)
@@ -67,9 +67,9 @@ public class Vulnerable : MonoBehaviour
         }
         else
         {
-            if (audioSource != null && hitSound != null)
+            if (playSound && audioSource != null && hittedSound != null)
             {
-                audioSource.PlayOneShot(hitSound);
+                audioSource.PlayOneShot(hittedSound);
             }
 
             if (flinch)
@@ -84,10 +84,14 @@ public class Vulnerable : MonoBehaviour
 
     protected virtual void Die()
     {
-        float timeToDestroy = 0f;
+        Die(0f, false);
+    }
+
+    protected virtual void Die(float timeToDestroy = 0f, bool hideInmediatly = true)
+    {
         if(audioSource != null && deathSound != null)
         {
-            timeToDestroy = deathSound.length;
+            timeToDestroy = Math.Max(deathSound.length, timeToDestroy);
             audioSource.PlayOneShot(deathSound);
         }
 
@@ -100,7 +104,8 @@ public class Vulnerable : MonoBehaviour
 
         if (GetComponent<Player>() == null)
         {
-            gameObject.transform.localScale = Vector3.zero;
+            if(hideInmediatly)
+                gameObject.transform.localScale = Vector3.zero;
 
             Invoke(nameof(DestroyObject), timeToDestroy);
         }

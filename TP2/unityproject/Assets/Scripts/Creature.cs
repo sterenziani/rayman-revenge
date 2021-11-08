@@ -5,6 +5,17 @@ using System.Collections;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Creature : Vulnerable
 {
+    private enum State
+    {
+        IDLE = 0,
+        PATROLLING = 1,
+        CHASING = 2,
+        ATTACKING = 3,
+        DEAD = 4,
+    }
+
+    private State state;
+
     private NavMeshAgent agent;
     private GameObject player;
     [SerializeField] LayerMask playerLayer;
@@ -22,6 +33,9 @@ public class Creature : Vulnerable
     int currentPatrolWaypointIndex = 0;
     private bool walkPointSet;
     [SerializeField] bool randomPatrol;
+
+    [SerializeField] AudioClip sawEnemySound;
+    [SerializeField] AudioClip attackSound;
 
     private bool playerInSightRange, playerInAttackRange;
 
@@ -55,12 +69,15 @@ public class Creature : Vulnerable
 
     private void Idling()
     {
+        state = State.IDLE;
         manualAnimator?.PlayContinuous("Idle");
         agent.isStopped = true;
     }
 
     private void Patroling()
     {
+        state = State.PATROLLING;
+
         agent.isStopped = false;
         manualAnimator?.PlayContinuous("Walking");
         agent.speed = walkingSpeed;
@@ -88,6 +105,8 @@ public class Creature : Vulnerable
 
     private void AttackPlayer()
     {
+        state = State.ATTACKING;
+
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
@@ -105,18 +124,30 @@ public class Creature : Vulnerable
 
     private void PerformAttack()
     {
-        weapon.Attack(player);
+        if(weapon.Attack(player))
+        {
+            if(audioSource != null && attackSound != null)
+            {
+                audioSource.PlayOneShot(attackSound);
+            }
+        }
     }
 
     private void ChasePlayer()
     {
+        if(state != State.CHASING && audioSource != null && sawEnemySound != null)
+        {
+            audioSource.PlayOneShot(sawEnemySound);
+        }
+
+        state = State.CHASING;
         agent.isStopped = false;
         manualAnimator?.PlayContinuous("Running");
         agent.speed = runningSpeed;
         agent.SetDestination(player.transform.position);
     }
 
-    protected override void Die()
+    protected override void Die(float timeToDie = 0, bool hideInmediatly = false)
     {
         if (agent != null)
             agent.isStopped = true;
@@ -124,14 +155,14 @@ public class Creature : Vulnerable
         LifePoints = 0;
 
         gameObject.GetComponent<Collider>().enabled = false;
-        StartCoroutine(AnimateDeath());
+        AnimateDeath();
+
+        base.Die(5f, hideInmediatly);
     }
 
-    IEnumerator AnimateDeath()
+    void AnimateDeath()
     {
         manualAnimator?.PlayForceContinuous("Dying");
-        yield return new WaitForSeconds(5f);
-        base.Die();
     }
 
     public override float TakeDamage(float damage)

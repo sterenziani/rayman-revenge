@@ -47,12 +47,11 @@ public class Player : Vulnerable
     [SerializeField] AudioClip powerUpSound;
     [SerializeField] AudioClip endPowerUpSound;
     [SerializeField] AudioClip jumpSound;
-    [SerializeField] AudioClip hittedSound;
     [SerializeField] AudioClip stunnedSound;
 
     private void ReduceHealthByTime()
     {
-        TakeDamage(recurrentHealthLost, false);
+        TakeDamage(recurrentHealthLost, false, false);
     }
 
     public void Stun(float time)
