@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f839995356d695947a6025a87a908c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitDamage: 6
+  hitDamage: 8
   useGravity: 0
   bounciness: 0
   maxRange: 8
@@ -138,6 +138,8 @@ MonoBehaviour:
   explosionRange: 0
   explosionForce: 0
   onlyCollideWithPlayer: 0
+  collideSound: {fileID: 0}
+  explosionSound: {fileID: 0}
 --- !u!1 &939166342084880786
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f839995356d695947a6025a87a908c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitDamage: 20
+  hitDamage: 25
   useGravity: 0
   bounciness: 0
   maxRange: 10
@@ -590,6 +592,8 @@ MonoBehaviour:
   explosionRange: 0
   explosionForce: 0
   onlyCollideWithPlayer: 0
+  collideSound: {fileID: 0}
+  explosionSound: {fileID: 0}
 --- !u!114 &8986412475279219150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,8 +762,10 @@ MonoBehaviour:
   MinDamageToTake: 0
   spawnSound: {fileID: 0}
   deathSound: {fileID: 0}
-  hitSound: {fileID: 0}
+  hittedSound: {fileID: 8300000, guid: ab411353dc201cf408c6efc7bbb95af7, type: 3}
   inmuneTo: []
+  hideInmediatlyOnDestroy: 0
+  timeToDestroy: 5
   jumpSpeed: 6
   movementSpeed: 4
   helicopterMovementSpeed: 3
@@ -771,7 +777,6 @@ MonoBehaviour:
   powerUpSound: {fileID: 8300000, guid: 5bbffc84be226294b90997f69ee569af, type: 3}
   endPowerUpSound: {fileID: 8300000, guid: 94ce8bc875e38e84ea41b6d61493ef29, type: 3}
   jumpSound: {fileID: 8300000, guid: 0cb26176b624ee24c872082c6f264574, type: 3}
-  hittedSound: {fileID: 8300000, guid: ab411353dc201cf408c6efc7bbb95af7, type: 3}
   stunnedSound: {fileID: 8300000, guid: 5584cc14deb8c7547850d5523e288fb2, type: 3}
   victoryTheme: {fileID: 8300000, guid: fa84192975dba384a8397c8f9cb96429, type: 3}
 --- !u!54 &8986412475655520872

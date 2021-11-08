@@ -22,8 +22,16 @@ public class PointCollectable : MonoBehaviour
             if (audioSource != null && audioClip != null)
             {
                 audioSource.PlayOneShot(audioClip);
+
                 gameObject.transform.localScale = new Vector3(0, 0, 0);
+                Component[] lights = gameObject.GetComponentsInChildren<Light>();
+                if(lights != null)
+                {
+                    foreach(Light light in lights)
+                        light.enabled = false;
+                }
                 gameObject.GetComponent<Collider>().enabled = false;
+
                 Invoke(nameof(Destroy), audioClip.length);
             } 
             else

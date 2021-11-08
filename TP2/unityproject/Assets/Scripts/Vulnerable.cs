@@ -20,6 +20,9 @@ public class Vulnerable : MonoBehaviour
 
     [SerializeField] List<GameObject> inmuneTo;
 
+    [SerializeField] bool hideInmediatlyOnDestroy = true;
+    [SerializeField] float timeToDestroy = 0f;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -58,7 +61,7 @@ public class Vulnerable : MonoBehaviour
         return TakeDamage(damage, true);
     }
 
-    public virtual float TakeDamage(float damage, bool flinch = true, bool playSound = true)
+    public virtual float TakeDamage(float damage, bool flinch = true, bool playSound = true, bool destroyInmediatly = true)
     {
         Player p = this.GetComponent<Player>();
         if (p == null || (p != null && !p.hasWon))
@@ -85,11 +88,7 @@ public class Vulnerable : MonoBehaviour
 
     protected virtual void Die()
     {
-        Die(0f, false);
-    }
-
-    protected virtual void Die(float timeToDestroy = 0f, bool hideInmediatly = true)
-    {
+        float timeToDestroy = this.timeToDestroy;
         if(audioSource != null && deathSound != null)
         {
             timeToDestroy = Math.Max(deathSound.length, timeToDestroy);
@@ -105,7 +104,7 @@ public class Vulnerable : MonoBehaviour
 
         if (GetComponent<Player>() == null)
         {
-            if(hideInmediatly)
+            if(hideInmediatlyOnDestroy)
                 gameObject.transform.localScale = Vector3.zero;
 
             Invoke(nameof(DestroyObject), timeToDestroy);

@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598afc315a70079418403d207bee3b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 25
   cooldownTime: 1.2
   attackSound: {fileID: 0}
 --- !u!195 &1286345530635881577
@@ -212,10 +212,12 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 35ea6d396b7f18640b19788c518b08c9, type: 3}
   hittedSound: {fileID: 8300000, guid: fd3c1e5641206a744968e13753d87d8b, type: 3}
   inmuneTo: []
+  hideInmediatlyOnDestroy: 0
+  timeToDestroy: 5
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  sightRange: 6.5
+  sightRange: 10
   attackRange: 0.4
   walkingSpeed: 1
   runningSpeed: 3

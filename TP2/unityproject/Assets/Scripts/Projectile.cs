@@ -27,6 +27,8 @@ public class Projectile : MonoBehaviour
     private Rigidbody rigidBody;
     private Vector3 startPosition;
 
+    private bool exploding = false;
+
     private int collisionCount = 0;
 
     // Start is called before the first frame update
@@ -47,6 +49,11 @@ public class Projectile : MonoBehaviour
 
     private void Explode()
     {
+        if (exploding)
+            return;
+
+        exploding = true;
+
         //GameObject grafico explision
         if (explosionEffect != null)
         {
@@ -58,6 +65,8 @@ public class Projectile : MonoBehaviour
                 particleSystem.Play();
             }
         }
+
+        transform.localScale = Vector3.zero;
 
         Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange);
         for (int i = 0; i < enemies.Length; i++)
@@ -105,6 +114,9 @@ public class Projectile : MonoBehaviour
 
     protected virtual private void OnCollisionEnter(Collision collision)
     {
+        if (exploding)
+            return;
+
         collisionCount++;
 
         if(audioSource != null && collideSound != null)

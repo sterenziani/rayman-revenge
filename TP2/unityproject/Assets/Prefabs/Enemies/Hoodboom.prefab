@@ -861,17 +861,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b631eec746c43bb40a14c43be0df63b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifePointsTotal: 10
+  LifePointsTotal: 20
   MinDamageToTake: 0
   spawnSound: {fileID: 0}
   deathSound: {fileID: 8300000, guid: a3c8170eef46f2248a36875f7369d6ca, type: 3}
   hittedSound: {fileID: 8300000, guid: 7ffbee8cec812b4418bd224be6b7d5c7, type: 3}
   inmuneTo: []
+  hideInmediatlyOnDestroy: 0
+  timeToDestroy: 5
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  sightRange: 9
-  attackRange: 6
+  sightRange: 10
+  attackRange: 8
   walkingSpeed: 1
   runningSpeed: 3
   patrolWaypoints: []
@@ -1082,32 +1084,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0026239601, y: 0.002379297, z: 0.0037387141}
   m_Center: {x: -0.000026815742, y: 0.000009269388, z: 0.0018610046}
---- !u!114 &3543287321945039923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4462258926663580905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f839995356d695947a6025a87a908c12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitDamage: 5
-  useGravity: 1
-  bounciness: 0.777
-  maxRange: 8
-  maxCollisions: 3
-  maxLifetime: 5
-  explodeOnTouch: 1
-  explosionEffect: {fileID: 3543287320583090225}
-  explosionDamage: 5
-  explosionRange: 1
-  explosionForce: 200
-  onlyCollideWithPlayer: 0
-  collideSound: {fileID: 8300000, guid: 453242c904c825d46aac1ea4d445bf8b, type: 3}
-  explosionSound: {fileID: 8300000, guid: 07fc2421bb089d74eb9219373727314b, type: 3}
 --- !u!82 &7746078780379990512
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1204,6 +1180,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3543287321945039923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4462258926663580905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f839995356d695947a6025a87a908c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitDamage: 5
+  useGravity: 1
+  bounciness: 0.777
+  maxRange: 8
+  maxCollisions: 3
+  maxLifetime: 5
+  explodeOnTouch: 1
+  explosionEffect: {fileID: 3543287320583090225}
+  explosionDamage: 5
+  explosionRange: 1
+  explosionForce: 200
+  onlyCollideWithPlayer: 0
+  collideSound: {fileID: 8300000, guid: 453242c904c825d46aac1ea4d445bf8b, type: 3}
+  explosionSound: {fileID: 8300000, guid: 07fc2421bb089d74eb9219373727314b, type: 3}
 --- !u!1 &4479192218893445998
 GameObject:
   m_ObjectHideFlags: 0

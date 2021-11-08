@@ -147,7 +147,7 @@ public class Creature : Vulnerable
         agent.SetDestination(player.transform.position);
     }
 
-    protected override void Die(float timeToDie = 0, bool hideInmediatly = false)
+    protected override void Die()
     {
         if (agent != null)
             agent.isStopped = true;
@@ -157,7 +157,7 @@ public class Creature : Vulnerable
         gameObject.GetComponent<Collider>().enabled = false;
         AnimateDeath();
 
-        base.Die(5f, hideInmediatly);
+        base.Die();
     }
 
     void AnimateDeath()
@@ -167,7 +167,7 @@ public class Creature : Vulnerable
 
     public override float TakeDamage(float damage)
     {
-        float remainingLife = base.TakeDamage(damage, false);
+        float remainingLife = base.TakeDamage(damage, false, false);
 
         if (damage > 0 && IsAlive())
         {
