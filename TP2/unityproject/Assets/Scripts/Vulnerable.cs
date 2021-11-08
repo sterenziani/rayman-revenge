@@ -60,7 +60,9 @@ public class Vulnerable : MonoBehaviour
 
     public virtual float TakeDamage(float damage, bool flinch = true, bool playSound = true)
     {
-        LifePoints -= damage >= MinDamageToTake ? damage : 0;
+        Player p = this.GetComponent<Player>();
+        if (p == null || (p != null && !p.hasWon))
+            LifePoints -= damage >= MinDamageToTake ? damage : 0;
         if (LifePoints <= 0)
         {
             Die();
@@ -74,9 +76,8 @@ public class Vulnerable : MonoBehaviour
 
             if (flinch)
             {
-                Player p = this.GetComponent<Player>();
                 if (p != null)
-                p.GetHurt();
+                    p.GetHurt();
             }
         }
         return LifePoints;

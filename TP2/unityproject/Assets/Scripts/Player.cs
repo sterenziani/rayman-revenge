@@ -24,6 +24,7 @@ public class Player : Vulnerable
     private bool jumpInput;
     private bool isUsingHelicopter;
     private bool isGrounded;
+    public bool hasWon;
 
     private bool hitInput;
     private Gun fistShooter;
@@ -48,10 +49,12 @@ public class Player : Vulnerable
     [SerializeField] AudioClip endPowerUpSound;
     [SerializeField] AudioClip jumpSound;
     [SerializeField] AudioClip stunnedSound;
+    [SerializeField] AudioClip victoryTheme;
 
     private void ReduceHealthByTime()
     {
-        TakeDamage(recurrentHealthLost, false, false);
+        if(!hasWon)
+            TakeDamage(recurrentHealthLost, false, false);
     }
 
     public void Stun(float time)
@@ -90,21 +93,25 @@ public class Player : Vulnerable
         defaultMaterial = raymanBody.GetComponent<Renderer>().material;
 
         //TODO va a traer problemas cuando se recargue la escena?
+        hasWon = false;
         animator.SetBool("isAlive", true);
         InvokeRepeating(nameof(ReduceHealthByTime), recurrentHealthLostTime, recurrentHealthLostTime);
-	}
+    }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
-        GetInputs();
-        GetCircumstances();
-        CalculateMovingSpeedAndApplyRotation();
-        HandleMovementCases();
-        HandleShoot();
-        SetAnimatorParameters();
-        DecreasePowerupTime();
+        if(!hasWon)
+        {
+            GetInputs();
+            GetCircumstances();
+            CalculateMovingSpeedAndApplyRotation();
+            HandleMovementCases();
+            HandleShoot();
+            SetAnimatorParameters();
+            DecreasePowerupTime();
+        }
     }
 
     void HandleShoot()
@@ -307,7 +314,7 @@ public class Player : Vulnerable
     IEnumerator AnimatePunch()
     {
         animator.SetBool("isPunching", true);
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.3f);
         animator.SetBool("isPunching", false);
     }
 
@@ -326,5 +333,40 @@ public class Player : Vulnerable
         animator.SetBool("isTakingDamage", true);
         yield return new WaitForSeconds(0.2f);
         animator.SetBool("isTakingDamage", false);
+    }
+
+    IEnumerator Celebrate()
+    {
+        hasWon = true;
+        GameObject soundtrack = GameObject.Find("Soundtrack");
+        AudioSource soundtrackSource = null;
+        if (soundtrack != null)
+        {
+            soundtrackSource = soundtrack.GetComponent<AudioSource>();
+            if (soundtrackSource != null)
+                soundtrackSource.Stop();
+        }
+        if (audioSource != null && victoryTheme != null)
+        {
+            audioSource.Stop();
+            audioSource.PlayOneShot(victoryTheme);
+        }
+
+        transform.rotation = Quaternion.Euler(0, 180, 0);
+        animator.SetBool("isCelebrating", true);
+        animator.SetInteger("celebrationStage", 0);
+        yield return new WaitForSeconds(1.5f);
+        //GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+        animator.SetInteger("celebrationStage", 1);
+        yield return new WaitForSeconds(4f);
+        animator.SetBool("isCelebrating", false);
+        animator.SetInteger("celebrationStage", 0);
+        hasWon = false;
+        /*
+        if (soundtrack != null && soundtrackSource != null)
+            soundtrackSource.Play();
+        */
+        int nextSceneIndex = (1 + SceneManager.GetActiveScene().buildIndex) % SceneManager.sceneCountInBuildSettings;
+        SceneManager.LoadScene(nextSceneIndex);
     }
 }

@@ -133,7 +133,7 @@ MonoBehaviour:
   maxCollisions: 2147483647
   maxLifetime: Infinity
   explodeOnTouch: 1
-  explosion: {fileID: 0}
+  explosionEffect: {fileID: 0}
   explosionDamage: 0
   explosionRange: 0
   explosionForce: 0
@@ -585,7 +585,7 @@ MonoBehaviour:
   maxCollisions: 2147483647
   maxLifetime: Infinity
   explodeOnTouch: 1
-  explosion: {fileID: 0}
+  explosionEffect: {fileID: 0}
   explosionDamage: 0
   explosionRange: 0
   explosionForce: 0
@@ -759,9 +759,11 @@ MonoBehaviour:
   spawnSound: {fileID: 0}
   deathSound: {fileID: 0}
   hitSound: {fileID: 0}
+  inmuneTo: []
   jumpSpeed: 6
   movementSpeed: 4
   helicopterMovementSpeed: 3
+  hasWon: 0
   recurrentHealthLost: 1
   recurrentHealthLostTime: 1
   helicopterSound: {fileID: 8300000, guid: 9d19baf4f6c453840be2712b9cdca585, type: 3}
@@ -771,6 +773,7 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 0cb26176b624ee24c872082c6f264574, type: 3}
   hittedSound: {fileID: 8300000, guid: ab411353dc201cf408c6efc7bbb95af7, type: 3}
   stunnedSound: {fileID: 8300000, guid: 5584cc14deb8c7547850d5523e288fb2, type: 3}
+  victoryTheme: {fileID: 8300000, guid: fa84192975dba384a8397c8f9cb96429, type: 3}
 --- !u!54 &8986412475655520872
 Rigidbody:
   m_ObjectHideFlags: 0

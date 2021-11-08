@@ -2799,6 +2799,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520875, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
+      propertyPath: victoryTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: fa84192975dba384a8397c8f9cb96429, type: 3}
+    - target: {fileID: 8986412475655520875, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: recurrentHealthLost
       value: 2
       objectReference: {fileID: 0}
