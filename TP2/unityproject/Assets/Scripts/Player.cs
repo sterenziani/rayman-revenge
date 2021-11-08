@@ -320,7 +320,8 @@ public class Player : Vulnerable
 
     public void GetHurt()
     {
-        StartCoroutine(AnimateTakeDamage());
+        if(!hasWon)
+            StartCoroutine(AnimateTakeDamage());
     }
 
     IEnumerator AnimateTakeDamage()
@@ -348,6 +349,7 @@ public class Player : Vulnerable
     IEnumerator Celebrate()
     {
         hasWon = true;
+        collider.enabled = false;
         isUsingHelicopter = false;
         raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 0);
 
@@ -364,8 +366,7 @@ public class Player : Vulnerable
             audioSource.Stop();
             audioSource.PlayOneShot(victoryTheme);
         }
-
-        transform.rotation = Quaternion.Euler(0, 180, 0);
+        transform.Rotate(new Vector3(0, 180, 0));
         animator.SetBool("IsUsingHelicopter", isUsingHelicopter);
         animator.SetBool("isCelebrating", true);
         animator.SetInteger("celebrationStage", 0);
@@ -381,6 +382,8 @@ public class Player : Vulnerable
             soundtrackSource.Play();
         */
         int nextSceneIndex = (1 + SceneManager.GetActiveScene().buildIndex) % SceneManager.sceneCountInBuildSettings;
+        collider.enabled = true;
+        transform.Rotate(new Vector3(0, 180, 0));
         SceneManager.LoadScene(nextSceneIndex);
     }
 }

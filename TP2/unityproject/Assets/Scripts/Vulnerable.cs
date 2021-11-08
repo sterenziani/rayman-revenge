@@ -104,8 +104,14 @@ public class Vulnerable : MonoBehaviour
 
         if (GetComponent<Player>() == null)
         {
-            if(hideInmediatlyOnDestroy)
+            if (hideInmediatlyOnDestroy)
+            {
                 gameObject.transform.localScale = Vector3.zero;
+                // Special case for crates, otherwise messes up weighted platforms in Level 2
+                if (gameObject.tag == "Crate")
+                    gameObject.transform.position = new Vector3(0, -500, 0);
+            }
+
 
             Invoke(nameof(DestroyObject), timeToDestroy);
         }
