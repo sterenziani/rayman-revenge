@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -10,8 +11,10 @@ public class CameraController : MonoBehaviour
 	[Range(0f, 1f)]
 	public float mouseSensitivity = 1;
 
-	private float xSpeed = 120.0f;
-	private float ySpeed = 120.0f;
+	public static float xSpeed = 100.0f;
+	public static float ySpeed = 100.0f;
+	[SerializeField] Slider xSensitivitySlider;
+	[SerializeField] Slider ySensitivitySlider;
 
 	public float yMinLimit = -20f;
 	public float yMaxLimit = 80f;
@@ -27,6 +30,13 @@ public class CameraController : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+		if (!PlayerPrefs.HasKey("xSensitivity"))
+			PlayerPrefs.SetFloat("xSensitivity", 100);
+		if (!PlayerPrefs.HasKey("ySensitivity"))
+			PlayerPrefs.SetFloat("ySensitivity", 100);
+		LoadSensibilityX();
+		LoadSensibilityY();
+
 		Vector3 angles = transform.eulerAngles;
 		x = angles.y;
 		y = angles.x;
@@ -70,5 +80,36 @@ public class CameraController : MonoBehaviour
 		if (angle > 360F)
 			angle -= 360F;
 		return Mathf.Clamp(angle, min, max);
+	}
+
+	public void ChangeSensitivityX()
+	{
+		xSpeed = xSensitivitySlider.value;
+		SaveSensibilityX();
+	}
+
+	public void ChangeSensitivityY()
+	{
+		ySpeed = ySensitivitySlider.value;
+		SaveSensibilityY();
+	}
+
+	private void LoadSensibilityX()
+	{
+		xSensitivitySlider.value = PlayerPrefs.GetFloat("xSensitivity");
+	}
+	private void LoadSensibilityY()
+	{
+		ySensitivitySlider.value = PlayerPrefs.GetFloat("ySensitivity");
+	}
+
+	private void SaveSensibilityX()
+	{
+		PlayerPrefs.SetFloat("xSensitivity", xSensitivitySlider.value);
+	}
+
+	private void SaveSensibilityY()
+	{
+		PlayerPrefs.SetFloat("ySensitivity", ySensitivitySlider.value);
 	}
 }
