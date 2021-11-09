@@ -25,6 +25,7 @@ public class Player : Vulnerable
     private bool isUsingHelicopter;
     private bool isGrounded;
     public bool hasWon;
+    private bool dying;
 
     private bool hitInput;
     private Gun fistShooter;
@@ -94,6 +95,7 @@ public class Player : Vulnerable
 
         //TODO va a traer problemas cuando se recargue la escena?
         hasWon = false;
+        dying = false;
         animator.SetBool("isAlive", true);
         InvokeRepeating(nameof(ReduceHealthByTime), recurrentHealthLostTime, recurrentHealthLostTime);
     }
@@ -102,7 +104,7 @@ public class Player : Vulnerable
     protected override void Update()
     {
         base.Update();
-        if(!hasWon && !PauseMenu.gameIsPaused)
+        if(!hasWon && !dying && !PauseMenu.gameIsPaused)
         {
             GetInputs();
             GetCircumstances();
@@ -251,6 +253,7 @@ public class Player : Vulnerable
 
     protected override void Die()
     {
+        dying = true;
         StartCoroutine(AnimateDeath());
         base.Die();
     }

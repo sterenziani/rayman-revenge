@@ -88,6 +88,9 @@ public class Vulnerable : MonoBehaviour
 
     protected virtual void Die()
     {
+        Rigidbody rigidBody = GetComponent<Rigidbody>();
+        if(rigidBody != null)
+            rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
         float timeToDestroy = this.timeToDestroy;
         if(audioSource != null && deathSound != null)
         {
@@ -111,8 +114,6 @@ public class Vulnerable : MonoBehaviour
                 if (gameObject.tag == "Crate")
                     gameObject.transform.position = new Vector3(0, -500, 0);
             }
-
-
             Invoke(nameof(DestroyObject), timeToDestroy);
         }
     }
