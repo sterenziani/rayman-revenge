@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
         PauseMenuUI.SetActive(false);
         audioSource = GetComponent<AudioSource>();
     }
@@ -34,6 +35,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         gameIsPaused = false;
         audioSource.PlayOneShot(unpauseSound);
+
+        Cursor.visible = false;
     }
 
     public void Pause()
@@ -42,6 +45,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         gameIsPaused = true;
         audioSource.PlayOneShot(pauseSound);
+
+        Cursor.visible = true;
     }
 
     public void QuitGame()
