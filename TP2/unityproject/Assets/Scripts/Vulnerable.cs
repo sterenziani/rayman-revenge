@@ -70,7 +70,7 @@ public class Vulnerable : MonoBehaviour
         {
             Die();
         }
-        else
+        else if (p == null || (p != null && !p.hasWon))
         {
             if (playSound && audioSource != null && hittedSound != null)
             {

@@ -102,7 +102,7 @@ public class Player : Vulnerable
     protected override void Update()
     {
         base.Update();
-        if(!hasWon)
+        if(!hasWon && !PauseMenu.gameIsPaused)
         {
             GetInputs();
             GetCircumstances();
@@ -112,6 +112,8 @@ public class Player : Vulnerable
             SetAnimatorParameters();
             DecreasePowerupTime();
         }
+        if(hasWon)
+            rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
     }
 
     void HandleShoot()
@@ -349,11 +351,10 @@ public class Player : Vulnerable
     IEnumerator Celebrate()
     {
         hasWon = true;
-        collider.enabled = false;
         isUsingHelicopter = false;
         raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 0);
 
-        GameObject soundtrack = GameObject.Find("Soundtrack");
+        GameObject soundtrack = GameObject.Find("Sound");
         AudioSource soundtrackSource = null;
         if (soundtrack != null)
         {
@@ -366,12 +367,12 @@ public class Player : Vulnerable
             audioSource.Stop();
             audioSource.PlayOneShot(victoryTheme);
         }
+
         transform.Rotate(new Vector3(0, 180, 0));
         animator.SetBool("IsUsingHelicopter", isUsingHelicopter);
         animator.SetBool("isCelebrating", true);
         animator.SetInteger("celebrationStage", 0);
         yield return new WaitForSeconds(1.5f);
-        //GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
         animator.SetInteger("celebrationStage", 1);
         yield return new WaitForSeconds(4f);
         animator.SetBool("isCelebrating", false);
@@ -382,7 +383,7 @@ public class Player : Vulnerable
             soundtrackSource.Play();
         */
         int nextSceneIndex = (1 + SceneManager.GetActiveScene().buildIndex) % SceneManager.sceneCountInBuildSettings;
-        collider.enabled = true;
+        rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
         transform.Rotate(new Vector3(0, 180, 0));
         SceneManager.LoadScene(nextSceneIndex);
     }
