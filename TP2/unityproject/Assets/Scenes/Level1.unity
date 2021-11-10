@@ -2888,7 +2888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520874, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520874, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2932,7 +2932,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: fa84192975dba384a8397c8f9cb96429, type: 3}
     - target: {fileID: 8986412475655520875, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: recurrentHealthLost
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520879, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_Name
@@ -3556,17 +3556,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1316592640090850007, guid: 29960215364d68741bf76f0611e3e081, type: 3}
   m_PrefabInstance: {fileID: 418453338}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &432850676 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7338452570763385239, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-  m_PrefabInstance: {fileID: 7517492889729921468}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &437157340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9042,17 +9031,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de81bd6051c9fb3468f36e11477e4d62, type: 3}
---- !u!114 &1499999580 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5710576548507799533, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-  m_PrefabInstance: {fileID: 7517492889729921468}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1526578872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9573,17 +9551,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4339455598313461454, guid: fc506589b8e6aaf4fad4efad6b0ca73c, type: 3}
   m_PrefabInstance: {fileID: 272534380}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1619219532 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5377853703636863753, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-  m_PrefabInstance: {fileID: 7517492889729921468}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1621961500 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6820526248927717593, guid: b7de36a9d768d054e8ebdfba92716a84, type: 3}
@@ -9945,7 +9912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 2782073748103037018}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1714474727
@@ -10222,8 +10189,8 @@ MonoBehaviour:
   playerMovement: {fileID: 780470868}
   distance: 5
   mouseSensitivity: 1
-  xSensitivitySlider: {fileID: 1499999580}
-  ySensitivitySlider: {fileID: 432850676}
+  xSensitivitySlider: {fileID: 2815722737213619793}
+  ySensitivitySlider: {fileID: 973925750371985451}
   yMinLimit: -20
   yMaxLimit: 80
   distanceMin: 0.5
@@ -12490,6 +12457,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &973925750371985451 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7338452570763385239, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
+  m_PrefabInstance: {fileID: 7517492889729921468}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1269821487141577712
 Transform:
   m_ObjectHideFlags: 0
@@ -12884,6 +12862,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2782073748103037018 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5676952950069490150, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
+  m_PrefabInstance: {fileID: 7517492889729921468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2815722737213619793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5710576548507799533, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
+  m_PrefabInstance: {fileID: 7517492889729921468}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2877011765366955882
 GameObject:
   m_ObjectHideFlags: 0
@@ -13932,6 +13926,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LifePointsTotal: 3
   MinDamageToTake: 0
+  Name: 
+  sprite: {fileID: 0}
   spawnSound: {fileID: 0}
   deathSound: {fileID: 8300000, guid: 2508ac488fdcd454bae6cd7f4a02a6a4, type: 3}
   hittedSound: {fileID: 0}
@@ -14345,6 +14341,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LifePointsTotal: 3
   MinDamageToTake: 0
+  Name: 
+  sprite: {fileID: 0}
   spawnSound: {fileID: 0}
   deathSound: {fileID: 8300000, guid: 2508ac488fdcd454bae6cd7f4a02a6a4, type: 3}
   hittedSound: {fileID: 0}
@@ -14463,6 +14461,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LifePointsTotal: 3
   MinDamageToTake: 0
+  Name: 
+  sprite: {fileID: 0}
   spawnSound: {fileID: 0}
   deathSound: {fileID: 8300000, guid: 2508ac488fdcd454bae6cd7f4a02a6a4, type: 3}
   hittedSound: {fileID: 0}
@@ -14724,10 +14724,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 190117000862585789, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-      propertyPath: volumeSlider
-      value: 
-      objectReference: {fileID: 1619219532}
     - target: {fileID: 2295983292226735056, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -14777,53 +14773,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5710576548507799533, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-      propertyPath: m_Value
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5710576548507799533, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-      propertyPath: m_MaxValue
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 5710576548507799533, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-      propertyPath: m_MinValue
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5710576548507799533, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1851982547}
-    - target: {fileID: 5710576548507799533, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeSensitivityX
-      objectReference: {fileID: 0}
-    - target: {fileID: 5710576548507799533, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CameraController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338452570763385239, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-      propertyPath: m_Value
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338452570763385239, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-      propertyPath: m_MaxValue
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338452570763385239, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-      propertyPath: m_MinValue
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338452570763385239, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1851982547}
     - target: {fileID: 7338452570763385239, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeSensitivityY
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338452570763385239, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CameraController, Assembly-CSharp
-      objectReference: {fileID: 0}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1851982547}
     - target: {fileID: 7517492889953115126, guid: 6e79f8adb9a95e74680f6f65adf14e06, type: 3}
       propertyPath: m_Pivot.x
       value: 0
