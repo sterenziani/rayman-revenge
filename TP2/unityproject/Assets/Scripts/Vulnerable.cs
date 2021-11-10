@@ -13,6 +13,9 @@ public class Vulnerable : MonoBehaviour
     protected new Collider collider;
     private Vector3 spawnPosition;
 
+    public string Name;
+    public Sprite sprite;
+
     protected AudioSource audioSource;
     [SerializeField] AudioClip spawnSound;
     [SerializeField] AudioClip deathSound;
@@ -159,6 +162,4 @@ public class Vulnerable : MonoBehaviour
             }
         }
     }
-
-
 }

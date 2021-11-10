@@ -131,7 +131,7 @@ MonoBehaviour:
   bounciness: 0
   maxRange: 8
   maxCollisions: 2147483647
-  maxLifetime: Infinity
+  maxLifetime: 4
   explodeOnTouch: 1
   explosionEffect: {fileID: 0}
   explosionDamage: 0
@@ -585,7 +585,7 @@ MonoBehaviour:
   bounciness: 0
   maxRange: 10
   maxCollisions: 2147483647
-  maxLifetime: Infinity
+  maxLifetime: 4
   explodeOnTouch: 1
   explosionEffect: {fileID: 0}
   explosionDamage: 0
@@ -760,6 +760,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LifePointsTotal: 200
   MinDamageToTake: 0
+  Name: Rayman
+  sprite: {fileID: 21300000, guid: 9ff14e0bc283a884b8d6621a3f854e60, type: 3}
   spawnSound: {fileID: 0}
   deathSound: {fileID: 0}
   hittedSound: {fileID: 8300000, guid: ab411353dc201cf408c6efc7bbb95af7, type: 3}

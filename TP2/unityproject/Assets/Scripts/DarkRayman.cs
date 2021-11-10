@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class DarkRayman : Vulnerable
@@ -48,9 +49,23 @@ public class DarkRayman : Vulnerable
 
         manualAnimator.PlayContinuous("Floating");
 
-        ActivateForceField(StartVulnerablePhase);
+        Speak();
 
-        Invoke(nameof(StartForceFieldPhase), 4f);
+        Invoke(nameof(StartForceFieldPhase), 1f);
+    }
+
+    async Task Speak()
+    {
+        DialogueUI dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
+        await Task.Delay(100);
+        await dialogueUI.ShowDialogue(this, "You <b>will</b> die!");
+        await dialogueUI.ShowDialogue(player.GetComponent<Player>(), "No, U!");
+        await dialogueUI.ShowDialogue(this, "NOOOOOO");
+        await dialogueUI.ShowDialogue(player.GetComponent<Player>(), "yeet");
+
+        await Task.Delay(1000);
+
+        await dialogueUI.ShowTutorial("Press the <b>SPACE BAR</b> to jump!", 2000);
     }
 
     void StartForceFieldPhase()

@@ -41,7 +41,7 @@ public class LightningStrike : MonoBehaviour
 
         foreach(Vulnerable v in VulnerablesInRange)
         {
-            if(v != null && v.gameObject != null)
+            if(v != null && v.gameObject != null && v.gameObject.GetComponent<Player>() != null)
             {
                 if(stunSeconds > 0)
                 {
@@ -75,11 +75,5 @@ public class LightningStrike : MonoBehaviour
         summonFX.Play();
 
         Invoke(nameof(Strike), summonFX.main.duration);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.04237423, g: 0.037705645, b: 0.044822514, a: 1}
+  m_IndirectSpecularColor: {r: 0.04434012, g: 0.039317153, b: 0.047051556, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14833,6 +14833,11 @@ Transform:
   m_Father: {fileID: 1723464546}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -5, y: 0, z: 0}
+--- !u!1 &116313245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4989632467774046167, guid: cfb0835581f1ad84e87fcb3c24ee8b90, type: 3}
+  m_PrefabInstance: {fileID: 926245357}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &288472594 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5931894524765643199, guid: b0dd5933d5a47cb4f9103adcb234447b, type: 3}
@@ -15109,6 +15114,17 @@ MonoBehaviour:
   rotateTowardsTarget: 0
   rotationSpeed: 3
   speed: 2
+--- !u!114 &378319125 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6352322553607670341, guid: cfb0835581f1ad84e87fcb3c24ee8b90, type: 3}
+  m_PrefabInstance: {fileID: 926245357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &394120518
 GameObject:
   m_ObjectHideFlags: 0
@@ -15226,6 +15242,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LifePointsTotal: 50
   MinDamageToTake: 26
+  Name: 
+  sprite: {fileID: 0}
   spawnSound: {fileID: 0}
   deathSound: {fileID: 0}
   hittedSound: {fileID: 0}
@@ -15248,6 +15266,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8476207236151117049, guid: f7626f77202bd344e9e03f316ea4f1b3, type: 3}
   m_PrefabInstance: {fileID: 1366952671}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &569219823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2878382248699648811, guid: cfb0835581f1ad84e87fcb3c24ee8b90, type: 3}
+  m_PrefabInstance: {fileID: 926245357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &637076181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5931894524765643199, guid: b0dd5933d5a47cb4f9103adcb234447b, type: 3}
@@ -25174,6 +25203,17 @@ MonoBehaviour:
   recoilForce: 0
   muzzleFlash: {fileID: 0}
   bulletSource: {fileID: 0}
+--- !u!114 &749111365 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6566595544954923036, guid: cfb0835581f1ad84e87fcb3c24ee8b90, type: 3}
+  m_PrefabInstance: {fileID: 926245357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &757389536
 GameObject:
   m_ObjectHideFlags: 0
@@ -25446,6 +25486,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LifePointsTotal: 350
   MinDamageToTake: 0
+  Name: Dark Rayman
+  sprite: {fileID: 21300000, guid: 9e9532bbc7622b24c88747c660d6ebde, type: 3}
   spawnSound: {fileID: 0}
   deathSound: {fileID: 0}
   hittedSound: {fileID: 0}
@@ -45586,6 +45628,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0dd5933d5a47cb4f9103adcb234447b, type: 3}
+--- !u!1 &1287392680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3051668958213761005, guid: cfb0835581f1ad84e87fcb3c24ee8b90, type: 3}
+  m_PrefabInstance: {fileID: 926245357}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1287392682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287392680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca5976c353c8f91409a17499356cee75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueBox: {fileID: 116313245}
+  speakerName: {fileID: 749111365}
+  speakerSprite: {fileID: 569219823}
+  textField: {fileID: 378319125}
+  writingSpeed: 30
 --- !u!4 &1325039567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7128903469197648256, guid: 554b52ab242abdf40aec64e0df92c695, type: 3}
@@ -70199,9 +70263,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LifePointsTotal: 100
   MinDamageToTake: 10
+  Name: 
+  sprite: {fileID: 0}
   spawnSound: {fileID: 8300000, guid: a81a95b3177a6a4428dfc32103aa0aad, type: 3}
   deathSound: {fileID: 8300000, guid: a81a95b3177a6a4428dfc32103aa0aad, type: 3}
-  hittedSound: {fileID: 0}
+  hittedSound: {fileID: 8300000, guid: 2fff4c37b63565440ad56d51d710ce25, type: 3}
   inmuneTo: []
   hideInmediatlyOnDestroy: 1
   timeToDestroy: 0
@@ -80259,10 +80325,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.8280908
-  m_Height: 15.5454235
+  m_Radius: 0.9447248
+  m_Height: 20.246761
   m_Direction: 1
-  m_Center: {x: -0.064175665, y: 3.386337, z: 0}
+  m_Center: {x: -0.09022355, y: 2.9474473, z: 0}
 --- !u!82 &1695936190
 AudioSource:
   m_ObjectHideFlags: 0
