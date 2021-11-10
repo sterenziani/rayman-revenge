@@ -54,7 +54,7 @@ public class Player : Vulnerable
 
     private void ReduceHealthByTime()
     {
-        if(!hasWon)
+        if(!hasWon && !dying)
             TakeDamage(recurrentHealthLost, false, false);
     }
 
@@ -254,6 +254,9 @@ public class Player : Vulnerable
     protected override void Die()
     {
         dying = true;
+        isUsingHelicopter = false;
+        animator.SetBool("IsUsingHelicopter", false);
+        raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 0);
         StartCoroutine(AnimateDeath());
         base.Die();
     }
@@ -325,7 +328,7 @@ public class Player : Vulnerable
 
     public void GetHurt()
     {
-        if(!hasWon)
+        if(!hasWon && !dying)
             StartCoroutine(AnimateTakeDamage());
     }
 
