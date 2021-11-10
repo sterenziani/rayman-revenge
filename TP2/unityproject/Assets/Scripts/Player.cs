@@ -263,9 +263,15 @@ public class Player : Vulnerable
 
     IEnumerator AnimateDeath()
     {
-        animator.SetBool("isAlive", false);
-        yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (transform.position.y > Vulnerable.AutoKillHeight)
+        {
+            animator.SetBool("isAlive", false);
+            yield return new WaitForSeconds(4f);
+        }
+        else
+            yield return new WaitForSeconds(2f);
+        SceneTransitions sceneTransitions = FindObjectOfType<SceneTransitions>();
+        sceneTransitions.ReloadScene();
     }
 
     public void ApplyPowerUp(PowerUpsEnum powerUp, float duration, Material material)
@@ -381,16 +387,13 @@ public class Player : Vulnerable
         yield return new WaitForSeconds(1.5f);
         animator.SetInteger("celebrationStage", 1);
         yield return new WaitForSeconds(4f);
+        SceneTransitions sceneTransitions = FindObjectOfType<SceneTransitions>();
+        sceneTransitions.LoadNextScene();
         animator.SetBool("isCelebrating", false);
         animator.SetInteger("celebrationStage", 0);
-        hasWon = false;
-        /*
-        if (soundtrack != null && soundtrackSource != null)
-            soundtrackSource.Play();
-        */
-        int nextSceneIndex = (1 + SceneManager.GetActiveScene().buildIndex) % SceneManager.sceneCountInBuildSettings;
+        animator.SetFloat("VerticalSpeedValue", 0);
+        animator.SetFloat("FlatSpeedAbsoluteValue", 1);
         rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
         transform.Rotate(new Vector3(0, 180, 0));
-        SceneManager.LoadScene(nextSceneIndex);
     }
 }

@@ -761,7 +761,7 @@ MonoBehaviour:
   LifePointsTotal: 200
   MinDamageToTake: 0
   spawnSound: {fileID: 0}
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 0d06c2c732b759a42ac5221d65727d2b, type: 3}
   hittedSound: {fileID: 8300000, guid: ab411353dc201cf408c6efc7bbb95af7, type: 3}
   inmuneTo: []
   hideInmediatlyOnDestroy: 0

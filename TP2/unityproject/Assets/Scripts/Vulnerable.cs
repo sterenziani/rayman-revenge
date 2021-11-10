@@ -23,6 +23,8 @@ public class Vulnerable : MonoBehaviour
     [SerializeField] bool hideInmediatlyOnDestroy = true;
     [SerializeField] float timeToDestroy = 0f;
 
+    public static float AutoKillHeight = -50;
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -41,7 +43,7 @@ public class Vulnerable : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (IsAlive() && transform.position.y < -50)
+        if (IsAlive() && transform.position.y < AutoKillHeight)
             Die();
     }
 
@@ -102,7 +104,6 @@ public class Vulnerable : MonoBehaviour
             exploder.Explode();
 
         LifePoints = 0;
-
         SpawnLoot();
 
         if (GetComponent<Player>() == null)
