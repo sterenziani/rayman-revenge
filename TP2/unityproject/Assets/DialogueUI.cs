@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI textField;
 
     [SerializeField] float writingSpeed = 30f;
+
+    private float latestStartTime;
 
     private void Start()
     {
@@ -37,19 +40,26 @@ public class DialogueUI : MonoBehaviour
 
     private async Task ShowText(string text, int? durationInMillis = null)
     {
+        float startTime = Time.realtimeSinceStartup;
+        latestStartTime = startTime;
+
         DialogueBox.SetActive(true);
 
-        await WriteText(text);
+        await WriteText(text, startTime);
+
+        if (startTime != latestStartTime)
+            return;
 
         if (durationInMillis == null)
             await WaitForKeyPress();
         else
             await Task.Delay(durationInMillis.Value);
 
-        HideDialog();
+        if (startTime == latestStartTime)
+            HideDialog();
     }
 
-    private async Task WriteText(string text)
+    private async Task WriteText(string text, float startTime)
     {
         textField.text = String.Empty;
 
@@ -64,7 +74,13 @@ public class DialogueUI : MonoBehaviour
 
             textField.text = text.Substring(0, charIndex);
 
+            if (startTime != latestStartTime)
+                return;
+
             await Task.Yield();
+
+            if (startTime != latestStartTime)
+                return;
         }
 
         textField.text = text;

@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 30}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &932662733590145465
@@ -389,6 +389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3591532378580845134}
+  - component: {fileID: 5775530329902900262}
   m_Layer: 5
   m_Name: Dialogue UI
   m_TagString: Untagged
@@ -416,6 +417,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5775530329902900262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051668958213761005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca5976c353c8f91409a17499356cee75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueBox: {fileID: 4989632467774046167}
+  speakerName: {fileID: 6566595544954923036}
+  speakerSprite: {fileID: 2878382248699648811}
+  textField: {fileID: 6352322553607670341}
+  writingSpeed: 30
 --- !u!1 &4564303848046258640
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,7 +651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8972451913009959778
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1333,6 +1351,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
+--- !u!224 &5433702890936133630 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3378269270953759437, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
+  m_PrefabInstance: {fileID: 7316772683253019955}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5433702891952275622 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3378269269938140565, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
@@ -1344,8 +1367,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &5433702890936133630 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3378269270953759437, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
-  m_PrefabInstance: {fileID: 7316772683253019955}
-  m_PrefabAsset: {fileID: 0}
