@@ -8205,7 +8205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719ad996cef96e446ab22958c27c6e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialText: Collect <b>g</b><b>e</b><b>m</b><b>s</b> to replenish your HP!
+  tutorialText: Collect <b>gems</b> to replenish your health!
   durationInMillis: 2500
   waitForKeyPress: 0
   destroyAfterShow: 1
@@ -12342,10 +12342,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719ad996cef96e446ab22958c27c6e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialText: Grab the <b>T</b><b>h</b><b>r</b><b>o</b><b>t</b><b>t</b><b>l</b><b>e</b><b>
-    </b><b>C</b><b>o</b><b>p</b><b>t</b><b>e</b><b>r</b><b> </b><b>c</b><b>a</b><b>n</b>
-    and try using your glide ability again!
-  durationInMillis: 2500
+  tutorialText: Grab the <b>Throttle Copter can</b> and try using your glide ability
+    again! But be careful, as the power only last for a short time!
+  durationInMillis: 1500
   waitForKeyPress: 0
   destroyAfterShow: 1
 --- !u!1001 &2088819022
@@ -14261,9 +14260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719ad996cef96e446ab22958c27c6e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialText: Some crates require the <b>H</b><b>e</b><b>a</b><b>v</b><b>y</b><b>
-    </b><b>m</b><b>e</b><b>t</b><b>a</b><b>l</b><b> </b><b>f</b><b>i</b><b>s</b><b>t</b>
-    to be broken!
+  tutorialText: Some crates require the <b>Heavy metal fist</b> to be broken!
   durationInMillis: 2500
   waitForKeyPress: 0
   destroyAfterShow: 1
@@ -15010,7 +15007,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 240.71973, y: 0, z: 0, w: 0}
+  m_margin: {x: 240.71973, y: 0, z: 48.28943, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
