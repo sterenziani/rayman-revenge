@@ -773,6 +773,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119509438}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &130912826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 130912827}
+  - component: {fileID: 130912829}
+  - component: {fileID: 130912828}
+  m_Layer: 0
+  m_Name: Pause Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &130912827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130912826}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 51.5, y: 0.5, z: 5.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224126525}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &130912828
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130912826}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.5581055, y: 0.5593189, z: 4.67336}
+  m_Center: {x: 1.0445366, y: -0.22034037, z: 0.4294647}
+--- !u!114 &130912829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130912826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719ad996cef96e446ab22958c27c6e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialText: Feeling tired? Press <b>ESC</b> or <b>P</b> to pause the game!
+  durationInMillis: 2500
+  waitForKeyPress: 0
+  destroyAfterShow: 1
 --- !u!1 &152818542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,6 +1307,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 788476162}
     m_Modifications:
     - target: {fileID: -3193466014771035272, guid: 3e532d5a96dcd8241af2c17352919097, type: 3}
+      propertyPath: XSpread
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3193466014771035272, guid: 3e532d5a96dcd8241af2c17352919097, type: 3}
+      propertyPath: ZSpread
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3193466014771035272, guid: 3e532d5a96dcd8241af2c17352919097, type: 3}
       propertyPath: items.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1253,6 +1322,10 @@ PrefabInstance:
       propertyPath: items.Array.data[0]
       value: 
       objectReference: {fileID: 9145220116484611651, guid: f7626f77202bd344e9e03f316ea4f1b3, type: 3}
+    - target: {fileID: -3193466014771035272, guid: 3e532d5a96dcd8241af2c17352919097, type: 3}
+      propertyPath: items.Array.data[1]
+      value: 
+      objectReference: {fileID: 5220236719818759707, guid: 8400f3146e230d8488a15d98ba14ac35, type: 3}
     - target: {fileID: 3938099316346311311, guid: 3e532d5a96dcd8241af2c17352919097, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1551,6 +1624,13 @@ Transform:
   m_Children:
   - {fileID: 202626539}
   - {fileID: 1569801071}
+  - {fileID: 797082907}
+  - {fileID: 1271128283}
+  - {fileID: 130912827}
+  - {fileID: 2062476600}
+  - {fileID: 979941877}
+  - {fileID: 2057742954}
+  - {fileID: 5220236721269670599}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2982,7 +3062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520874, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520874, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5603,6 +5683,67 @@ Transform:
   m_Father: {fileID: 220059832}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &797082906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 797082907}
+  - component: {fileID: 797082909}
+  - component: {fileID: 797082908}
+  m_Layer: 0
+  m_Name: Helicopter Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &797082907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797082906}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.57, z: 19.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224126525}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &797082908
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797082906}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.4755206, y: 0.5593189, z: 4.3147755}
+  m_Center: {x: -0.2837937, y: -0.22034037, z: -0.90528965}
+--- !u!114 &797082909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797082906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719ad996cef96e446ab22958c27c6e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialText: Jump while airborne to glide!
+  durationInMillis: 2500
+  waitForKeyPress: 0
+  destroyAfterShow: 1
 --- !u!4 &805224280 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6859558005634152437, guid: 499d53f2dc1cc8c489042fba974c5808, type: 3}
@@ -6242,6 +6383,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9009246226682715522, guid: dbeb0e39ae779d643b0be3218a1cd838, type: 3}
   m_PrefabInstance: {fileID: 929085192}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &979941876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 979941877}
+  - component: {fileID: 979941879}
+  - component: {fileID: 979941878}
+  m_Layer: 0
+  m_Name: Balloon Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &979941877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979941876}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 110, y: 0.5, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224126525}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &979941878
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979941876}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.9472084, y: 0.5593189, z: 4.1101027}
+  m_Center: {x: -0.01943779, y: -0.22034037, z: 0.7110934}
+--- !u!114 &979941879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979941876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719ad996cef96e446ab22958c27c6e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialText: Jump on a balloon to bounce off it!
+  durationInMillis: 2500
+  waitForKeyPress: 0
+  destroyAfterShow: 1
 --- !u!1 &987175074
 GameObject:
   m_ObjectHideFlags: 0
@@ -7941,6 +8143,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 593667033941175538, guid: e49ee97f1b8a3d44db745f74851df5e2, type: 3}
   m_PrefabInstance: {fileID: 1266359002}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1271128282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1271128283}
+  - component: {fileID: 1271128285}
+  - component: {fileID: 1271128284}
+  m_Layer: 0
+  m_Name: Gems Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1271128283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271128282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -5, z: 36.49}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224126525}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1271128284
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271128282}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.727796, y: 0.5593189, z: 6.140173}
+  m_Center: {x: 0.1917355, y: -0.22034037, z: 0.0074090958}
+--- !u!114 &1271128285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271128282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719ad996cef96e446ab22958c27c6e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialText: Collect <b>g</b><b>e</b><b>m</b><b>s</b> to replenish your HP!
+  durationInMillis: 2500
+  waitForKeyPress: 0
+  destroyAfterShow: 1
 --- !u!1001 &1277406203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9547,8 +9810,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.4755206, y: 0.5593189, z: 3.2366996}
-  m_Center: {x: -0.2837937, y: -0.22034037, z: 0.056894302}
+  m_Size: {x: 7.4755206, y: 0.5593189, z: 5.0715585}
+  m_Center: {x: -0.2837937, y: -0.22034037, z: -0.8605349}
 --- !u!114 &1569801073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9561,7 +9824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719ad996cef96e446ab22958c27c6e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialText: Press the <b>SPACE BAR</b> to jump!
+  tutorialText: Press <b>SPACE</b> to jump!
   durationInMillis: 2500
   waitForKeyPress: 0
   destroyAfterShow: 1
@@ -12081,6 +12344,130 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &2057742953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2057742954}
+  - component: {fileID: 2057742956}
+  - component: {fileID: 2057742955}
+  m_Layer: 0
+  m_Name: Shooting Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2057742954
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057742953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 135, y: -2.5, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224126525}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2057742955
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057742953}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.1614685, y: 1.4457496, z: 9.24612}
+  m_Center: {x: 1.5876923, y: 0.22287494, z: -0.04468465}
+--- !u!114 &2057742956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057742953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719ad996cef96e446ab22958c27c6e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialText: Press <b>MOUSE CLICK</b> to shoot a fist straight forward!
+  durationInMillis: 2500
+  waitForKeyPress: 0
+  destroyAfterShow: 1
+--- !u!1 &2062476599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2062476600}
+  - component: {fileID: 2062476602}
+  - component: {fileID: 2062476601}
+  m_Layer: 0
+  m_Name: Powerup Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2062476600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062476599}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 51.5, y: 6.5, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224126525}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2062476601
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062476599}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.9472084, y: 0.5593189, z: 4.1101027}
+  m_Center: {x: -0.01943779, y: -0.22034037, z: 0.7110934}
+--- !u!114 &2062476602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062476599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719ad996cef96e446ab22958c27c6e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialText: Grab the <b>T</b><b>h</b><b>r</b><b>o</b><b>t</b><b>t</b><b>l</b><b>e</b><b>
+    </b><b>C</b><b>o</b><b>p</b><b>t</b><b>e</b><b>r</b><b> </b><b>c</b><b>a</b><b>n</b>
+    and try using your glide ability again!
+  durationInMillis: 2500
+  waitForKeyPress: 0
+  destroyAfterShow: 1
 --- !u!1001 &2088819022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13433,6 +13820,69 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5731614232634247869}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &5220236721269670598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5220236721269670599}
+  - component: {fileID: 5220236721269670601}
+  - component: {fileID: 5220236721269670600}
+  m_Layer: 0
+  m_Name: Metal Crate Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5220236721269670599
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5220236721269670598}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 187.33, y: -0.19849968, z: 1.91}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224126525}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5220236721269670600
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5220236721269670598}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.0924225, y: 2.6721704, z: 4.5644865}
+  m_Center: {x: 3.4901352, y: 0.8360857, z: 0.088252544}
+--- !u!114 &5220236721269670601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5220236721269670598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719ad996cef96e446ab22958c27c6e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialText: Some crates require the <b>H</b><b>e</b><b>a</b><b>v</b><b>y</b><b>
+    </b><b>m</b><b>e</b><b>t</b><b>a</b><b>l</b><b> </b><b>f</b><b>i</b><b>s</b><b>t</b>
+    to be broken!
+  durationInMillis: 2500
+  waitForKeyPress: 0
+  destroyAfterShow: 1
 --- !u!1 &5731614232634247869
 GameObject:
   m_ObjectHideFlags: 0

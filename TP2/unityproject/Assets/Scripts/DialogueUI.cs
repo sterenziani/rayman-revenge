@@ -24,7 +24,7 @@ public class DialogueUI : MonoBehaviour
 
     public async Task ShowTutorial(string text, int? durationInMillis = null)
     {
-        speakerName.text = "Suggestion";
+        speakerName.text = "Murfy";
         speakerSprite.sprite = tutorialSprite;
         speakerSprite.gameObject.SetActive(true);
 
@@ -64,17 +64,49 @@ public class DialogueUI : MonoBehaviour
     private async Task WriteText(string text, float startTime)
     {
         textField.text = String.Empty;
+        int speedMultiplier = 1;
+        int lastCharIndex = -1;
+        int openingTags = 0;
+        int closingSlashes = 0;
+        int closingTags = 0;
+        bool readingTags = false;
 
         float t = 0;
         int charIndex = 0;
 
         while(charIndex < text.Length)
         {
-            t += Time.deltaTime * writingSpeed;
+            t += Time.deltaTime * writingSpeed * speedMultiplier;
             charIndex = Mathf.FloorToInt(t);
             charIndex = Mathf.Clamp(charIndex, 0, text.Length);
+            if (lastCharIndex != charIndex && charIndex < text.Length)
+            {
+                lastCharIndex = charIndex;
 
-            textField.text = text.Substring(0, charIndex);
+                if (text[charIndex] == '<')
+                {
+                    openingTags++;
+                    readingTags = true;
+                }
+                if (text[charIndex] == '/' && openingTags == closingTags + 1)
+                    closingSlashes++;
+                if (text[charIndex] == '>')
+                {
+                    closingTags++;
+                    if (openingTags == closingTags && openingTags == 2*closingSlashes)
+                        readingTags = false;
+                }
+                if (!readingTags)
+                {
+                    int lastIndex = charIndex + 1;
+                    if (lastIndex < text.Length)
+                        lastIndex = charIndex + 1;
+                    textField.text = text.Substring(0, lastIndex);
+                    speedMultiplier = 1;
+                }
+                else
+                    speedMultiplier = 7;
+            }
 
             if (startTime != latestStartTime)
                 return;
