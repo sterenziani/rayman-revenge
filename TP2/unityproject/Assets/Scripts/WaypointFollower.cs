@@ -9,16 +9,24 @@ public class WaypointFollower : MonoBehaviour
     [SerializeField] float rotationSpeed = 3f;
     [SerializeField] float speed = 1f;
 
+	[SerializeField] float acceptableDistance = .1f;
+
+    private void Start()
+    {
+		acceptableDistance = Mathf.Max(.1f, acceptableDistance);
+    }
+
     void Update()
     {
 		if(waypoints.Length > 0)
 		{
-			if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].transform.position) < .1f)
+			if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].transform.position) < acceptableDistance)
 			{
 				currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+			} else
+            {
+				transform.position = Vector3.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, speed * Time.deltaTime);
 			}
-
-			transform.position = Vector3.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, speed * Time.deltaTime);
 
 			if (rotateTowardsTarget)
 			{
