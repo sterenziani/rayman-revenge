@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 30}
+  m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &932662733590145465
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278229247
+  m_fontColor: {r: 1, g: 0.59672254, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -276,15 +276,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: You have failed me for the last time
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fa379e0423e412345b68868f123ccd5e, type: 2}
-  m_sharedMaterial: {fileID: 8467860195214811044, guid: fa379e0423e412345b68868f123ccd5e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 17f0834a0b34b30419c8badcd15b3ad5, type: 2}
+  m_sharedMaterial: {fileID: 8467860195214811044, guid: 17f0834a0b34b30419c8badcd15b3ad5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -414,8 +414,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 37.989296}
+  m_SizeDelta: {x: 0, y: -75.9786}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5775530329902900262
 MonoBehaviour:
@@ -432,6 +432,7 @@ MonoBehaviour:
   DialogueBox: {fileID: 4989632467774046167}
   speakerName: {fileID: 6566595544954923036}
   speakerSprite: {fileID: 2878382248699648811}
+  tutorialSprite: {fileID: 21300000, guid: 0ea585d0aed007c46bbda1322d3c69de, type: 3}
   textField: {fileID: 6352322553607670341}
   writingSpeed: 30
 --- !u!1 &4564303848046258640
@@ -499,7 +500,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 10f537f91663df74a8711e868d86e698, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -651,7 +652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8972451913009959778
 RectTransform:
   m_ObjectHideFlags: 0

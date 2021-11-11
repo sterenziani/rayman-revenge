@@ -10,6 +10,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] GameObject DialogueBox;
     [SerializeField] TextMeshProUGUI speakerName;
     [SerializeField] Image speakerSprite;
+    [SerializeField] Sprite tutorialSprite;
     [SerializeField] TextMeshProUGUI textField;
 
     [SerializeField] float writingSpeed = 30f;
@@ -24,7 +25,8 @@ public class DialogueUI : MonoBehaviour
     public async Task ShowTutorial(string text, int? durationInMillis = null)
     {
         speakerName.text = "Suggestion";
-        speakerSprite.gameObject.SetActive(false);
+        speakerSprite.sprite = tutorialSprite;
+        speakerSprite.gameObject.SetActive(true);
 
         await ShowText(text, durationInMillis);
     }
