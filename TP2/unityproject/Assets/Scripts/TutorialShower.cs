@@ -24,7 +24,7 @@ public class TutorialShower : MonoBehaviour
             else
                 await dialogueUI.ShowTutorial(tutorialText, durationInMillis);
 
-            if(destroyAfterShow)
+            if(this != null && destroyAfterShow && this.gameObject != null)
                 Destroy(this.gameObject);
         }
     }

@@ -105,7 +105,7 @@ public class DialogueUI : MonoBehaviour
                     speedMultiplier = 1;
                 }
                 else
-                    speedMultiplier = 7;
+                    speedMultiplier = 3;
             }
 
             if (startTime != latestStartTime)
