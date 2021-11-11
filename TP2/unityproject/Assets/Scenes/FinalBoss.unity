@@ -25553,9 +25553,9 @@ MonoBehaviour:
   MinDamageToTake: 0
   Name: Dark Rayman
   sprite: {fileID: 21300000, guid: 9e9532bbc7622b24c88747c660d6ebde, type: 3}
-  spawnSound: {fileID: 0}
-  deathSound: {fileID: 0}
-  hittedSound: {fileID: 0}
+  spawnSound: {fileID: 8300000, guid: abf00adfcc46b07429e7defac95aeed5, type: 3}
+  deathSound: {fileID: 8300000, guid: 42af68039d52ac140abbfbc262595952, type: 3}
+  hittedSound: {fileID: 8300000, guid: 171b60e42e940974799a8641efe62b6e, type: 3}
   inmuneTo: []
   hideInmediatlyOnDestroy: 1
   timeToDestroy: 0
@@ -45722,6 +45722,7 @@ MonoBehaviour:
   DialogueBox: {fileID: 116313245}
   speakerName: {fileID: 749111365}
   speakerSprite: {fileID: 569219823}
+  tutorialSprite: {fileID: 0}
   textField: {fileID: 378319125}
   writingSpeed: 30
 --- !u!4 &1325039567 stripped
