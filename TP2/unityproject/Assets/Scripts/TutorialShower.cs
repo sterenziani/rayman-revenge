@@ -9,6 +9,8 @@ public class TutorialShower : MonoBehaviour
     [SerializeField] bool waitForKeyPress = false;
     [SerializeField] bool destroyAfterShow = false;
 
+    private bool writing = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +25,12 @@ public class TutorialShower : MonoBehaviour
                 await dialogueUI.ShowTutorial(tutorialText);
             else
                 await dialogueUI.ShowTutorial(tutorialText, durationInMillis);
-
-            if(this != null && destroyAfterShow && this.gameObject != null)
-                Destroy(this.gameObject);
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (this != null && destroyAfterShow && this.gameObject != null)
+            Destroy(this.gameObject);
     }
 }

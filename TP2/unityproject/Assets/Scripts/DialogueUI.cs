@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
@@ -40,6 +42,63 @@ public class DialogueUI : MonoBehaviour
         await ShowText(text, durationInMillis);
     }
 
+    private List<string> ParseText(string text)
+    {
+        List<string> result = new List<string>();
+
+        HashSet<string> currentTags = new HashSet<string>();
+        bool tagClosing = false;
+        bool tagOpened = false;
+        string currentTag = "";
+
+        foreach(char c in text)
+        {
+            if(c == '<')
+            {
+                tagOpened = true;
+            } else if(c == '>')
+            {
+                if (!tagClosing)
+                    currentTags.Add(currentTag);
+                else
+                    currentTags.Remove(currentTag);
+
+                currentTag = "";
+                tagOpened = false;
+                tagClosing = false;
+            }
+            else if(c == '/' && tagOpened)
+            {
+                tagClosing = true;
+            }
+            else
+            {
+                if(tagOpened)
+                {
+                    currentTag += c;
+                } else
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach(string tag in currentTags)
+                    {
+                        sb.Append($"<{tag}>");
+                    }
+
+                    sb.Append(c);
+
+                    foreach (string tag in currentTags)
+                    {
+                        sb.Append($"</{tag}>");
+                    }
+
+                    result.Add(sb.ToString());
+                }
+            }
+        }
+
+        return result;
+    }
+
     private async Task ShowText(string text, int? durationInMillis = null)
     {
         float startTime = Time.realtimeSinceStartup;
@@ -63,58 +122,34 @@ public class DialogueUI : MonoBehaviour
 
     private async Task WriteText(string text, float startTime)
     {
+        List<string> parsedText = ParseText(text);
+
         textField.text = String.Empty;
-        int speedMultiplier = 1;
-        int lastCharIndex = -1;
-        int openingTags = 0;
-        int closingSlashes = 0;
-        int closingTags = 0;
-        bool readingTags = false;
 
         float t = 0;
         int charIndex = 0;
+        int lastCharIndex = 0;
+        StringBuilder sb = new StringBuilder();
 
-        while(charIndex < text.Length)
+        while (charIndex < parsedText.Count)
         {
-            t += Time.deltaTime * writingSpeed * speedMultiplier;
+            t += Time.deltaTime * writingSpeed;
             charIndex = Mathf.FloorToInt(t);
-            charIndex = Mathf.Clamp(charIndex, 0, text.Length);
-            if (lastCharIndex != charIndex && charIndex < text.Length)
-            {
-                lastCharIndex = charIndex;
+            charIndex = Mathf.Clamp(charIndex, 0, parsedText.Count);
 
-                if (text[charIndex] == '<')
-                {
-                    openingTags++;
-                    readingTags = true;
-                }
-                if (text[charIndex] == '/' && openingTags == closingTags + 1)
-                    closingSlashes++;
-                if (text[charIndex] == '>')
-                {
-                    closingTags++;
-                    if (openingTags == closingTags && openingTags == 2*closingSlashes)
-                        readingTags = false;
-                }
-                if (!readingTags)
-                {
-                    int lastIndex = charIndex + 1;
-                    if (lastIndex < text.Length)
-                        lastIndex = charIndex + 1;
-                    textField.text = text.Substring(0, lastIndex);
-                    speedMultiplier = 1;
-                }
-                else
-                    speedMultiplier = 3;
+            for(int i = lastCharIndex; i < charIndex; i++)
+            {
+                sb.Append(parsedText[i]);
             }
+
+            textField.text = sb.ToString();
+
+            lastCharIndex = charIndex;
 
             if (startTime != latestStartTime)
                 return;
 
             await Task.Yield();
-
-            if (startTime != latestStartTime)
-                return;
         }
 
         textField.text = text;
