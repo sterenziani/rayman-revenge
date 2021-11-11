@@ -173,8 +173,10 @@ public class Creature : Vulnerable
         {
             agent.isStopped = true;
             manualAnimator?.PlayAbrupt("Taking hit");
+            if (audioSource != null && hittedSound != null)
+                audioSource.PlayOneShot(hittedSound);
 
-            if(manualAnimator != null)
+            if (manualAnimator != null)
                 Invoke(nameof(RemoveAgentStop), manualAnimator.GetCurrentAnimationTotalDuration());
         }
 
