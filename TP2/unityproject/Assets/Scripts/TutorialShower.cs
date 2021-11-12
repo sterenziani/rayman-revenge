@@ -30,7 +30,7 @@ public class TutorialShower : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (this != null && destroyAfterShow && this.gameObject != null)
+        if (other.gameObject.GetComponent<Player>() != null && this != null && destroyAfterShow && this.gameObject != null)
             Destroy(this.gameObject);
     }
 }
