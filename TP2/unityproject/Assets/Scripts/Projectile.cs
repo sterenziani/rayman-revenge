@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     public float maxRange = float.PositiveInfinity;
     [SerializeField] int maxCollisions = int.MaxValue;
     [SerializeField] float maxLifetime = float.PositiveInfinity;
+    private float remainingSafeTime = 1f;
 
     [SerializeField] bool explodeOnTouch = false;
     [SerializeField] ParticleSystem explosionEffect;
@@ -101,15 +102,17 @@ public class Projectile : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (collisionCount > maxCollisions) Explode();
+        if (collisionCount > maxCollisions)
+            Explode();
 
         maxLifetime -= Time.deltaTime;
-        if (maxLifetime <= 0) Explode();
+        if (maxLifetime <= 0)
+            Explode();
 
         if (Vector3.Distance(startPosition, transform.position) > maxRange)
-        {
             Explode();
-        }
+
+        remainingSafeTime -= Time.deltaTime;
     }
 
     protected virtual private void OnCollisionEnter(Collision collision)
@@ -125,6 +128,8 @@ public class Projectile : MonoBehaviour
         }
 
         if (onlyCollideWithPlayer && !collision.gameObject.GetComponent<Player>())
+            return;
+        if (remainingSafeTime > 0 && collision.gameObject.GetComponent<Player>() != null)
             return;
 
         Vulnerable vulnerable = collision.gameObject.GetComponent<Vulnerable>();
