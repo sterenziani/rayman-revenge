@@ -104,14 +104,18 @@ public class Player : Vulnerable
     protected override void Update()
     {
         base.Update();
-        if(!hasWon && !dying && !PauseMenu.gameIsPaused && !ControlledByCinematic)
+        if(!hasWon && !dying && !PauseMenu.gameIsPaused)
         {
+            if(!ControlledByCinematic)
+            {
+                GetCircumstances();
+                CalculateMovingSpeedAndApplyRotation();
+                HandleMovementCases();
+                HandleShoot();
+                SetAnimatorParameters();
+            }
+
             GetInputs();
-            GetCircumstances();
-            CalculateMovingSpeedAndApplyRotation();
-            HandleMovementCases();
-            HandleShoot();
-            SetAnimatorParameters();
             DecreasePowerupTime();
         }
         if(hasWon)
@@ -168,9 +172,6 @@ public class Player : Vulnerable
                 isUsingHelicopter = true;
 				raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 100);
 			}
-
-            SceneController.StopMusic();
-            SceneController.PlayMusic(victoryTheme);
         }
 
         if (isUsingHelicopter)

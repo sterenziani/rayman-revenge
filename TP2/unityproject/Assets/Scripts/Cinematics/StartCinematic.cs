@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class StartCinematic : MonoBehaviour
@@ -7,11 +8,28 @@ public class StartCinematic : MonoBehaviour
     [SerializeField] Vulnerable Murfy;
     [SerializeField] Player Rayman;
 
-    [SerializeField] DialogueUI dialogueUI;
+    [SerializeField] Camera cinematicCamera;
 
-    private async void OnCollisionEnter(Collision collision)
+    private Camera mainCamera;
+
+    private DialogueUI dialogueUI;
+
+    private void Start()
+    {
+        dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
+        mainCamera = Camera.main;
+    }
+
+    private async void OnTriggerEnter(Collider other)
     {
         SceneController.EnterCinematicMode();
+        cinematicCamera.enabled = true;
+        mainCamera.enabled = false;
+
+        await Task.Delay(1000);
+
+        Murfy.LookAt(Rayman.transform);
+        Rayman.LookAt(Murfy.transform);
 
         await dialogueUI.ShowDialogue(Murfy, "What a calamity! Without its Heart, the Glade of Dreams has started to collapse! It must be returned to it's rightful home quickly, or the entire world will be destroyed!");
         await dialogueUI.ShowDialogue(Rayman, "I know! But where could it be?");
@@ -25,18 +43,9 @@ public class StartCinematic : MonoBehaviour
         await dialogueUI.ShowDialogue(Rayman, "Hoodlums! You can't be serious! I defeated André at the Tower of the Leptys! How can this be?");
         await dialogueUI.ShowDialogue(Murfy, "I don´t have any answers right now, but the mirror does. Get to it, and it will provide the knowledge we seek.");
 
+        cinematicCamera.enabled = false;
+        mainCamera.enabled = true;
         SceneController.ExitCinematicMode();
         Destroy(gameObject);
-
-        /*
-        await dialogueUI.ShowDialogue(Murfy, "Well, you've defeated Mr. Dark, Razorbeard and André... so that must mean...");
-        await dialogueUI.ShowDialogue(Rayman, "Don't even dare say it, it's not possible!");
-        await dialogueUI.ShowDialogue(Murfy, "But you and I know all too well that the demise of your previous enemies means you and you alone are the only creature powerful enough to take the Heart of the World.");
-        await dialogueUI.ShowDialogue(Murfy, "Only you could have done it... even if it's another version of you...");
-        await dialogueUI.ShowDialogue(Rayman, "You mean... he's back? Dark Rayman's back?");
-        await dialogueUI.ShowDialogue(Murfy, "I've suspected something was wrong for a while now... ever since I saw you sneaking into the Fairy Council... except... now we know it wasn't <b>you</b>");
-        await dialogueUI.ShowDialogue(Rayman, "So what do we do?");
-        await dialogueUI.ShowDialogue(Murfy, "I took us here because");
-        */
     }
 }

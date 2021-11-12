@@ -16,7 +16,7 @@ public class Vulnerable : MonoBehaviour
     public string Name;
     public Sprite sprite;
 
-    protected bool ControlledByCinematic = false;
+    public bool ControlledByCinematic { get; protected set; } = false;
 
     protected AudioSource audioSource;
     [SerializeField] AudioClip spawnSound;
@@ -29,6 +29,11 @@ public class Vulnerable : MonoBehaviour
     [SerializeField] float timeToDestroy = 0f;
 
     public static float AutoKillHeight = -50;
+
+    public void LookAt(Transform objective)
+    {
+        this.transform.LookAt(objective.position);
+    }
 
     // Start is called before the first frame update
     protected virtual void Start()

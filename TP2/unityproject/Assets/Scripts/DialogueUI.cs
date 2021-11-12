@@ -33,13 +33,13 @@ public class DialogueUI : MonoBehaviour
         await ShowText(text, durationInMillis);
     }
 
-    public async Task ShowDialogue(Vulnerable speaker, string text, int? durationInMillis = null)
+    public async Task ShowDialogue(Vulnerable speaker, string text)
     {
         speakerName.text = speaker.Name;
         speakerSprite.sprite = speaker.sprite;
         speakerSprite.gameObject.SetActive(true);
 
-        await ShowText(text, durationInMillis);
+        await ShowText(text, null, true);
     }
 
     private List<string> ParseText(string text)
@@ -99,7 +99,7 @@ public class DialogueUI : MonoBehaviour
         return result;
     }
 
-    private async Task ShowText(string text, int? durationInMillis = null)
+    private async Task ShowText(string text, int? durationInMillis = null, bool waitForKeyPress = false)
     {
         float startTime = Time.realtimeSinceStartup;
         latestStartTime = startTime;
@@ -111,7 +111,7 @@ public class DialogueUI : MonoBehaviour
         if (startTime != latestStartTime)
             return;
 
-        if (durationInMillis == null)
+        if (waitForKeyPress)
             await WaitForKeyPress();
         else
             await Task.Delay(durationInMillis.Value);
@@ -157,7 +157,7 @@ public class DialogueUI : MonoBehaviour
 
     private async Task WaitForKeyPress()
     {
-        while (!Input.GetKeyDown(KeyCode.Space))
+        while (PauseMenu.gameIsPaused || !Input.GetKeyDown(KeyCode.Space))
         {
             await Task.Yield();
         }

@@ -52,7 +52,7 @@ public class CameraController : MonoBehaviour
 
 	void LateUpdate()
 	{
-		if (target && !PauseMenu.gameIsPaused)
+		if (target && !PauseMenu.gameIsPaused && !playerMovement.ControlledByCinematic)
 		{
 			x += Input.GetAxis("Mouse X") * xSpeed * mouseSensitivity * distance * 0.02f;
 			y -= Input.GetAxis("Mouse Y") * ySpeed * mouseSensitivity * 0.02f;

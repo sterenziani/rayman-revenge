@@ -6,14 +6,14 @@ public class SceneController : MonoBehaviour
 {
     public static void HideHUD()
     {
-        GameObject hud = GameObject.Find("UI");
+        GameObject hud = GameObject.Find("Play UI");
         if (hud != null)
             hud.SetActive(false);
     }
 
     public static void ShowHUD()
     {
-        GameObject hud = GameObject.Find("UI");
+        GameObject hud = GameObject.Find("Play UI");
         if(hud != null)
             hud.SetActive(true);
     }
