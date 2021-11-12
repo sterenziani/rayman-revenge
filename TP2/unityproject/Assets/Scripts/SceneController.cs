@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
+    private static Vulnerable[] vulnerables;
+    private static TutorialShower[] tutorials;
+
     public static void HideHUD()
     {
         GameObject hud = GameObject.Find("Play UI");
@@ -22,27 +25,22 @@ public class SceneController : MonoBehaviour
 
     public static void EnterCinematicMode()
     {
-        Vulnerable[] vulnerables = FindObjectsOfType<Vulnerable>();
-        TutorialShower[] tutorials = FindObjectsOfType<TutorialShower>();
+        vulnerables = FindObjectsOfType<Vulnerable>();
+        tutorials = FindObjectsOfType<TutorialShower>();
 
         foreach (Vulnerable v in vulnerables)
             v.SetControlledByCinematic(true);
         foreach (TutorialShower t in tutorials)
             t.gameObject.SetActive(false);
-
         HideHUD();
     }
 
     public static void ExitCinematicMode()
     {
-        Vulnerable[] vulnerables = FindObjectsOfType<Vulnerable>();
-        TutorialShower[] tutorials = FindObjectsOfType<TutorialShower>();
-
         foreach (Vulnerable v in vulnerables)
             v.SetControlledByCinematic(false);
         foreach (TutorialShower t in tutorials)
             t.gameObject.SetActive(true);
-
         ShowHUD();
     }
 

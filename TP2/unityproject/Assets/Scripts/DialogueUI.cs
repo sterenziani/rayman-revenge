@@ -131,7 +131,7 @@ public class DialogueUI : MonoBehaviour
         int lastCharIndex = 0;
         StringBuilder sb = new StringBuilder();
 
-        while (charIndex < parsedText.Count)
+        while (charIndex < parsedText.Count && !Input.GetKeyDown(KeyCode.LeftControl))
         {
             t += Time.deltaTime * writingSpeed;
             charIndex = Mathf.FloorToInt(t);
@@ -157,7 +157,7 @@ public class DialogueUI : MonoBehaviour
 
     private async Task WaitForKeyPress()
     {
-        while (PauseMenu.gameIsPaused || !Input.GetKeyDown(KeyCode.Space))
+        while (PauseMenu.gameIsPaused || (!Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.LeftControl)))
         {
             await Task.Yield();
         }
