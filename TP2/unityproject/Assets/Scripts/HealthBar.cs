@@ -5,11 +5,13 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] Slider slider;
     [SerializeField] Vulnerable trackingVulnerable;
-
+    [SerializeField] Image icon;
     private void Start()
     {
         slider.maxValue = trackingVulnerable.LifePointsTotal;
         slider.value = trackingVulnerable.LifePointsTotal;
+
+        icon.sprite = trackingVulnerable.sprite;
     }
 
     private void Update()

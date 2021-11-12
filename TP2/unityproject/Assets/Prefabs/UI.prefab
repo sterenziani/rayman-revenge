@@ -199,7 +199,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8846529279223359652}
-  - {fileID: 5763633659615892674}
   - {fileID: 9198084030686128278}
   m_Father: {fileID: 553610525578856790}
   m_RootOrder: 0
@@ -370,7 +369,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4887600116167401328}
   - {fileID: 5433702890936133630}
   m_Father: {fileID: 553610525578856790}
   m_RootOrder: 1
@@ -688,7 +686,7 @@ GameObject:
   - component: {fileID: 5763633659615892676}
   - component: {fileID: 5763633659615892675}
   m_Layer: 5
-  m_Name: Rayman Icon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,16 +699,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5763633659615892673}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7142859, y: 0.7142859, z: 1}
   m_Children: []
-  m_Father: {fileID: 2035055115910105212}
-  m_RootOrder: 1
+  m_Father: {fileID: 9198084030686128278}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -804.99994, y: -508.33377}
+  m_AnchoredPosition: {x: 573.57135, y: 76.785614}
   m_SizeDelta: {x: 239.4129, y: 239.4129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5763633659615892676
@@ -939,7 +937,7 @@ GameObject:
   - component: {fileID: 2555919839618537226}
   - component: {fileID: 5420897247077995}
   m_Layer: 5
-  m_Name: Boss Icon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -954,14 +952,14 @@ RectTransform:
   m_GameObject: {fileID: 7797693273532053351}
   m_LocalRotation: {x: -0.030538544, y: 0.99953365, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.71428585, y: 0.71428585, z: 1}
   m_Children: []
-  m_Father: {fileID: 322976128321926584}
-  m_RootOrder: 0
+  m_Father: {fileID: 5433702890936133630}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: -3.5}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 805.00006, y: -510.33377}
+  m_AnchoredPosition: {x: 33.57141, y: 75.357086}
   m_SizeDelta: {x: 255.73145, y: 258.0049}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2555919839618537226
@@ -1110,7 +1108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3378269270953759437, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3378269270953759437, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1192,6 +1190,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3378269270953759438, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 5763633659615892675}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
 --- !u!224 &9198084030686128278 stripped
@@ -1268,7 +1270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3378269270953759437, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3378269270953759437, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1350,6 +1352,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3378269270953759438, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 5420897247077995}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
 --- !u!224 &5433702890936133630 stripped

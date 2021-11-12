@@ -15118,6 +15118,7 @@ MonoBehaviour:
   rotateTowardsTarget: 0
   rotationSpeed: 3
   speed: 2
+  acceptableDistance: 0.1
 --- !u!114 &378319125 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6352322553607670341, guid: cfb0835581f1ad84e87fcb3c24ee8b90, type: 3}
@@ -25549,7 +25550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314acce356cd3624e8d8d064c16380a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LifePointsTotal: 350
+  LifePointsTotal: 5
   MinDamageToTake: 0
   Name: Dark Rayman
   sprite: {fileID: 21300000, guid: 9e9532bbc7622b24c88747c660d6ebde, type: 3}
