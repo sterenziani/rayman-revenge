@@ -54,7 +54,7 @@ public class Player : Vulnerable
 
     private void ReduceHealthByTime()
     {
-        if(!hasWon && !dying)
+        if(!hasWon && !dying && !ControlledByCinematic)
             TakeDamage(recurrentHealthLost, false, false);
     }
 
@@ -104,7 +104,7 @@ public class Player : Vulnerable
     protected override void Update()
     {
         base.Update();
-        if(!hasWon && !dying && !PauseMenu.gameIsPaused)
+        if(!hasWon && !dying && !PauseMenu.gameIsPaused && !ControlledByCinematic)
         {
             GetInputs();
             GetCircumstances();

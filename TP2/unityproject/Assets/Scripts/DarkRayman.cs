@@ -27,6 +27,20 @@ public class DarkRayman : Vulnerable
 
     private Vector3 initialPosition;
 
+    protected override void SetControlledByCinematic(bool controlledByCinematic)
+    {
+        base.SetControlledByCinematic(controlledByCinematic);
+
+        if(controlledByCinematic)
+        {
+            StopReleasingDarkBalls();
+            StopShootingLightning();
+        } else
+        {
+            Invoke(nameof(StartForceFieldPhase), 1f);
+        }
+    }
+
     private float CalculateCurrentValueBasedOnBossHealth(float start, float finish)
     {
         float bossProgressPercentage = 1 - (LifePoints / LifePointsTotal);
@@ -48,10 +62,6 @@ public class DarkRayman : Vulnerable
         player = GameObject.Find("Player");
 
         manualAnimator.PlayContinuous("Floating");
-
-        Speak();
-
-        Invoke(nameof(StartForceFieldPhase), 1f);
     }
 
     async Task Speak()
@@ -101,6 +111,9 @@ public class DarkRayman : Vulnerable
         manualAnimator.PlayAbrupt("Spell Charge");
 
         forceField = Instantiate(forceFieldTemplate, forceFieldTemplate.transform.position, Quaternion.identity);
+
+        forceField.transform.parent = transform;
+
         if(callback != null)
             forceField.GetComponent<ForceField>().setDeathCallback(callback);
         forceField.SetActive(true);

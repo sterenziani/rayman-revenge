@@ -57,6 +57,9 @@ public class Creature : Vulnerable
         if (!IsAlive())
             return;
 
+        if (ControlledByCinematic)
+            return;
+
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
@@ -78,10 +81,7 @@ public class Creature : Vulnerable
     {
         state = State.PATROLLING;
 
-        agent.isStopped = false;
-        manualAnimator?.PlayContinuous("Walking");
-        agent.speed = walkingSpeed;
-        agent.SetDestination(currentPatrollingDestination);
+        MoveTowards(currentPatrollingDestination, walkingSpeed);
 
         if (Vector3.Distance(transform.position, currentPatrollingDestination) < 0.5f || agent.path.status != NavMeshPathStatus.PathComplete)
         {
@@ -141,10 +141,24 @@ public class Creature : Vulnerable
         }
 
         state = State.CHASING;
+
+        MoveTowards(player.transform.position, runningSpeed);
+    }
+
+    public void MoveTowards(Vector3 destination, float speed)
+    {
         agent.isStopped = false;
-        manualAnimator?.PlayContinuous("Running");
-        agent.speed = runningSpeed;
-        agent.SetDestination(player.transform.position);
+
+        if (speed < runningSpeed)
+        {
+            manualAnimator?.PlayContinuous("Walking");
+        } else
+        {
+            manualAnimator?.PlayContinuous("Running");
+        }
+
+        agent.speed = speed;
+        agent.SetDestination(destination);
     }
 
     protected override void Die()

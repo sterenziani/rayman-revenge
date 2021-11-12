@@ -9,8 +9,6 @@ public class TutorialShower : MonoBehaviour
     [SerializeField] bool waitForKeyPress = false;
     [SerializeField] bool destroyAfterShow = false;
 
-    private bool writing = false;
-
     // Start is called before the first frame update
     void Start()
     {

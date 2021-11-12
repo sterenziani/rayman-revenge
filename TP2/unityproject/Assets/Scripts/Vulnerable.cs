@@ -16,6 +16,8 @@ public class Vulnerable : MonoBehaviour
     public string Name;
     public Sprite sprite;
 
+    protected bool ControlledByCinematic = false;
+
     protected AudioSource audioSource;
     [SerializeField] AudioClip spawnSound;
     [SerializeField] AudioClip deathSound;
@@ -42,6 +44,11 @@ public class Vulnerable : MonoBehaviour
         {
             audioSource.PlayOneShot(spawnSound);
         }
+    }
+
+    protected virtual void SetControlledByCinematic(bool controlledByCinematic)
+    {
+        this.ControlledByCinematic = controlledByCinematic;
     }
 
     protected virtual void Update()
