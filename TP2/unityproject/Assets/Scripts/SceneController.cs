@@ -29,6 +29,8 @@ public class SceneController : MonoBehaviour
             v.SetControlledByCinematic(true);
         foreach (TutorialShower t in tutorials)
             t.gameObject.SetActive(false);
+
+        HideHUD();
     }
 
     public static void ExitCinematicMode()
@@ -40,6 +42,8 @@ public class SceneController : MonoBehaviour
             v.SetControlledByCinematic(false);
         foreach (TutorialShower t in tutorials)
             t.gameObject.SetActive(true);
+
+        ShowHUD();
     }
 
 

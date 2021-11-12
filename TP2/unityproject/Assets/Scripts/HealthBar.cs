@@ -8,6 +8,12 @@ public class HealthBar : MonoBehaviour
     [SerializeField] Image icon;
     private void Start()
     {
+        if(trackingVulnerable == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         slider.maxValue = trackingVulnerable.LifePointsTotal;
         slider.value = trackingVulnerable.LifePointsTotal;
 

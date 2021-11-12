@@ -3142,7 +3142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520874, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 4.34
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520874, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7783,6 +7783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1191152011}
   - component: {fileID: 1191152010}
+  - component: {fileID: 1191152012}
   m_Layer: 0
   m_Name: Murfy
   m_TagString: Untagged
@@ -7823,6 +7824,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1191152012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191152009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce5aac598a5937419fd0807928b308f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LifePointsTotal: 10
+  MinDamageToTake: 0
+  Name: Murfy
+  sprite: {fileID: 21300000, guid: 0ea585d0aed007c46bbda1322d3c69de, type: 3}
+  spawnSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  hittedSound: {fileID: 0}
+  inmuneTo: []
+  hideInmediatlyOnDestroy: 1
+  timeToDestroy: 0
 --- !u!1001 &1212199098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10648,6 +10671,66 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1317009169615425533, guid: 749df9d9cda706b439d32b994be45d62, type: 3}
   m_PrefabInstance: {fileID: 824112400}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1811463216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1811463219}
+  - component: {fileID: 1811463218}
+  - component: {fileID: 1811463217}
+  m_Layer: 0
+  m_Name: StartCinematic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1811463217
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811463216}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 7.3724327, z: 4.722882}
+  m_Center: {x: 0, y: -0.08361673, z: 0.50616413}
+--- !u!114 &1811463218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811463216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cca8d1778c200c4e9c113efd497be58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Murfy: {fileID: 0}
+  Rayman: {fileID: 780470868}
+  dialogueUI: {fileID: 0}
+--- !u!4 &1811463219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811463216}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.4016587, z: -0.825}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1851982543
 GameObject:
   m_ObjectHideFlags: 0
@@ -13709,7 +13792,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8846529280501111988}
-  - {fileID: 5763633658871996626}
   - {fileID: 1734613275}
   m_Father: {fileID: 553610526993988934}
   m_RootOrder: 0
@@ -14785,16 +14867,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5763633658871996625}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.71428585, y: 0.71428585, z: 1}
   m_Children: []
-  m_Father: {fileID: 2035055117321305196}
-  m_RootOrder: 1
+  m_Father: {fileID: 1734613275}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -804.99994, y: -508.33377}
+  m_AnchoredPosition: {x: 573.5717, y: 76.785736}
   m_SizeDelta: {x: 239.4129, y: 239.4129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5763633658871996627
@@ -14886,7 +14968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3378269270953759437, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3378269270953759437, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
       propertyPath: m_AnchorMax.x
@@ -14968,6 +15050,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3378269270953759438, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 5763633658871996627}
     - target: {fileID: 3378269270953759438, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
       propertyPath: trackingVulnerable
       value: 

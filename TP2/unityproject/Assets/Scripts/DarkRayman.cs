@@ -27,7 +27,7 @@ public class DarkRayman : Vulnerable
 
     private Vector3 initialPosition;
 
-    protected override void SetControlledByCinematic(bool controlledByCinematic)
+    public override void SetControlledByCinematic(bool controlledByCinematic)
     {
         base.SetControlledByCinematic(controlledByCinematic);
 
