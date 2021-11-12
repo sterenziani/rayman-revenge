@@ -46,7 +46,7 @@ public class Vulnerable : MonoBehaviour
         }
     }
 
-    protected virtual void SetControlledByCinematic(bool controlledByCinematic)
+    public virtual void SetControlledByCinematic(bool controlledByCinematic)
     {
         this.ControlledByCinematic = controlledByCinematic;
     }

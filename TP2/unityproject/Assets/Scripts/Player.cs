@@ -130,6 +130,7 @@ public class Player : Vulnerable
                     StartCoroutine(AnimatePunch());
                 }
             }
+            SceneController.ResumeMusic();
         }
     }
 
@@ -167,6 +168,9 @@ public class Player : Vulnerable
                 isUsingHelicopter = true;
 				raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 100);
 			}
+
+            SceneController.StopMusic();
+            SceneController.PlayMusic(victoryTheme);
         }
 
         if (isUsingHelicopter)
@@ -366,14 +370,7 @@ public class Player : Vulnerable
         isUsingHelicopter = false;
         raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 0);
 
-        GameObject soundtrack = GameObject.Find("Sound");
-        AudioSource soundtrackSource = null;
-        if (soundtrack != null)
-        {
-            soundtrackSource = soundtrack.GetComponent<AudioSource>();
-            if (soundtrackSource != null)
-                soundtrackSource.Stop();
-        }
+        SceneController.StopMusic();
         if (audioSource != null && victoryTheme != null)
         {
             audioSource.Stop();
