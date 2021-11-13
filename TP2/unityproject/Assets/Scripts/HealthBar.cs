@@ -16,7 +16,6 @@ public class HealthBar : MonoBehaviour
 
         slider.maxValue = trackingVulnerable.LifePointsTotal;
         slider.value = trackingVulnerable.LifePointsTotal;
-
         icon.sprite = trackingVulnerable.sprite;
     }
 

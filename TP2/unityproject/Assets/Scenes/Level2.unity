@@ -9860,6 +9860,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3378269270953759438, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 5763633659984429053}
+    - target: {fileID: 3378269270953759438, guid: 9a4e1af9a70e3e043b99c3a8cb287f40, type: 3}
       propertyPath: trackingVulnerable
       value: 
       objectReference: {fileID: 780470868}
