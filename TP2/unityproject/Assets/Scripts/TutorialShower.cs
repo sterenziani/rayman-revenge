@@ -8,8 +8,7 @@ public class TutorialShower : MonoBehaviour
     [SerializeField] int durationInMillis;
     [SerializeField] bool waitForKeyPress = false;
     [SerializeField] bool destroyAfterShow = false;
-
-    // Start is called before the first frame update
+	
     void Start()
     {
         dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
@@ -28,7 +27,7 @@ public class TutorialShower : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponent<Player>() != null && this != null && destroyAfterShow && this.gameObject != null)
-            Destroy(this.gameObject);
+		if (other.gameObject.GetComponent<Player>() != null && this != null && destroyAfterShow && this.gameObject != null)
+			Destroy(this.gameObject);
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -24,7 +25,7 @@ public class DialogueUI : MonoBehaviour
         HideDialog();
     }
 
-    public async Task ShowTutorial(string text, int? durationInMillis = null)
+    public async Task ShowTutorial(string text, int durationInMillis = 0)
     {
         speakerName.text = "Murfy";
         speakerSprite.sprite = tutorialSprite;
@@ -39,7 +40,7 @@ public class DialogueUI : MonoBehaviour
         speakerSprite.sprite = speaker.sprite;
         speakerSprite.gameObject.SetActive(true);
 
-        await ShowText(text, null, true);
+        await ShowText(text, 0, true);
     }
 
     private List<string> ParseText(string text)
@@ -99,7 +100,7 @@ public class DialogueUI : MonoBehaviour
         return result;
     }
 
-    private async Task ShowText(string text, int? durationInMillis = null, bool waitForKeyPress = false)
+    private async Task ShowText(string text, int durationInMillis = 0, bool waitForKeyPress = false)
     {
         float startTime = Time.realtimeSinceStartup;
         latestStartTime = startTime;
@@ -111,16 +112,26 @@ public class DialogueUI : MonoBehaviour
         if (startTime != latestStartTime)
             return;
 
-        if (waitForKeyPress)
-            await WaitForKeyPress();
-        else
-            await Task.Delay(durationInMillis.Value);
+		if (waitForKeyPress)
+		{
+			await WaitForKeyPress();
+			if (startTime == latestStartTime)
+				HideDialog();
+		}
+		else
+		{
+			StartCoroutine(HideDialogAfter(text, durationInMillis));
+		}
+	}
 
-        if (startTime == latestStartTime)
-            HideDialog();
-    }
+	IEnumerator HideDialogAfter(string desiredText, int ms)
+	{
+		yield return new WaitForSeconds(ms / 1000f);
+		if(textField.text == desiredText)
+			HideDialog();
+	}
 
-    private async Task WriteText(string text, float startTime)
+	private async Task WriteText(string text, float startTime)
     {
         List<string> parsedText = ParseText(text);
 
