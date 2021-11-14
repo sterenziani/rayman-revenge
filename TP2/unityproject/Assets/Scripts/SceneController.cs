@@ -6,17 +6,17 @@ public class SceneController : MonoBehaviour
 {
     private static Vulnerable[] vulnerables;
     public static TutorialShower[] tutorials;
+	private static GameObject hud;
 
     public static void HideHUD()
-    {
-        GameObject hud = GameObject.Find("Play UI");
-        if (hud != null)
+	{
+		hud = GameObject.Find("Play UI");
+		if (hud != null)
             hud.SetActive(false);
     }
 
     public static void ShowHUD()
     {
-        GameObject hud = GameObject.Find("Play UI");
         if(hud != null)
             hud.SetActive(true);
     }
@@ -26,7 +26,7 @@ public class SceneController : MonoBehaviour
         vulnerables = FindObjectsOfType<Vulnerable>();
         tutorials = FindObjectsOfType<TutorialShower>();
 
-        foreach (Vulnerable v in vulnerables)
+		foreach (Vulnerable v in vulnerables)
             v.SetControlledByCinematic(true);
         foreach (TutorialShower t in tutorials)
             t.gameObject.SetActive(false);
