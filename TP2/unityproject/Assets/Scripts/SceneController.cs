@@ -5,7 +5,7 @@ using UnityEngine;
 public class SceneController : MonoBehaviour
 {
     private static Vulnerable[] vulnerables;
-    private static TutorialShower[] tutorials;
+    public static TutorialShower[] tutorials;
 
     public static void HideHUD()
     {
@@ -20,8 +20,6 @@ public class SceneController : MonoBehaviour
         if(hud != null)
             hud.SetActive(true);
     }
-
-
 
     public static void EnterCinematicMode()
     {
@@ -41,7 +39,7 @@ public class SceneController : MonoBehaviour
             v.SetControlledByCinematic(false);
         foreach (TutorialShower t in tutorials)
             t.gameObject.SetActive(true);
-        ShowHUD();
+		ShowHUD();
     }
 
 

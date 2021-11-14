@@ -172,6 +172,7 @@ public class DialogueUI : MonoBehaviour
 		if (waitForKeyPress)
 		{
 			yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+			HideDialog();
 		}
 		else
 		{
@@ -181,9 +182,9 @@ public class DialogueUI : MonoBehaviour
             }
 
             yield return new WaitForSeconds(durationInMillis / 1000f);
-        }
-
-        HideDialog();
+			if(text == textField.text)
+				HideDialog();
+		}
 
         callback?.Invoke();
 	}

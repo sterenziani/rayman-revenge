@@ -19,8 +19,9 @@ public class StartCinematic : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {
-        StartCoroutine(CinematicCoroutine());
+	{
+		if(other.gameObject.name == "Player")
+			StartCoroutine(CinematicCoroutine());
     }
 
     private IEnumerator CinematicCoroutine()
