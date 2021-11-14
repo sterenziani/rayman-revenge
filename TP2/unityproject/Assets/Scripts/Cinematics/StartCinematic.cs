@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class StartCinematic : MonoBehaviour
@@ -20,32 +18,291 @@ public class StartCinematic : MonoBehaviour
         mainCamera = Camera.main;
     }
 
-    private async void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        StartCoroutine(CinematicCoroutine());
+    }
+
+    private IEnumerator CinematicCoroutine()
     {
         SceneController.EnterCinematicMode();
         cinematicCamera.enabled = true;
         mainCamera.enabled = false;
 
-        await Task.Delay(1000);
+        Rayman.ToggleHelicopter(true);
+
+        yield return new WaitUntil(() => Rayman.IsGrounded());
 
         Murfy.LookAt(Rayman.transform);
         Rayman.LookAt(Murfy.transform);
 
-        await dialogueUI.ShowDialogue(Murfy, "What a calamity! Without its Heart, the Glade of Dreams has started to collapse! It must be returned to it's rightful home quickly, or the entire world will be destroyed!");
-        await dialogueUI.ShowDialogue(Rayman, "I know! But where could it be?");
-        await dialogueUI.ShowDialogue(Murfy, "That we do not know... but we can find out.");
-        await dialogueUI.ShowDialogue(Rayman, "How?");
-        await dialogueUI.ShowDialogue(Murfy, "There's an enchanted mirror near here. It should be able to show us the location of the Heart of the World.");
-        await dialogueUI.ShowDialogue(Rayman, "Sounds good. But why did you drop me here and not directly in front of the mirror?");
-        await dialogueUI.ShowDialogue(Murfy, "Oh... you're not going to like this...");
-        await dialogueUI.ShowDialogue(Rayman, "What? What could possibly upset me more than the literal end of the world?");
-        await dialogueUI.ShowDialogue(Murfy, "I didn't bring you to the mirror because it's heavely guarded... by Hoodlums.");
-        await dialogueUI.ShowDialogue(Rayman, "Hoodlums! You can't be serious! I defeated André at the Tower of the Leptys! How can this be?");
-        await dialogueUI.ShowDialogue(Murfy, "I don´t have any answers right now, but the mirror does. Get to it, and it will provide the knowledge we seek.");
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+            Murfy,
+            "What a calamity! With the <b>Heart of the World</b> gone, the Glade of Dreams has started to collapse! It must be returned to it's rightful home quickly, or we will all soon be destroyed!"));
+
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+            Rayman,
+            "I know! But where could it be?"));
+
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+            Murfy,
+            "That we do not know... but we can find out."));
+
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+            Rayman,
+            "How?"));
+
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+            Murfy,
+            "There's an <b>enchanted mirror</b> nearby, that's why I brought us here. It should be able to show us the location of the Heart of the World."));
+
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+            Rayman,
+            "Sounds good. But why did you drop me here and not directly in front of the mirror?"));
+
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+            Murfy,
+            "Oh... you're not going to like this..."));
+
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+            Rayman,
+            "What? What could possibly upset me more than the literal end of the world?"));
+
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+            Murfy,
+            "I didn't bring you to the mirror because it's heavely guarded... by <b>Hoodlums</b>."));
+
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+            Rayman,
+            "Hoodlums! You can't be serious! I defeated André at the Tower of the Leptys! How can this be?"));
+
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+            Murfy,
+            "I don´t have any answers right now, but the mirror does. Get to it, and it will provide the knowledge we seek."));
 
         cinematicCamera.enabled = false;
         mainCamera.enabled = true;
         SceneController.ExitCinematicMode();
+
         Destroy(gameObject);
+
+        /*
+        dialogueUI.ShowDialogue(
+            Murfy,
+            "What a calamity! Without its Heart, the Glade of Dreams has started to collapse! It must be returned to it's rightful home quickly, or the entire world will be destroyed!",
+            false,
+            () =>
+            {
+                dialogueUI.ShowDialogue(
+                Rayman,
+                "I know! But where could it be?",
+                true,
+                () =>
+                {
+                    dialogueUI.ShowDialogue(
+                    Murfy,
+                    "That we do not know... but we can find out.",
+                    true,
+                    () =>
+                    {
+                        dialogueUI.ShowDialogue(
+                        Rayman,
+                        "How?",
+                        true,
+                        () =>
+                        {
+                            dialogueUI.ShowDialogue(
+                            Murfy,
+                            "There's an enchanted mirror near here. It should be able to show us the location of the Heart of the World.",
+                            true,
+                            () =>
+                            {
+                                dialogueUI.ShowDialogue(
+                                Rayman,
+                                "Sounds good. But why did you drop me here and not directly in front of the mirror?",
+                                true,
+                                () =>
+                                {
+                                    dialogueUI.ShowDialogue(
+                                    Murfy,
+                                    "Oh... you're not going to like this...",
+                                    true,
+                                    () =>
+                                    {
+                                        dialogueUI.ShowDialogue(
+                                        Rayman,
+                                        "What? What could possibly upset me more than the literal end of the world?",
+                                        true,
+                                        () =>
+                                        {
+                                            dialogueUI.ShowDialogue(
+                                            Murfy,
+                                            "I didn't bring you to the mirror because it's heavely guarded... by Hoodlums.",
+                                            true,
+                                            () => {
+                                                dialogueUI.ShowDialogue(
+                                                Rayman,
+                                                "Hoodlums! You can't be serious! I defeated André at the Tower of the Leptys! How can this be?",
+                                                true,
+                                                () =>
+                                                {
+                                                    dialogueUI.ShowDialogue(
+                                                    Murfy,
+                                                    "I don´t have any answers right now, but the mirror does. Get to it, and it will provide the knowledge we seek.",
+                                                    true,
+                                                    () =>
+                                                    {
+                                                        cinematicCamera.enabled = false;
+                                                        mainCamera.enabled = true;
+                                                        SceneController.ExitCinematicMode();
+
+                                                        dialogueUI.ShowTutorial(
+                                                            "Try moving around using the <b>W</b>, <b>A</b>, <b>S</b>, and <b>D</b> keys!",
+                                                            2000,
+                                                            true,
+                                                            () => Destroy(gameObject));
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        */
+    }
+
+    private IEnumerator EndCinematicCoroutine()
+    {
+        SceneController.EnterCinematicMode();
+        cinematicCamera.enabled = true;
+        mainCamera.enabled = false;
+        Rayman.ToggleHelicopter(true);
+
+        Murfy.LookAt(Rayman.transform);
+        Rayman.LookAt(Murfy.transform);
+
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Murfy, "Here it is! The magic mirror. Maybe we'll finally get out answers."));
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "Yes, this situation needs a quick fix, I can feel my energy fading away. How do we use it?"));
+
+        cinematicCamera.enabled = false;
+        mainCamera.enabled = true;
+        SceneController.ExitCinematicMode();
+        /*
+        return null;
+
+        dialogueUI.ShowDialogue(
+            Murfy,
+            "Here it is! The magic mirror. Maybe we'll finally get out answers.",
+            false,
+            () =>
+            {
+                dialogueUI.ShowDialogue(
+                    Rayman,
+                    "Yes, this situation needs a quick fix, I can feel my energy fading away. How do we use it?",
+                    true,
+                    () =>
+                    {
+                        dialogueUI.ShowDialogue(
+                            Murfy,
+                            "Just look into the mirror and think of the Heart of the World. It will show us it's location and, with any luck, reveal the being responsable for this chaos.",
+                            true,
+                            () =>
+                            {
+
+                            });
+                    });
+            });
+
+        dialogueUI.ShowDialogue(
+            Murfy,
+            "What a calamity! Without its Heart, the Glade of Dreams has started to collapse! It must be returned to it's rightful home quickly, or the entire world will be destroyed!",
+            false,
+            () =>
+            {
+                dialogueUI.ShowDialogue(
+                Rayman,
+                "I know! But where could it be?",
+                true,
+                () =>
+                {
+                    dialogueUI.ShowDialogue(
+                    Murfy,
+                    "That we do not know... but we can find out.",
+                    true,
+                    () =>
+                    {
+                        dialogueUI.ShowDialogue(
+                        Rayman,
+                        "How?",
+                        true,
+                        () =>
+                        {
+                            dialogueUI.ShowDialogue(
+                            Murfy,
+                            "There's an enchanted mirror near here. It should be able to show us the location of the Heart of the World.",
+                            true,
+                            () =>
+                            {
+                                dialogueUI.ShowDialogue(
+                                Rayman,
+                                "Sounds good. But why did you drop me here and not directly in front of the mirror?",
+                                true,
+                                () =>
+                                {
+                                    dialogueUI.ShowDialogue(
+                                    Murfy,
+                                    "Oh... you're not going to like this...",
+                                    true,
+                                    () =>
+                                    {
+                                        dialogueUI.ShowDialogue(
+                                        Rayman,
+                                        "What? What could possibly upset me more than the literal end of the world?",
+                                        true,
+                                        () =>
+                                        {
+                                            dialogueUI.ShowDialogue(
+                                            Murfy,
+                                            "I didn't bring you to the mirror because it's heavely guarded... by Hoodlums.",
+                                            true,
+                                            () => {
+                                                dialogueUI.ShowDialogue(
+                                                Rayman,
+                                                "Hoodlums! You can't be serious! I defeated André at the Tower of the Leptys! How can this be?",
+                                                true,
+                                                () =>
+                                                {
+                                                    dialogueUI.ShowDialogue(
+                                                    Murfy,
+                                                    "I don´t have any answers right now, but the mirror does. Get to it, and it will provide the knowledge we seek.",
+                                                    true,
+                                                    () =>
+                                                    {
+                                                        cinematicCamera.enabled = false;
+                                                        mainCamera.enabled = true;
+                                                        SceneController.ExitCinematicMode();
+
+                                                        dialogueUI.ShowTutorial(
+                                                            "Try moving around using the <b>W</b>, <b>A</b>, <b>S</b>, and <b>D</b> keys!",
+                                                            2000,
+                                                            true,
+                                                            () => Destroy(gameObject));
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+
+        */
     }
 }

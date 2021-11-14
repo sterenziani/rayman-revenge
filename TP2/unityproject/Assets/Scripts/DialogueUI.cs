@@ -18,29 +18,54 @@ public class DialogueUI : MonoBehaviour
 
     [SerializeField] float writingSpeed = 30f;
 
-    private float latestStartTime;
+    private bool durationCountdownStarted = false;
 
     private void Start()
     {
         HideDialog();
     }
 
-    public async Task ShowTutorial(string text, int durationInMillis = 0)
+    public IEnumerator ShowTutorialCoroutine(string text, int durationInMillis = 0, bool waitForKeyPress = false, Action callback = null)
     {
         speakerName.text = "Murfy";
         speakerSprite.sprite = tutorialSprite;
         speakerSprite.gameObject.SetActive(true);
 
-        await ShowText(text, durationInMillis);
+        yield return StartCoroutine(ShowTextCoroutine(text, durationInMillis, waitForKeyPress, callback));
     }
 
-    public async Task ShowDialogue(Vulnerable speaker, string text)
+    public void activateDurationCountdown()
+    {
+        durationCountdownStarted = true;
+    }
+
+    public void ShowTutorial(string text, int durationInMillis = 0, bool isContinuation = false, Action callback = null)
+    {
+        speakerName.text = "Murfy";
+        speakerSprite.sprite = tutorialSprite;
+        speakerSprite.gameObject.SetActive(true);
+
+        ShowText(text, durationInMillis, false, callback, isContinuation);
+    }
+
+    public void ShowDialogue(Vulnerable speaker, string text, bool isContinuation = false, Action callback = null)
     {
         speakerName.text = speaker.Name;
         speakerSprite.sprite = speaker.sprite;
         speakerSprite.gameObject.SetActive(true);
 
-        await ShowText(text, 0, true);
+        ShowText(text, 0, true, callback, isContinuation);
+    }
+
+    public IEnumerator ShowDialogueCoroutine(Vulnerable speaker, string text)
+    {
+        speakerName.text = speaker.Name;
+        speakerSprite.sprite = speaker.sprite;
+        speakerSprite.gameObject.SetActive(true);
+
+        ShowText(text, 0, true);
+
+        yield return StartCoroutine(ShowTextCoroutine(text, 0, true, null));
     }
 
     private List<string> ParseText(string text)
@@ -100,39 +125,20 @@ public class DialogueUI : MonoBehaviour
         return result;
     }
 
-    private async Task ShowText(string text, int durationInMillis = 0, bool waitForKeyPress = false)
+    private void ShowText(string text, int durationInMillis = 0, bool waitForKeyPress = false, Action callback = null, bool isContinuation = false)
     {
-        float startTime = Time.realtimeSinceStartup;
-        latestStartTime = startTime;
+        if (!isContinuation)
+            StopAllCoroutines();
 
+        StartCoroutine(ShowTextCoroutine(text, durationInMillis, waitForKeyPress, callback));
+    }
+
+    public IEnumerator ShowTextCoroutine(string text, int durationInMillis = 0, bool waitForKeyPress = false, Action callback = null)
+    {
+        durationCountdownStarted = false;
         DialogueBox.SetActive(true);
 
-        await WriteText(text, startTime);
-
-        if (startTime != latestStartTime)
-            return;
-
-		if (waitForKeyPress)
-		{
-			await WaitForKeyPress();
-			if (startTime == latestStartTime)
-				HideDialog();
-		}
-		else
-		{
-			StartCoroutine(HideDialogAfter(text, durationInMillis));
-		}
-	}
-
-	IEnumerator HideDialogAfter(string desiredText, int ms)
-	{
-		yield return new WaitForSeconds(ms / 1000f);
-		if(textField.text == desiredText)
-			HideDialog();
-	}
-
-	private async Task WriteText(string text, float startTime)
-    {
+        //Write text
         List<string> parsedText = ParseText(text);
 
         textField.text = String.Empty;
@@ -148,7 +154,7 @@ public class DialogueUI : MonoBehaviour
             charIndex = Mathf.FloorToInt(t);
             charIndex = Mathf.Clamp(charIndex, 0, parsedText.Count);
 
-            for(int i = lastCharIndex; i < charIndex; i++)
+            for (int i = lastCharIndex; i < charIndex; i++)
             {
                 sb.Append(parsedText[i]);
             }
@@ -157,22 +163,30 @@ public class DialogueUI : MonoBehaviour
 
             lastCharIndex = charIndex;
 
-            if (startTime != latestStartTime)
-                return;
-
-            await Task.Yield();
+            yield return null;
         }
 
         textField.text = text;
-    }
+        //Write text
 
-    private async Task WaitForKeyPress()
-    {
-        while (PauseMenu.gameIsPaused || (!Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.LeftControl)))
-        {
-            await Task.Yield();
+		if (waitForKeyPress)
+		{
+			yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+		}
+		else
+		{
+            while(!durationCountdownStarted)
+            {
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(durationInMillis / 1000f);
         }
-    }
+
+        HideDialog();
+
+        callback?.Invoke();
+	}
 
     void HideDialog()
     {

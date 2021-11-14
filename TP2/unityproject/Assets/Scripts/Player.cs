@@ -138,6 +138,22 @@ public class Player : Vulnerable
         }
     }
 
+    public void ToggleHelicopter(bool status)
+    {
+        if(status)
+        {
+            audioSource.clip = this.powerUp == PowerUpsEnum.HELICOPTER ? helicopterPowerUpSound : helicopterSound;
+            audioSource.Play();
+            isUsingHelicopter = true;
+            raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 100);
+        } else
+        {
+            audioSource.clip = null;
+            isUsingHelicopter = false;
+            raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 0);
+        }
+    }
+
     void HandleMovementCases()
     {
         if (jumpInput && isGrounded && !stunned)
@@ -152,26 +168,22 @@ public class Player : Vulnerable
 
         if (isGrounded)
         {
-            audioSource.clip = null;
-            isUsingHelicopter = false;
-			raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 0);
-		}
+            ToggleHelicopter(false);
+
+        }
 
         if(jumpInput && !stunned)
         {
             if(isUsingHelicopter)
             {
-                audioSource.clip = null;
-                isUsingHelicopter = false;
-				raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 0);
-			}
+                ToggleHelicopter(false);
+
+            }
             else if(!isGrounded && !isUsingHelicopter)
             {
-                audioSource.clip = this.powerUp == PowerUpsEnum.HELICOPTER ? helicopterPowerUpSound : helicopterSound;
-                audioSource.Play();
-                isUsingHelicopter = true;
-				raymanBody.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(22, 100);
-			}
+                ToggleHelicopter(true);
+
+            }
         }
 
         if (isUsingHelicopter)

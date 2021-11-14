@@ -134,7 +134,7 @@ public class Vulnerable : MonoBehaviour
         }
     }
 
-    protected bool IsGrounded()
+    public bool IsGrounded()
     {
         int layers = LayerMask.GetMask("Ground", "Enemies");
         float distToGround = collider.bounds.extents.y;

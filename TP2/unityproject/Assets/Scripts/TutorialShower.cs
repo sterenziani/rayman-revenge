@@ -14,20 +14,20 @@ public class TutorialShower : MonoBehaviour
         dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
     }
 
-    private async void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.GetComponent<Player>() != null)
         {
-            if(waitForKeyPress)
-                await dialogueUI.ShowTutorial(tutorialText);
-            else
-                await dialogueUI.ShowTutorial(tutorialText, durationInMillis);
+            StartCoroutine(dialogueUI.ShowTutorialCoroutine(tutorialText, durationInMillis, waitForKeyPress, () =>
+            {
+                if (other.gameObject.GetComponent<Player>() != null && this != null && destroyAfterShow && this.gameObject != null)
+                    Destroy(this.gameObject);
+            }));
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-		if (other.gameObject.GetComponent<Player>() != null && this != null && destroyAfterShow && this.gameObject != null)
-			Destroy(this.gameObject);
+        dialogueUI.activateDurationCountdown();
     }
 }

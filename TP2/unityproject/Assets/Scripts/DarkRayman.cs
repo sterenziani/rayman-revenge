@@ -62,20 +62,8 @@ public class DarkRayman : Vulnerable
         player = GameObject.Find("Player");
 
         manualAnimator.PlayContinuous("Floating");
-    }
 
-    async Task Speak()
-    {
-        DialogueUI dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
-        await Task.Delay(100);
-        await dialogueUI.ShowDialogue(this, "You <b>will</b> die!");
-        await dialogueUI.ShowDialogue(player.GetComponent<Player>(), "No, U!");
-        await dialogueUI.ShowDialogue(this, "NOOOOOO");
-        await dialogueUI.ShowDialogue(player.GetComponent<Player>(), "yeet");
-
-        await Task.Delay(1000);
-
-        await dialogueUI.ShowTutorial("Press the <b>SPACE BAR</b> to jump!", 2000);
+        Invoke(nameof(StartForceFieldPhase), 1.5f);
     }
 
     void StartForceFieldPhase()
