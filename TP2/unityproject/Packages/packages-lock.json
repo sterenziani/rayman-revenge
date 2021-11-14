@@ -82,6 +82,16 @@
         "com.unity.modules.physics": "1.0.0"
       }
     },
+    "com.unity.render-pipelines.lightweight": {
+      "version": "10.7.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "10.7.0",
+        "com.unity.postprocessing": "2.1.7"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.render-pipelines.universal": {
       "version": "11.0.0",
       "depth": 0,
