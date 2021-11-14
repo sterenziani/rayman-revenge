@@ -30,8 +30,8 @@ public class SceneController : MonoBehaviour
 
         foreach (Vulnerable v in vulnerables)
             v.SetControlledByCinematic(true);
-        //foreach (TutorialShower t in tutorials)
-            //t.gameObject.SetActive(false);
+        foreach (TutorialShower t in tutorials)
+            t.gameObject.SetActive(false);
         HideHUD();
     }
 
@@ -39,8 +39,8 @@ public class SceneController : MonoBehaviour
     {
         foreach (Vulnerable v in vulnerables)
             v.SetControlledByCinematic(false);
-        //foreach (TutorialShower t in tutorials)
-            //t.gameObject.SetActive(true);
+        foreach (TutorialShower t in tutorials)
+            t.gameObject.SetActive(true);
         ShowHUD();
     }
 

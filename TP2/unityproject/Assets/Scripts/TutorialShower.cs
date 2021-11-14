@@ -29,5 +29,9 @@ public class TutorialShower : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         dialogueUI.activateDurationCountdown();
+        if(destroyAfterShow)
+        {
+            gameObject.GetComponent<Collider>().enabled = false;
+        }
     }
 }
