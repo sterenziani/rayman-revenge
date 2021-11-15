@@ -1510,11 +1510,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520874, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 41.61
+      value: 3.59
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520874, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -199.55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8986412475655520874, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2081,6 +2081,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &471778857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5755418233556741452, guid: 18b16dbc97e69c94f90eb66f6b33f0b8, type: 3}
+  m_PrefabInstance: {fileID: 20402326}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &480233575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9932,9 +9937,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d48de8e83bfb324a9c852fcae37983f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entryPortal: {fileID: 0}
-  Rayman: {fileID: 0}
-  cinematicCamera: {fileID: 0}
+  entryPortal: {fileID: 471778857}
+  Rayman: {fileID: 780470868}
+  cinematicCamera: {fileID: 1756350135}
 --- !u!1001 &2109913814
 PrefabInstance:
   m_ObjectHideFlags: 0
