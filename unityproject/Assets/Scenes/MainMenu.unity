@@ -229,6 +229,17 @@ MonoBehaviour:
   yMaxLimit: 80
   distanceMin: 0.5
   distanceMax: 15
+--- !u!114 &1227295293 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8021562465596540171, guid: 8b20cf182c37fb54091ecd26d1c3e24c, type: 3}
+  m_PrefabInstance: {fileID: 3182170753983161145}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bee1c8574a23654596e42188478e5fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2070047085
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +340,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1623960084991219555, guid: 8b20cf182c37fb54091ecd26d1c3e24c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1227295293}
+    - target: {fileID: 1623960084991219555, guid: 8b20cf182c37fb54091ecd26d1c3e24c, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeVolume
+      objectReference: {fileID: 0}
     - target: {fileID: 3224203277783128205, guid: 8b20cf182c37fb54091ecd26d1c3e24c, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
