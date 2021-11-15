@@ -6,6 +6,8 @@ public class StartCinematic : MonoBehaviour
     [SerializeField] Vulnerable Murfy;
     [SerializeField] Player Rayman;
 
+    [SerializeField] Transform MurfyLookAt;
+
     [SerializeField] Camera cinematicCamera;
 
     private Camera mainCamera;
@@ -16,12 +18,8 @@ public class StartCinematic : MonoBehaviour
     {
         dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
         mainCamera = Camera.main;
-    }
 
-    private void OnTriggerEnter(Collider other)
-	{
-		if(other.gameObject.name == "Player")
-			StartCoroutine(CinematicCoroutine());
+        StartCoroutine(CinematicCoroutine());
     }
 
     private IEnumerator CinematicCoroutine()
@@ -35,7 +33,7 @@ public class StartCinematic : MonoBehaviour
 
 		Rayman.ToggleHelicopter(false);
 		//Murfy.LookAt(Rayman.transform);
-        Rayman.LookAt(Murfy.transform);
+        Rayman.LookAt(MurfyLookAt);
 
 		yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
 			Murfy,

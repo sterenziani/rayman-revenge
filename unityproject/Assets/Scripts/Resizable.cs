@@ -30,12 +30,6 @@ public class Resizable : MonoBehaviour
             counter += Time.deltaTime;
             objectToScale.localScale = Vector3.Lerp(startScaleSize, toScale, counter / duration);
 
-            /*gameObject.GetComponent<MeshRenderer>().material.color = new Color(
-                gameObject.GetComponent<MeshRenderer>().material.color.r,
-                gameObject.GetComponent<MeshRenderer>().material.color.g,
-                gameObject.GetComponent<MeshRenderer>().material.color.b,
-                counter / duration);*/
-
             yield return null;
         }
 

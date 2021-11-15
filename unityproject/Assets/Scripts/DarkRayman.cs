@@ -17,7 +17,7 @@ public class DarkRayman : Vulnerable
     [SerializeField] float initialLightningTimeBetween = 0.8f;
     [SerializeField] float minLightningTimeBetween = 0.3f;
 
-    private ManualAnimator manualAnimator;
+    public ManualAnimator manualAnimator;
     private GameObject player;
     private Gun fistShooter;
 
@@ -25,11 +25,28 @@ public class DarkRayman : Vulnerable
 
     private GameObject forceField;
 
-    private Vector3 initialPosition;
+    public Vector3 initialPosition;
+
+    private bool started = false;
+
+    protected override void Die()
+    {
+        StopReleasingDarkBalls();
+        StopShootingLightning();
+
+        StopAllCoroutines();
+
+        CancelInvoke(nameof(StartForceFieldPhase));
+
+        base.Die();
+    }
 
     public override void SetControlledByCinematic(bool controlledByCinematic)
     {
         base.SetControlledByCinematic(controlledByCinematic);
+
+        if (!started)
+            return;
 
         if(controlledByCinematic)
         {
@@ -54,16 +71,19 @@ public class DarkRayman : Vulnerable
     {
         base.Start();
 
+        started = true;
+
         initialPosition = transform.position;
 
-        manualAnimator = GetComponent<ManualAnimator>();
-        fistShooter = GetComponent<Gun>();
+        manualAnimator = gameObject.GetComponent<ManualAnimator>();
+        fistShooter = gameObject.GetComponent<Gun>();
 
         player = GameObject.Find("Player");
 
         manualAnimator.PlayContinuous("Floating");
 
-        Invoke(nameof(StartForceFieldPhase), 1.5f);
+        if(!ControlledByCinematic)
+            Invoke(nameof(StartForceFieldPhase), 1.5f);
     }
 
     void StartForceFieldPhase()

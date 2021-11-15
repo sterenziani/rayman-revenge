@@ -36,9 +36,11 @@ public class SceneController : MonoBehaviour
     public static void ExitCinematicMode()
     {
         foreach (Vulnerable v in vulnerables)
-            v.SetControlledByCinematic(false);
+            if (v != null && v.gameObject != null)
+                v.SetControlledByCinematic(false);
         foreach (TutorialShower t in tutorials)
-            t.gameObject.SetActive(true);
+            if(t != null && t.gameObject != null)
+                t.gameObject.SetActive(true);
 		ShowHUD();
     }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WaypointFollower : MonoBehaviour
 {
-    [SerializeField] GameObject[] waypoints;
+    public GameObject[] waypoints;
     [SerializeField] bool rotateTowardsTarget = false;
     int currentWaypointIndex = 0;
 

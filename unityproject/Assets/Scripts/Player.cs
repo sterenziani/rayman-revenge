@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(AudioSource))]
 public class Player : Vulnerable
@@ -106,17 +107,18 @@ public class Player : Vulnerable
         base.Update();
         if(!hasWon && !dying && !PauseMenu.gameIsPaused)
         {
-            if(!ControlledByCinematic)
+            GetCircumstances();
+            CalculateMovingSpeedAndApplyRotation();
+            HandleMovementCases();
+            HandleShoot();
+            SetAnimatorParameters();
+            GetInputs();
+
+            if (!ControlledByCinematic)
             {
-                GetCircumstances();
-                CalculateMovingSpeedAndApplyRotation();
-                HandleMovementCases();
-                HandleShoot();
-                SetAnimatorParameters();
+                DecreasePowerupTime(); 
             }
 
-            GetInputs();
-            DecreasePowerupTime();
         }
         if(hasWon)
             rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
@@ -251,11 +253,21 @@ public class Player : Vulnerable
 
     void GetInputs()
     {
-        horizontalAxisInput = Input.GetAxisRaw("Horizontal");
-		verticalAxisInput = Input.GetAxisRaw("Vertical");
-        jumpInput = Input.GetButtonDown("Jump");
+        if(!ControlledByCinematic)
+        {
+            horizontalAxisInput = Input.GetAxisRaw("Horizontal");
+            verticalAxisInput = Input.GetAxisRaw("Vertical");
+            jumpInput = Input.GetButtonDown("Jump");
+            hitInput = Input.GetMouseButtonDown(0);
+        }
+        else
+        {
+            horizontalAxisInput = 0;
+            verticalAxisInput = 0;
+            jumpInput = false;
+            hitInput = false;
+        }
 
-        hitInput = Input.GetMouseButtonDown(0);
     }
 
 	public void SetRotation(float rotation)
@@ -367,17 +379,22 @@ public class Player : Vulnerable
         animator.SetBool("isTakingDamage", false);
     }
 
-    private void OnTriggerEnter(Collider collision)
+    /*private void OnTriggerEnter(Collider collision)
     {
         GameObject target = collision.gameObject;
         if(target.tag == "Finish")
         {
             rigidBody.velocity = new Vector3(0,0,0);
-            StartCoroutine(Celebrate());
+            StartCoroutine(CelebrateCoroutine());
         }
+    }*/
+
+    public Coroutine Celebrate()
+    {
+        return StartCoroutine(CelebrateCoroutine());
     }
 
-    IEnumerator Celebrate()
+    IEnumerator CelebrateCoroutine()
     {
         hasWon = true;
         isUsingHelicopter = false;
@@ -397,13 +414,13 @@ public class Player : Vulnerable
         yield return new WaitForSeconds(1.5f);
         animator.SetInteger("celebrationStage", 1);
         yield return new WaitForSeconds(4f);
-        SceneTransitions sceneTransitions = FindObjectOfType<SceneTransitions>();
-        sceneTransitions.LoadNextScene();
         animator.SetBool("isCelebrating", false);
         animator.SetInteger("celebrationStage", 0);
         animator.SetFloat("VerticalSpeedValue", 0);
         animator.SetFloat("FlatSpeedAbsoluteValue", 1);
         rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
         transform.Rotate(new Vector3(0, 180, 0));
+
+        audioSource.Play();
     }
 }

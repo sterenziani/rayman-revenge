@@ -29,6 +29,8 @@ public class AreaSpawner : MonoBehaviour
     {
         if(spawningCoroutine != null)
             StopCoroutine(spawningCoroutine);
+
+        StopAllCoroutines();
     }
 
     private bool SpawnItem(GameObject item, Vector3? vec = null)

@@ -68,7 +68,7 @@ public class DialogueUI : MonoBehaviour
         speakerSprite.sprite = speaker.sprite;
         speakerSprite.gameObject.SetActive(true);
 
-        ShowText(text, 0, true);
+        //ShowText(text, 0, true);
 
         yield return StartCoroutine(ShowTextCoroutine(text, 0, true, null));
     }

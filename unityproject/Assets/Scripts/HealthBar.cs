@@ -21,7 +21,7 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        if(trackingVulnerable.gameObject == null || trackingVulnerable.LifePoints <= 0)
+        if(trackingVulnerable == null || trackingVulnerable.gameObject == null || trackingVulnerable.LifePoints <= 0)
             Destroy(gameObject);
         else
             slider.value = trackingVulnerable.LifePoints;
