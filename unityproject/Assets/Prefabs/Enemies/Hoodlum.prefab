@@ -219,10 +219,10 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  sightRange: 15
+  sightRange: 10
   attackRange: 0.4
   walkingSpeed: 1
-  runningSpeed: 3.5
+  runningSpeed: 3.2
   patrolWaypoints: []
   randomPatrol: 0
   sawEnemySound: {fileID: 8300000, guid: 08ce7f67541dd924d948d7da4e1c34ad, type: 3}

@@ -56,12 +56,12 @@ public class EndCinematic : MonoBehaviour
 
         DarkRayman.gameObject.GetComponent<AudioSource>()?.PlayOneShot(darkRaymanRevealAudioClip);
 
-        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Murfy, "But that's... That's Dark Rayman, the evil clone of you Mr. Dark created all those years ago!"));
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Murfy, "But that's... That's <b>Dark Rayman</b>, the evil clone of you Mr. Dark created all those years ago!"));
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "It can't be! How did he survive Mr. Dark's defeat?"));
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Murfy, "I don't know, I wasn't even part of the franchise back then!"));
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "Well, no matter he's behind this, I have to get the Heart back and restore balance before it's too late!"));
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Murfy, "That's right, you have no choice but to face him. And that place he's in... that's the Dark Void, the empty space between worlds."));
-        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "Yes, I've been told about it. It's supposed to be deadly, but I-ll have to take my chances. I'll use the mirror's magic to go there and stop him!"));
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "Yes, I've been told about it. It's supposed to be deadly, but I'll have to take my chances. I'll use the mirror's magic to go there and stop him!"));
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Murfy, "I won't be able to come with you, since I'm not strong enough, but I know you can save the world. After all, you've done it before!"));
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "Let's do this then!"));
 
