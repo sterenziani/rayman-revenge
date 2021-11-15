@@ -29,19 +29,23 @@ public class StartCinematic : MonoBehaviour
         SceneController.EnterCinematicMode();
         cinematicCamera.enabled = true;
         mainCamera.enabled = false;
-
         Rayman.ToggleHelicopter(true);
 
         yield return new WaitUntil(() => Rayman.IsGrounded());
 
-        Murfy.LookAt(Rayman.transform);
+		Rayman.ToggleHelicopter(false);
+		//Murfy.LookAt(Rayman.transform);
         Rayman.LookAt(Murfy.transform);
 
-        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
-            Murfy,
-            "What a calamity! With the <b>Heart of the World</b> gone, the Glade of Dreams has started to collapse! It must be returned to it's rightful home quickly, or we will all soon be destroyed!"));
+		yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+			Murfy,
+			"What a calamity! With the <b>Heart of the World</b> gone, the Glade of Dreams has started to collapse!"));
 
-        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+		yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
+			Murfy,
+			"It must be returned to it's rightful home quickly, or we will all soon be destroyed!"));
+
+		yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
             Rayman,
             "I know! But where could it be?"));
 
@@ -55,7 +59,7 @@ public class StartCinematic : MonoBehaviour
 
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
             Murfy,
-            "There's an <b>enchanted mirror</b> nearby, that's why I brought us here. It should be able to show us the location of the Heart of the World."));
+            "There's an <b>enchanted mirror</b> nearby, that's why I brought us here. It should be able to show us the location of the Heart of the World!"));
 
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
             Rayman,
@@ -83,6 +87,7 @@ public class StartCinematic : MonoBehaviour
 
         cinematicCamera.enabled = false;
         mainCamera.enabled = true;
+		Rayman.transform.rotation = Quaternion.Euler(0, 0, 0);
         SceneController.ExitCinematicMode();
 
         Destroy(gameObject);

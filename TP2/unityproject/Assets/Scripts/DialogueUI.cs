@@ -10,19 +10,22 @@ using UnityEngine.UI;
 
 public class DialogueUI : MonoBehaviour
 {
-    [SerializeField] GameObject DialogueBox;
-    [SerializeField] TextMeshProUGUI speakerName;
+	[SerializeField] GameObject DialogueBox;
+	[SerializeField] GameObject SkipPrompt;
+	[SerializeField] TextMeshProUGUI speakerName;
     [SerializeField] Image speakerSprite;
-    [SerializeField] Sprite tutorialSprite;
-    [SerializeField] TextMeshProUGUI textField;
+	[SerializeField] Sprite tutorialSprite;
+	[SerializeField] Image forwardButtonSprite;
+	[SerializeField] TextMeshProUGUI textField;
 
     [SerializeField] float writingSpeed = 30f;
 
     private bool durationCountdownStarted = false;
 
     private void Start()
-    {
-        HideDialog();
+	{
+		forwardButtonSprite.gameObject.SetActive(false);
+		HideDialog();
     }
 
     public IEnumerator ShowTutorialCoroutine(string text, int durationInMillis = 0, bool waitForKeyPress = false, Action callback = null)
@@ -30,8 +33,9 @@ public class DialogueUI : MonoBehaviour
         speakerName.text = "Murfy";
         speakerSprite.sprite = tutorialSprite;
         speakerSprite.gameObject.SetActive(true);
+		forwardButtonSprite.gameObject.SetActive(false);
 
-        yield return StartCoroutine(ShowTextCoroutine(text, durationInMillis, waitForKeyPress, callback));
+		yield return StartCoroutine(ShowTextCoroutine(text, durationInMillis, waitForKeyPress, callback));
     }
 
     public void activateDurationCountdown()
@@ -44,8 +48,9 @@ public class DialogueUI : MonoBehaviour
         speakerName.text = "Murfy";
         speakerSprite.sprite = tutorialSprite;
         speakerSprite.gameObject.SetActive(true);
+		forwardButtonSprite.gameObject.SetActive(false);
 
-        ShowText(text, durationInMillis, false, callback, isContinuation);
+		ShowText(text, durationInMillis, false, callback, isContinuation);
     }
 
     public void ShowDialogue(Vulnerable speaker, string text, bool isContinuation = false, Action callback = null)
@@ -137,10 +142,10 @@ public class DialogueUI : MonoBehaviour
     {
         durationCountdownStarted = false;
         DialogueBox.SetActive(true);
+		if (waitForKeyPress)
+			SkipPrompt.SetActive(true);
 
-        //Write text
-        List<string> parsedText = ParseText(text);
-
+		List<string> parsedText = ParseText(text);
         textField.text = String.Empty;
 
         float t = 0;
@@ -148,7 +153,8 @@ public class DialogueUI : MonoBehaviour
         int lastCharIndex = 0;
         StringBuilder sb = new StringBuilder();
 
-        while (charIndex < parsedText.Count && !Input.GetKeyDown(KeyCode.LeftControl))
+		yield return new WaitForSeconds(0.1f);
+		while (charIndex < parsedText.Count && !Input.GetKey(KeyCode.LeftControl))
         {
             t += Time.deltaTime * writingSpeed;
             charIndex = Mathf.FloorToInt(t);
@@ -167,11 +173,13 @@ public class DialogueUI : MonoBehaviour
         }
 
         textField.text = text;
-        //Write text
-
+		//Write text
+		yield return new WaitForSeconds(0.4f);
 		if (waitForKeyPress)
 		{
-			yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+			forwardButtonSprite.gameObject.SetActive(true);
+			yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.LeftControl));
+			forwardButtonSprite.gameObject.SetActive(false);
 			HideDialog();
 		}
 		else
@@ -192,5 +200,6 @@ public class DialogueUI : MonoBehaviour
     void HideDialog()
     {
         DialogueBox.SetActive(false);
-    }
+		SkipPrompt.SetActive(false);
+	}
 }
