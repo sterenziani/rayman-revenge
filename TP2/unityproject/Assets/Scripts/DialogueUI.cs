@@ -174,7 +174,7 @@ public class DialogueUI : MonoBehaviour
 
         textField.text = text;
 		//Write text
-		yield return new WaitForSeconds(0.4f);
+		yield return new WaitForSeconds(0.2f);
 		if (waitForKeyPress)
 		{
 			forwardButtonSprite.gameObject.SetActive(true);

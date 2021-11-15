@@ -88,7 +88,8 @@ public class StartCinematic : MonoBehaviour
         cinematicCamera.enabled = false;
         mainCamera.enabled = true;
 		Rayman.transform.rotation = Quaternion.Euler(0, 0, 0);
-        SceneController.ExitCinematicMode();
+		Rayman.transform.position = new Vector3(0, 1, 0);
+		SceneController.ExitCinematicMode();
 
         Destroy(gameObject);
 
