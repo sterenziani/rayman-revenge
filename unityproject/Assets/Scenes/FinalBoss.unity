@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.04434012, g: 0.039317153, b: 0.047051556, a: 1}
+  m_IndirectSpecularColor: {r: 0.04463408, g: 0.038981006, b: 0.045629248, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1961,6 +1961,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenJewel (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6420305718205610757, guid: b0dd5933d5a47cb4f9103adcb234447b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0dd5933d5a47cb4f9103adcb234447b, type: 3}
 --- !u!4 &1325039567 stripped
@@ -2908,6 +2912,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenJewel (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6420305718205610757, guid: b0dd5933d5a47cb4f9103adcb234447b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0dd5933d5a47cb4f9103adcb234447b, type: 3}
 --- !u!1001 &1872414414
@@ -2964,6 +2972,10 @@ PrefabInstance:
     - target: {fileID: 6420305718205610757, guid: b0dd5933d5a47cb4f9103adcb234447b, type: 3}
       propertyPath: m_Name
       value: GreenJewel (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6420305718205610757, guid: b0dd5933d5a47cb4f9103adcb234447b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0dd5933d5a47cb4f9103adcb234447b, type: 3}

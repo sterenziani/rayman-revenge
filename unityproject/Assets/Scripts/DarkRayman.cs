@@ -52,6 +52,10 @@ public class DarkRayman : Vulnerable
         {
             StopReleasingDarkBalls();
             StopShootingLightning();
+
+            StopAllCoroutines();
+
+            CancelInvoke(nameof(StartForceFieldPhase));
         } else
         {
             Invoke(nameof(StartForceFieldPhase), 1f);
