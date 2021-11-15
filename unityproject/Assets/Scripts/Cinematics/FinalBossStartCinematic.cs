@@ -28,6 +28,8 @@ public class FinalBossStartCinematic : MonoBehaviour
 
     private IEnumerator CinematicCoroutine()
     {
+        yield return null;
+
         SceneController.EnterCinematicMode();
 
         SceneController.PlayMusic(preludeMusic);

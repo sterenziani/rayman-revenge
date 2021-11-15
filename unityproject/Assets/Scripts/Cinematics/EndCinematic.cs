@@ -33,6 +33,8 @@ public class EndCinematic : MonoBehaviour
 
     private IEnumerator EndCinematicCoroutine()
     {
+        yield return null;
+
         SceneController.EnterCinematicMode();
         cinematicCamera.enabled = true;
         mainCamera.enabled = false;

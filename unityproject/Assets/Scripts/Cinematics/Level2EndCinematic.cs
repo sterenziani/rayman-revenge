@@ -29,6 +29,8 @@ public class Level2EndCinematic : MonoBehaviour
 
     private IEnumerator FinishLevel2CinematicCoroutine()
     {
+        yield return null;
+
         SceneController.EnterCinematicMode();
 
         yield return Rayman.Celebrate();

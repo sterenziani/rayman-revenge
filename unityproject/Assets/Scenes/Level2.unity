@@ -6361,6 +6361,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hoodlum (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6087137186840505679, guid: 499d53f2dc1cc8c489042fba974c5808, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6859558005634152437, guid: 499d53f2dc1cc8c489042fba974c5808, type: 3}
       propertyPath: m_RootOrder
       value: 9

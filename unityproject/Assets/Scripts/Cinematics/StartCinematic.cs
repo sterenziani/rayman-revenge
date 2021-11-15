@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-
 public class StartCinematic : MonoBehaviour
 {
     [SerializeField] Vulnerable Murfy;
@@ -24,6 +23,8 @@ public class StartCinematic : MonoBehaviour
 
     private IEnumerator CinematicCoroutine()
     {
+        yield return null;
+
         SceneController.EnterCinematicMode();
         cinematicCamera.enabled = true;
         mainCamera.enabled = false;
@@ -91,23 +92,5 @@ public class StartCinematic : MonoBehaviour
 
         Destroy(gameObject);
 
-    }
-
-    private IEnumerator EndCinematicCoroutine()
-    {
-        SceneController.EnterCinematicMode();
-        cinematicCamera.enabled = true;
-        mainCamera.enabled = false;
-        Rayman.ToggleHelicopter(true);
-
-        Murfy.LookAt(Rayman.transform);
-        Rayman.LookAt(Murfy.transform);
-
-        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Murfy, "Here it is! The magic mirror. Maybe we'll finally get out answers."));
-        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "Yes, this situation needs a quick fix, I can feel my energy fading away. How do we use it?"));
-
-        cinematicCamera.enabled = false;
-        mainCamera.enabled = true;
-        SceneController.ExitCinematicMode();
     }
 }

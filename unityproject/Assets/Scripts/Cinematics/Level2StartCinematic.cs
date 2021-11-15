@@ -23,6 +23,8 @@ public class Level2StartCinematic : MonoBehaviour
 
     private IEnumerator Level2StartCinematicCoroutine()
     {
+        yield return null;
+
         SceneController.EnterCinematicMode();
         Rayman.SetControlledByCinematic(true);
 

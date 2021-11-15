@@ -33,6 +33,8 @@ public class FinalBossEndCinematic : MonoBehaviour
 
     private IEnumerator FinishLevel2CinematicCoroutine()
     {
+        yield return null;
+
         SceneController.EnterCinematicMode();
 
         //yield return Rayman.Celebrate();
