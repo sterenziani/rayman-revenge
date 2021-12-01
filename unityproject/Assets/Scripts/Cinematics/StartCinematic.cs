@@ -42,7 +42,7 @@ public class StartCinematic : MonoBehaviour
 
 		yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
 			Murfy,
-			"It must be returned to it's rightful home quickly, or we will all soon be destroyed!"));
+			"It must be returned to its rightful home quickly, or we will all soon be destroyed!"));
 
 		yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
             Rayman,
@@ -66,11 +66,11 @@ public class StartCinematic : MonoBehaviour
 
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
             Murfy,
-            "Oh... you're not going to like this..."));
+            "Oh... You're not going to like this..."));
 
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
             Rayman,
-            "What? What could possibly upset me more than the literal end of the world?"));
+            "What?! What could possibly upset me more than the literal end of the world?!"));
 
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
             Murfy,
@@ -78,11 +78,11 @@ public class StartCinematic : MonoBehaviour
 
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
             Rayman,
-            "Hoodlums! You can't be serious! I defeated André at the Tower of the Leptys! How can this be?"));
+            "Hoodlums?! You can't be serious! I defeated André at the Tower of the Leptys! How can this be?!"));
 
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(
             Murfy,
-            "I don´t have any answers right now, but the mirror does. Get to it, and it will provide the knowledge we seek."));
+            "I don´t have any answers right now, but the mirror does! Get to it, and it will provide the knowledge we seek!"));
 
         cinematicCamera.enabled = false;
         mainCamera.enabled = true;

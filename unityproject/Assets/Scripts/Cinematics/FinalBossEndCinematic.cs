@@ -77,7 +77,7 @@ public class FinalBossEndCinematic : MonoBehaviour
         yield return StartCoroutine(Move(heartOfTheWorld.transform, new Vector3(0, 3, 0), 0.15f));
 
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "Wow..."));
-        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "It's done. The Heart is free. It will shine it's light upon us and we all shall live!"));
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "It's done. The Heart is free! It will shine it's light upon us and we all shall live!"));
 
         exitPortal.SetActive(true);
         StartCoroutine(ScaleLerp(exitPortal.transform, Vector3.zero, exitPortal.transform.localScale, 0.35f));

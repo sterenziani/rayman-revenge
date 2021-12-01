@@ -44,7 +44,7 @@ public class Level2StartCinematic : MonoBehaviour
 
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "Here it is, the <b>Dark Void</b>. But I can't see Dark Rayman."));
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "I wonder if he knows I'm here..."));
-        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "Well, seems there is only one way forward. I have tu hurry, I can feel myself fading. Let's go!"));
+        yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "Well, seems there is only one way forward. I have to hurry, I can feel myself fading. Let's go!"));
 
         StartCoroutine(ScaleLerp(entryPortal.transform, entryPortal.transform.localScale, Vector3.zero, 0.5f));
 
