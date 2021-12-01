@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
-using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(AudioSource))]
 public class Player : Vulnerable
@@ -94,7 +93,6 @@ public class Player : Vulnerable
         fistShooterStrengthPowerUp = this.gameObject.transform.Find("FistShooterStrengthPowerUp").GetComponent<Gun>();
         defaultMaterial = raymanBody.GetComponent<Renderer>().material;
 
-        //TODO va a traer problemas cuando se recargue la escena?
         hasWon = false;
         dying = false;
         animator.SetBool("isAlive", true);
@@ -107,10 +105,9 @@ public class Player : Vulnerable
         base.Update();
         if(!hasWon && !dying && !PauseMenu.gameIsPaused)
         {
-            GetCircumstances();
+            isGrounded = IsGrounded();
             CalculateMovingSpeedAndApplyRotation();
             HandleMovementCases();
-            HandleShoot();
             SetAnimatorParameters();
             GetInputs();
 
@@ -122,22 +119,6 @@ public class Player : Vulnerable
         }
         if(hasWon)
             rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
-    }
-
-    void HandleShoot()
-    {
-        if (hitInput)
-        {
-            Gun gun = powerUp == PowerUpsEnum.STRENGTH ? fistShooterStrengthPowerUp : fistShooter;
-            if(gun != null)
-            {
-                if(gun.Attack(null))
-                {
-                    StartCoroutine(AnimatePunch());
-                }
-            }
-            SceneController.ResumeMusic();
-        }
     }
 
     public void ToggleHelicopter(bool status)
@@ -158,53 +139,55 @@ public class Player : Vulnerable
 
     void HandleMovementCases()
     {
-        if (jumpInput && isGrounded && !stunned)
-        {
-            if (audioSource != null && jumpSound != null)
-            {
-                audioSource.PlayOneShot(jumpSound);
-            }
-
-            rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpSpeed, rigidBody.velocity.z);
-        }
-
         if (isGrounded)
-        {
             ToggleHelicopter(false);
-
-        }
-
-        if(jumpInput && !stunned)
-        {
-            if(isUsingHelicopter)
-            {
-                ToggleHelicopter(false);
-
-            }
-            else if(!isGrounded && !isUsingHelicopter)
-            {
-                ToggleHelicopter(true);
-
-            }
-        }
 
         if (isUsingHelicopter)
         {
             playerSpeedMultiplier = helicopterMovementSpeed;
-
             if(powerUp != PowerUpsEnum.HELICOPTER)
-            {
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, helicopterDescendingSpeed, rigidBody.velocity.z);
-            }
             else
-            {
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpSpeed, rigidBody.velocity.z);
-            }
         }
         else
         {
             playerSpeedMultiplier = movementSpeed;
         }
+    }
+
+    void OnJump()
+    {
+        if (ControlledByCinematic)
+            return;
+        jumpInput = true;
+        if (!stunned)
+        {
+            if (isGrounded)
+            {
+                if (audioSource != null && jumpSound != null)
+                    audioSource.PlayOneShot(jumpSound);
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpSpeed, rigidBody.velocity.z);
+            }
+            else
+            {
+                ToggleHelicopter(!isUsingHelicopter);
+            }
+        }
+    }
+
+    void OnAttack()
+    {
+        if(ControlledByCinematic)
+            return;
+        hitInput = true;
+        Gun gun = powerUp == PowerUpsEnum.STRENGTH ? fistShooterStrengthPowerUp : fistShooter;
+        if (gun != null)
+        {
+            if (gun.Attack(null))
+                StartCoroutine(AnimatePunch());
+        }
+        SceneController.ResumeMusic();
     }
 
     void CalculateMovingSpeedAndApplyRotation()
@@ -214,17 +197,17 @@ public class Player : Vulnerable
         resultVelocity = Quaternion.AngleAxis(rotation, Vector3.up) * resultVelocity;
         resultVelocity *= playerSpeedMultiplier;
         rigidBody.velocity = new Vector3(resultVelocity.x, rigidBody.velocity.y, resultVelocity.z);
-        if (CurrentlyMoving())
-        {
-            transform.rotation = Quaternion.Euler(0,
-                GetFlatVelocityAbsoluteAngle(new Vector3(horizontalAxisInput, 0, verticalAxisInput)),
-                0);
-        }
+        if (Mathf.Abs(horizontalAxisInput) > 0.01f || Mathf.Abs(verticalAxisInput) > 0.01f)
+            transform.rotation = Quaternion.Euler(0, GetFlatVelocityAbsoluteAngle(new Vector3(horizontalAxisInput, 0, verticalAxisInput)), 0);
     }
 
-    bool CurrentlyMoving()
+    public void OnMovement(InputValue value)
     {
-        return Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.01f || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0.01f;
+        if (ControlledByCinematic)
+            return;
+        Vector2 direction = value.Get<Vector2>();
+        horizontalAxisInput = direction.x;
+        verticalAxisInput = direction.y;
     }
 
     float GetFlatVelocityAbsoluteAngle(Vector3 flatVelocity)
@@ -246,19 +229,16 @@ public class Player : Vulnerable
         animator.SetBool("isStunned", stunned);
     }
 
-    void GetCircumstances()
-    {
-        isGrounded = IsGrounded();
-    }
-
     void GetInputs()
     {
-        if(!ControlledByCinematic)
+        jumpInput = false;
+        hitInput = false;
+        if (!ControlledByCinematic)
         {
-            horizontalAxisInput = Input.GetAxisRaw("Horizontal");
-            verticalAxisInput = Input.GetAxisRaw("Vertical");
-            jumpInput = Input.GetButtonDown("Jump");
-            hitInput = Input.GetMouseButtonDown(0);
+            //Input.GetAxisRaw("Horizontal");
+            //Input.GetAxisRaw("Vertical");
+            //jumpInput = Input.GetButtonDown("Jump");
+            //hitInput = Input.GetMouseButtonDown(0);
         }
         else
         {
@@ -270,7 +250,7 @@ public class Player : Vulnerable
 
     }
 
-	public void SetRotation(float rotation)
+    public void SetRotation(float rotation)
     {
         this.rotation = rotation;
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class PauseMenu : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
@@ -27,6 +27,14 @@ public class PauseMenu : MonoBehaviour
             else
                 Pause();
         }
+    }
+
+    public void OnPause()
+    {
+        if (gameIsPaused)
+            Resume();
+        else
+            Pause();
     }
 
     public void Resume()
