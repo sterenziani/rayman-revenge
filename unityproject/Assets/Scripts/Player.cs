@@ -203,8 +203,14 @@ public class Player : Vulnerable
 
     public void OnMovement(InputValue value)
     {
-        if (ControlledByCinematic || dying || hasWon || PauseMenu.gameIsPaused)
+        if (ControlledByCinematic || dying || hasWon)
             return;
+        if(PauseMenu.gameIsPaused)
+        {
+            horizontalAxisInput = 0;
+            verticalAxisInput = 0;
+            return;
+        }
         Vector2 direction = value.Get<Vector2>();
         horizontalAxisInput = direction.x;
         verticalAxisInput = direction.y;

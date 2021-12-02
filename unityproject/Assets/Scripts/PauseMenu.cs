@@ -18,17 +18,6 @@ public class PauseMenu : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
-        {
-            if (gameIsPaused)
-                Resume();
-            else
-                Pause();
-        }
-    }
-
     public void OnPause()
     {
         if (gameIsPaused)
