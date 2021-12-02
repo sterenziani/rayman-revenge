@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
@@ -27,7 +28,9 @@ public class CameraController : MonoBehaviour
 	float x = 0.0f;
 	float y = 0.0f;
 
-	// Use this for initialization
+	private float mouseX = 0;
+	private float mouseY = 0;
+
 	void Start()
 	{
 		if (!PlayerPrefs.HasKey("xSensitivity"))
@@ -43,7 +46,6 @@ public class CameraController : MonoBehaviour
 
 		rigidBody = GetComponent<Rigidbody>();
 
-		// Que el cuerpo rigido no rote
 		if (rigidBody != null)
 		{
 			rigidBody.freezeRotation = true;
@@ -54,8 +56,8 @@ public class CameraController : MonoBehaviour
 	{
 		if (target && !PauseMenu.gameIsPaused && !playerMovement.ControlledByCinematic)
 		{
-			x += Input.GetAxis("Mouse X") * xSpeed * mouseSensitivity * distance * 0.02f;
-			y -= Input.GetAxis("Mouse Y") * ySpeed * mouseSensitivity * 0.02f;
+			x += mouseX * xSpeed * mouseSensitivity * distance * 0.001f;
+			y -= mouseY * ySpeed * mouseSensitivity * 0.002f;
 
 			y = ClampAngle(y, yMinLimit, yMaxLimit);
 
@@ -111,5 +113,12 @@ public class CameraController : MonoBehaviour
 	private void SaveSensibilityY()
 	{
 		PlayerPrefs.SetFloat("ySensitivity", ySensitivitySlider.value);
+	}
+
+	public void OnCameraMovement(InputValue value)
+    {
+		Vector2 direction = value.Get<Vector2>();
+		mouseX = direction.x;
+		mouseY = direction.y;
 	}
 }
