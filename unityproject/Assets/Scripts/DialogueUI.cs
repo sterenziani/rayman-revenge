@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class DialogueUI : MonoBehaviour
 {
@@ -21,6 +23,9 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] float writingSpeed = 30f;
 
     private bool durationCountdownStarted = false;
+    private bool listeningForNextPress = false;
+    private bool nextButtonPressed = false;
+    private bool holdingSpeedUpButton = false;
 
     private void Start()
 	{
@@ -49,7 +54,6 @@ public class DialogueUI : MonoBehaviour
         speakerSprite.sprite = tutorialSprite;
         speakerSprite.gameObject.SetActive(true);
 		forwardButtonSprite.gameObject.SetActive(false);
-
 		ShowText(text, durationInMillis, false, callback, isContinuation);
     }
 
@@ -58,7 +62,6 @@ public class DialogueUI : MonoBehaviour
         speakerName.text = speaker.Name;
         speakerSprite.sprite = speaker.sprite;
         speakerSprite.gameObject.SetActive(true);
-
         ShowText(text, 0, true, callback, isContinuation);
     }
 
@@ -67,9 +70,6 @@ public class DialogueUI : MonoBehaviour
         speakerName.text = speaker.Name;
         speakerSprite.sprite = speaker.sprite;
         speakerSprite.gameObject.SetActive(true);
-
-        //ShowText(text, 0, true);
-
         yield return StartCoroutine(ShowTextCoroutine(text, 0, true, null));
     }
 
@@ -154,7 +154,8 @@ public class DialogueUI : MonoBehaviour
         StringBuilder sb = new StringBuilder();
 
 		yield return new WaitForSeconds(0.1f);
-		while (charIndex < parsedText.Count && !Input.GetKey(KeyCode.LeftControl))
+		//while (charIndex < parsedText.Count && !Input.GetKey(KeyCode.LeftControl))
+        while(charIndex < parsedText.Count && !holdingSpeedUpButton)
         {
             t += Time.deltaTime * writingSpeed;
             charIndex = Mathf.FloorToInt(t);
@@ -178,8 +179,13 @@ public class DialogueUI : MonoBehaviour
 		if (waitForKeyPress)
 		{
 			forwardButtonSprite.gameObject.SetActive(true);
-			yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.LeftControl));
-			forwardButtonSprite.gameObject.SetActive(false);
+            //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.LeftControl));
+
+            nextButtonPressed = false;
+            listeningForNextPress = true;
+            yield return new WaitUntil(() => nextButtonPressed || holdingSpeedUpButton);
+            listeningForNextPress = false;
+            forwardButtonSprite.gameObject.SetActive(false);
 			HideDialog();
 		}
 		else
@@ -202,4 +208,15 @@ public class DialogueUI : MonoBehaviour
         DialogueBox.SetActive(false);
 		SkipPrompt.SetActive(false);
 	}
+
+    public void OnNextDialog()
+    {
+        if(listeningForNextPress)
+            nextButtonPressed = true;
+    }
+
+    public void OnFastForwardDialog()
+    {
+        holdingSpeedUpButton = !holdingSpeedUpButton;
+    }
 }

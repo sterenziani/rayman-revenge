@@ -158,7 +158,7 @@ public class Player : Vulnerable
 
     void OnJump()
     {
-        if (ControlledByCinematic)
+        if (ControlledByCinematic || dying || hasWon || PauseMenu.gameIsPaused)
             return;
         jumpInput = true;
         if (!stunned)
@@ -178,7 +178,7 @@ public class Player : Vulnerable
 
     void OnAttack()
     {
-        if(ControlledByCinematic)
+        if (ControlledByCinematic || dying || hasWon || PauseMenu.gameIsPaused)
             return;
         hitInput = true;
         Gun gun = powerUp == PowerUpsEnum.STRENGTH ? fistShooterStrengthPowerUp : fistShooter;
@@ -203,7 +203,7 @@ public class Player : Vulnerable
 
     public void OnMovement(InputValue value)
     {
-        if (ControlledByCinematic)
+        if (ControlledByCinematic || dying || hasWon || PauseMenu.gameIsPaused)
             return;
         Vector2 direction = value.Get<Vector2>();
         horizontalAxisInput = direction.x;
@@ -233,21 +233,13 @@ public class Player : Vulnerable
     {
         jumpInput = false;
         hitInput = false;
-        if (!ControlledByCinematic)
-        {
-            //Input.GetAxisRaw("Horizontal");
-            //Input.GetAxisRaw("Vertical");
-            //jumpInput = Input.GetButtonDown("Jump");
-            //hitInput = Input.GetMouseButtonDown(0);
-        }
-        else
+        if (ControlledByCinematic)
         {
             horizontalAxisInput = 0;
             verticalAxisInput = 0;
             jumpInput = false;
             hitInput = false;
         }
-
     }
 
     public void SetRotation(float rotation)
@@ -358,16 +350,6 @@ public class Player : Vulnerable
         yield return new WaitForSeconds(0.2f);
         animator.SetBool("isTakingDamage", false);
     }
-
-    /*private void OnTriggerEnter(Collider collision)
-    {
-        GameObject target = collision.gameObject;
-        if(target.tag == "Finish")
-        {
-            rigidBody.velocity = new Vector3(0,0,0);
-            StartCoroutine(CelebrateCoroutine());
-        }
-    }*/
 
     public Coroutine Celebrate()
     {

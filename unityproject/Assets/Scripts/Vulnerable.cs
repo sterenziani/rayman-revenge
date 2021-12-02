@@ -12,6 +12,7 @@ public class Vulnerable : MonoBehaviour
     private AreaSpawner spawner;
     protected new Collider collider;
     private Vector3 spawnPosition;
+    private bool dying;
 
     public string Name;
     public Sprite sprite;
@@ -105,32 +106,35 @@ public class Vulnerable : MonoBehaviour
 
     protected virtual void Die()
     {
-        Rigidbody rigidBody = GetComponent<Rigidbody>();
-        if(rigidBody != null)
-            rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
-        float timeToDestroy = this.timeToDestroy;
-        if(audioSource != null && deathSound != null)
+        if(!dying)
         {
-            timeToDestroy = Math.Max(deathSound.length, timeToDestroy);
-            audioSource.PlayOneShot(deathSound);
-        }
-
-        if(exploder != null)
-            exploder.Explode();
-
-        LifePoints = 0;
-        SpawnLoot();
-
-        if (GetComponent<Player>() == null)
-        {
-            if (hideInmediatlyOnDestroy)
+            dying = true; Rigidbody rigidBody = GetComponent<Rigidbody>();
+            if (rigidBody != null)
+                rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+            float timeToDestroy = this.timeToDestroy;
+            if (audioSource != null && deathSound != null)
             {
-                gameObject.transform.localScale = Vector3.zero;
-                // Special case for crates, otherwise messes up weighted platforms in Level 2
-                if (gameObject.tag == "Crate")
-                    gameObject.transform.position = new Vector3(0, -500, 0);
+                timeToDestroy = Math.Max(deathSound.length, timeToDestroy);
+                audioSource.PlayOneShot(deathSound);
             }
-            Invoke(nameof(DestroyObject), timeToDestroy);
+
+            if (exploder != null)
+                exploder.Explode();
+
+            LifePoints = 0;
+            SpawnLoot();
+
+            if (GetComponent<Player>() == null)
+            {
+                if (hideInmediatlyOnDestroy)
+                {
+                    gameObject.transform.localScale = Vector3.zero;
+                    // Special case for crates, otherwise messes up weighted platforms in Level 2
+                    if (gameObject.tag == "Crate")
+                        gameObject.transform.position = new Vector3(0, -500, 0);
+                }
+                Invoke(nameof(DestroyObject), timeToDestroy);
+            }
         }
     }
 
