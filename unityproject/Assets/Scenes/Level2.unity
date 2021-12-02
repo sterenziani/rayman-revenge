@@ -10112,7 +10112,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EventSystem
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 309676042161218541, guid: ecf80735fc217424780c5a75e4dc3564, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ecf80735fc217424780c5a75e4dc3564, type: 3}
 --- !u!1 &5755418233572022795
 GameObject:
