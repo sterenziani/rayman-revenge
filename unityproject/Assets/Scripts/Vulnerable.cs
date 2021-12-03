@@ -12,7 +12,7 @@ public class Vulnerable : MonoBehaviour
     private AreaSpawner spawner;
     protected new Collider collider;
     private Vector3 spawnPosition;
-    private bool dying;
+    private bool isDying;
 
     public string Name;
     public Sprite sprite;
@@ -106,9 +106,9 @@ public class Vulnerable : MonoBehaviour
 
     protected virtual void Die()
     {
-        if(!dying)
+        if(!isDying)
         {
-            dying = true; Rigidbody rigidBody = GetComponent<Rigidbody>();
+			isDying = true; Rigidbody rigidBody = GetComponent<Rigidbody>();
             if (rigidBody != null)
                 rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
             float timeToDestroy = this.timeToDestroy;

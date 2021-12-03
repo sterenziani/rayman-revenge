@@ -26,8 +26,7 @@ public class Player : Vulnerable
     private bool isGrounded;
     public bool hasWon;
     private bool dying;
-
-    private bool hitInput;
+	
     private Gun fistShooter;
     private Gun fistShooterStrengthPowerUp;
 
@@ -180,7 +179,6 @@ public class Player : Vulnerable
     {
         if (ControlledByCinematic || dying || hasWon || PauseMenu.gameIsPaused)
             return;
-        hitInput = true;
         Gun gun = powerUp == PowerUpsEnum.STRENGTH ? fistShooterStrengthPowerUp : fistShooter;
         if (gun != null)
         {
@@ -238,13 +236,11 @@ public class Player : Vulnerable
     void GetInputs()
     {
         jumpInput = false;
-        hitInput = false;
         if (ControlledByCinematic)
         {
             horizontalAxisInput = 0;
             verticalAxisInput = 0;
             jumpInput = false;
-            hitInput = false;
         }
     }
 
