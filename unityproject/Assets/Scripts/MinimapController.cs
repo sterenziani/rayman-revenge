@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MinimapController : MonoBehaviour
 {
+	public GameObject cameraLongDistance;
+	public GameObject cameraMediumDistance;
+	public GameObject cameraShortDistance;
+	public GameObject cameraIcons;
 	public Transform target1;
 	public Transform icon1;
 	public Transform target2;
@@ -23,7 +27,10 @@ public class MinimapController : MonoBehaviour
 				float scale = size / distance;
 
 				transform.position = new Vector3(x, y, z);
-				GetComponent<Camera>().orthographicSize = size;
+				cameraLongDistance.GetComponent<Camera>().orthographicSize = size;
+				cameraMediumDistance.GetComponent<Camera>().orthographicSize = size;
+				cameraShortDistance.GetComponent<Camera>().orthographicSize = size;
+				cameraIcons.GetComponent<Camera>().orthographicSize = size;
 				if (icon1 != null)
 					icon1.localScale = new Vector3(scale, scale, scale);
 				if (icon2 != null)
