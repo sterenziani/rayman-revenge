@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3922441743667099021}
   - component: {fileID: 4062793700172469140}
   - component: {fileID: 1042051752710984901}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: DrawCall_0163
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 7306046487350986192}
   - component: {fileID: 4011879866412172068}
   - component: {fileID: 7306046487350986197}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GoldJewel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 7512517766290999181}
   - component: {fileID: 7512517766290999180}
   - component: {fileID: 917686693536896719}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RedJewel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

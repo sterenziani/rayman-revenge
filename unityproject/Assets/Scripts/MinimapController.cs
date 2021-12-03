@@ -12,7 +12,25 @@ public class MinimapController : MonoBehaviour
 	public Transform icon1;
 	public Transform target2;
 	public Transform icon2;
-	private float distance = 50;
+	public float distance = 50;
+
+	private Camera longDistanceCamera;
+	private Camera mediumDistanceCamera;
+	private Camera shortDistanceCamera;
+	private Camera iconCamera;
+
+	void Start()
+	{
+		longDistanceCamera = cameraLongDistance.GetComponent<Camera>();
+		mediumDistanceCamera = cameraMediumDistance.GetComponent<Camera>();
+		shortDistanceCamera = cameraShortDistance.GetComponent<Camera>();
+		iconCamera = cameraIcons.GetComponent<Camera>();
+
+		longDistanceCamera.orthographicSize = distance;
+		mediumDistanceCamera.orthographicSize = distance;
+		shortDistanceCamera.orthographicSize = distance;
+		iconCamera.orthographicSize = distance;
+	}
 
     void Update()
     {
@@ -27,9 +45,9 @@ public class MinimapController : MonoBehaviour
 				float scale = size / distance;
 
 				transform.position = new Vector3(x, y, z);
-				cameraLongDistance.GetComponent<Camera>().orthographicSize = size;
-				cameraMediumDistance.GetComponent<Camera>().orthographicSize = size;
-				cameraShortDistance.GetComponent<Camera>().orthographicSize = size;
+				longDistanceCamera.orthographicSize = size;
+				mediumDistanceCamera.orthographicSize = size;
+				shortDistanceCamera.orthographicSize = size;
 				cameraIcons.GetComponent<Camera>().orthographicSize = size;
 				if (icon1 != null)
 					icon1.localScale = new Vector3(scale, scale, scale);

@@ -45,8 +45,6 @@ public class Level2EndCinematic : MonoBehaviour
 
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(Rayman, "<b>He's</b> there, that much I know. I hope I'm ready. I have to be, or else all will be lost."));
 
-        SceneController.ExitCinematicMode();
-
         SceneTransitions sceneTransitions = FindObjectOfType<SceneTransitions>();
         sceneTransitions.LoadNextScene();
     }

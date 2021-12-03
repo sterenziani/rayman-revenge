@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 491999227507783090}
   - component: {fileID: 638754765502108587}
   - component: {fileID: 4524637439180379386}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: DrawCall_0163
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 6185953405687887446}
   - component: {fileID: 6185953405687887444}
   - component: {fileID: 1427793143516225404}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GreenJewel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
