@@ -15,10 +15,12 @@ public class StartCinematic : MonoBehaviour
 
     private void Start()
     {
-        dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
-        mainCamera = Camera.main;
-
-        StartCoroutine(CinematicCoroutine());
+        if(!PlayerPrefs.HasKey("watchedCutscene1") || PlayerPrefs.GetInt("watchedCutscene1") == 0)
+        {
+            dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
+            mainCamera = Camera.main;
+            StartCoroutine(CinematicCoroutine());
+        }
     }
 
     private IEnumerator CinematicCoroutine()
@@ -89,7 +91,7 @@ public class StartCinematic : MonoBehaviour
 		Rayman.transform.rotation = Quaternion.Euler(0, 0, 0);
 		Rayman.transform.position = new Vector3(0, 1, 0);
 		SceneController.ExitCinematicMode();
-
+        PlayerPrefs.SetInt("watchedCutscene1", 1);
         Destroy(gameObject);
 
     }

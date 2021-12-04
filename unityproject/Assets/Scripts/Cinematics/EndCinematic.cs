@@ -70,7 +70,7 @@ public class EndCinematic : MonoBehaviour
         cinematicCamera.enabled = false;
         mainCamera.enabled = true;
         SceneController.ExitCinematicMode();
-
+        PlayerPrefs.GetInt("watchedCutscene1", 0);
         SceneTransitions sceneTransitions = FindObjectOfType<SceneTransitions>();
         sceneTransitions.LoadNextScene();
     }

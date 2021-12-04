@@ -15,10 +15,12 @@ public class Level2StartCinematic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
-        mainCamera = Camera.main;
-
-        StartCoroutine(Level2StartCinematicCoroutine());
+        if (!PlayerPrefs.HasKey("watchedCutscene2") || PlayerPrefs.GetInt("watchedCutscene2") == 0)
+        {
+            dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
+            mainCamera = Camera.main;
+            StartCoroutine(Level2StartCinematicCoroutine());
+        }
     }
 
     private IEnumerator Level2StartCinematicCoroutine()
@@ -51,6 +53,7 @@ public class Level2StartCinematic : MonoBehaviour
         cinematicCamera.enabled = false;
         mainCamera.enabled = true;
         SceneController.ExitCinematicMode();
+        PlayerPrefs.SetInt("watchedCutscene2", 1);
 
         Destroy(gameObject);
     }
@@ -58,16 +61,13 @@ public class Level2StartCinematic : MonoBehaviour
     private IEnumerator ScaleLerp(Transform transform, Vector3 initialScale, Vector3 endingScale, float speed = 0.2f)
     {
         float startTime = Time.time;
-
         Vector3 currScale;
 
         do
         {
             float t = (Time.time - startTime) * speed;
             currScale = Vector3.Lerp(initialScale, endingScale, t);
-
             transform.localScale = currScale;
-
             yield return null;
         } while (currScale != endingScale);
     }

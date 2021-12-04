@@ -20,10 +20,17 @@ public class FinalBossStartCinematic : MonoBehaviour
 
     private void Start()
     {
-        dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
         mainCamera = Camera.main;
-
-        StartCoroutine(CinematicCoroutine());
+        if (!PlayerPrefs.HasKey("watchedCutscene3") || PlayerPrefs.GetInt("watchedCutscene3") == 0)
+        {
+            dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
+            StartCoroutine(CinematicCoroutine());
+        }
+        else
+        {
+            cinematicCamera.enabled = false;
+            mainCamera.enabled = true;
+        }
     }
 
     private IEnumerator CinematicCoroutine()
@@ -66,9 +73,8 @@ public class FinalBossStartCinematic : MonoBehaviour
 
         cinematicCamera.enabled = false;
         mainCamera.enabled = true;
-
+        PlayerPrefs.SetInt("watchedCutscene3", 1);
         SceneController.PlayMusic(battleMusic);
-
         SceneController.ExitCinematicMode();
 
         Destroy(gameObject);

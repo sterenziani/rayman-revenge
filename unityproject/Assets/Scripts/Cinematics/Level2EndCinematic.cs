@@ -32,6 +32,7 @@ public class Level2EndCinematic : MonoBehaviour
         yield return null;
 
         SceneController.EnterCinematicMode();
+        PlayerPrefs.GetInt("watchedCutscene2", 0);
 
         yield return Rayman.Celebrate();
 

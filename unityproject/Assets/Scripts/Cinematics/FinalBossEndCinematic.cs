@@ -65,6 +65,7 @@ public class FinalBossEndCinematic : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         heartOfTheWorld.SetActive(true);
+        PlayerPrefs.GetInt("watchedCutscene3", 0);
 
         SceneController.PlayMusic(endingMusic);
 

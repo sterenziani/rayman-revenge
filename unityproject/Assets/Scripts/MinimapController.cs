@@ -34,7 +34,13 @@ public class MinimapController : MonoBehaviour
 		shortDistanceCamera.orthographicSize = distance;
 		iconCamera.orthographicSize = distance;
 
-		status = transform.GetChild(0).gameObject.activeSelf;
+		if (PlayerPrefs.HasKey("minimapStatus") && PlayerPrefs.GetInt("minimapStatus") > 0)
+			status = true;
+		else
+			status = false;
+		PlayerPrefs.SetInt("minimapStatus", status ? 1 : 0);
+		for (int i = 0; i < transform.childCount; i++)
+			transform.GetChild(i).gameObject.SetActive(status);
 	}
 
     void Update()
@@ -70,6 +76,7 @@ public class MinimapController : MonoBehaviour
     {
 		GetComponent<AudioSource>().PlayOneShot(toggleSound);
 		status = !status;
+		PlayerPrefs.SetInt("minimapStatus", status? 1:0);
 		for (int i=0; i < transform.childCount; i++)
 			transform.GetChild(i).gameObject.SetActive(status);
 	}
