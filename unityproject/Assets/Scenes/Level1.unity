@@ -13271,7 +13271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialText: Grab the <b>Throttle Copter can</b> and try using your glide ability
-    again! But be careful, as the power only last for a short time!
+    again! Don't forget the effects wear off after a while!
   durationInMillis: 4000
   waitForKeyPress: 0
   destroyAfterShow: 1
