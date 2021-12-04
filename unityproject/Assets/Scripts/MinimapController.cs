@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MinimapController : MonoBehaviour
 {
+	public GameObject cameraCrew;
 	public GameObject cameraLongDistance;
 	public GameObject cameraMediumDistance;
 	public GameObject cameraShortDistance;
@@ -12,12 +13,14 @@ public class MinimapController : MonoBehaviour
 	public Transform icon1;
 	public Transform target2;
 	public Transform icon2;
+	public AudioClip toggleSound;
 	public float distance = 50;
 
 	private Camera longDistanceCamera;
 	private Camera mediumDistanceCamera;
 	private Camera shortDistanceCamera;
 	private Camera iconCamera;
+	private bool status;
 
 	void Start()
 	{
@@ -30,6 +33,8 @@ public class MinimapController : MonoBehaviour
 		mediumDistanceCamera.orthographicSize = distance;
 		shortDistanceCamera.orthographicSize = distance;
 		iconCamera.orthographicSize = distance;
+
+		status = transform.GetChild(0).gameObject.activeSelf;
 	}
 
     void Update()
@@ -44,7 +49,7 @@ public class MinimapController : MonoBehaviour
 				float size = Mathf.Sqrt(Mathf.Pow(target1.position.x + target2.position.x, 2) + Mathf.Pow(target1.position.z + target2.position.z, 2));
 				float scale = size / distance;
 
-				transform.position = new Vector3(x, y, z);
+				cameraCrew.transform.position = new Vector3(x, y, z);
 				longDistanceCamera.orthographicSize = size;
 				mediumDistanceCamera.orthographicSize = size;
 				shortDistanceCamera.orthographicSize = size;
@@ -56,8 +61,16 @@ public class MinimapController : MonoBehaviour
 			}
 			else
 			{
-				transform.position = new Vector3(target1.position.x, distance + target1.position.y, target1.position.z);
+				cameraCrew.transform.position = new Vector3(target1.localPosition.x, distance + target1.localPosition.y, target1.localPosition.z);
 			}
 		}
     }
+
+	public void OnMinimapToggle()
+    {
+		GetComponent<AudioSource>().PlayOneShot(toggleSound);
+		status = !status;
+		for (int i=0; i < transform.childCount; i++)
+			transform.GetChild(i).gameObject.SetActive(status);
+	}
 }
