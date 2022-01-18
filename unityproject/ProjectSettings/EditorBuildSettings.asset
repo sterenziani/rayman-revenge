@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalBoss.unity
     guid: 5d6d31c0f7b7ea442959c2d447a7b9bc
+  - enabled: 1
+    path: Assets/Scenes/MultiplayerMinigame.unity
+    guid: dd92b8c6d0186e940bc72a71558d656b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9537d1e60cb200d409992e32684340eb, type: 2}
