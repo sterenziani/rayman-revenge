@@ -20,7 +20,7 @@ public class MinimapController : MonoBehaviour
 	private Camera mediumDistanceCamera;
 	private Camera shortDistanceCamera;
 	private Camera iconCamera;
-	private bool status;
+	public bool status { get; private set; }
 
 	void Start()
 	{
@@ -75,9 +75,14 @@ public class MinimapController : MonoBehaviour
 	public void OnMinimapToggle()
     {
 		GetComponent<AudioSource>().PlayOneShot(toggleSound);
-		status = !status;
-		PlayerPrefs.SetInt("minimapStatus", status? 1:0);
-		for (int i=0; i < transform.childCount; i++)
+		SetMinimapStatus(!status);
+	}
+
+    public void SetMinimapStatus(bool newStatus) {
+		status = newStatus;
+
+		PlayerPrefs.SetInt("minimapStatus", status ? 1 : 0);
+		for (int i = 0; i < transform.childCount; i++)
 			transform.GetChild(i).gameObject.SetActive(status);
 	}
 }

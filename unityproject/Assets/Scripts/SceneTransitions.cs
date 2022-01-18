@@ -7,12 +7,12 @@ public class SceneTransitions : MonoBehaviour
     public Animator transitionAnim;
     public string nextSceneName;
 
-    public void ReloadScene()
+    public virtual void ReloadScene()
     {
         StartCoroutine(ReloadSceneAfter(1.5f));
     }
 
-    public void LoadNextScene()
+    public virtual void LoadNextScene()
     {
         StartCoroutine(LoadNextSceneAfter(1.5f));
     }

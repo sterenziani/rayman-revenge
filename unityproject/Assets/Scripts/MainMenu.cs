@@ -1,8 +1,13 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] GameObject errorPopup;
+
     private void Start()
     {
         PlayerPrefs.SetInt("watchedCutscene1", 0);
@@ -17,7 +22,20 @@ public class MainMenu : MonoBehaviour
 
     public void PlayMultiplayer()
     {
-        SceneManager.LoadScene("MultiplayerMinigame");
+        IEnumerable<InputDevice> gamepads = InputSystem.devices.Where(
+            x => x is Gamepad
+            && x.enabled == true
+            && x.added == true);
+
+        if(!gamepads.Any())
+        {
+            this.gameObject.SetActive(false);
+            errorPopup.SetActive(true);
+        } else
+        {
+            SceneManager.LoadScene("MultiplayerMinigame");
+        }
+
     }
 
     public void QuitGame()

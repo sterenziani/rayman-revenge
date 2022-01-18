@@ -949,6 +949,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1742694624}
     m_Modifications:
+    - target: {fileID: 5480732246259034104, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
+      propertyPath: m_Color.b
+      value: 0.56078434
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480732246259034104, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7922893140757015272, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_DefaultActionMap
       value: Player2Controls
@@ -1533,7 +1541,8 @@ PrefabInstance:
       propertyPath: nextSceneName
       value: MainMenu
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7782077241838362939, guid: 2fb875912d4cc5244bd652b375eb6fcd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2fb875912d4cc5244bd652b375eb6fcd, type: 3}
 --- !u!1 &1034998557
 GameObject:
@@ -2364,6 +2373,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1775484959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7782077241838362938, guid: 2fb875912d4cc5244bd652b375eb6fcd, type: 3}
+  m_PrefabInstance: {fileID: 1012126672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1775484960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775484959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb9e0bb9da1f7f42b506ac5a8c7a530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionAnim: {fileID: 2044529487}
+  nextSceneName: MainMenu
+  player1: {fileID: 463439766}
+  player2: {fileID: 8986412476267834363}
 --- !u!1001 &1837278720
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2615,6 +2645,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5931894524765643199, guid: b0dd5933d5a47cb4f9103adcb234447b, type: 3}
   m_PrefabInstance: {fileID: 898700484}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &2044529487 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7782077242477050438, guid: 2fb875912d4cc5244bd652b375eb6fcd, type: 3}
+  m_PrefabInstance: {fileID: 1012126672}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2088079860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2767,6 +2802,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1137551940}
     m_Modifications:
+    - target: {fileID: 5480732246259034104, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4117647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480732246259034104, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7922893140757015272, guid: 9dddce04c4604454d98ab5a0b58eb1b4, type: 3}
       propertyPath: m_DefaultActionMap
       value: 77b9cce2-107c-45c5-b1a8-ba47a556726f

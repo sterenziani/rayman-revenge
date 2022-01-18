@@ -2,13 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
-using static UnityEngine.InputSystem.InputAction;
 
 public class DialogueUI : MonoBehaviour
 {
@@ -27,10 +23,14 @@ public class DialogueUI : MonoBehaviour
     private bool nextButtonPressed = false;
     private bool holdingSpeedUpButton = false;
 
+    private MinimapController minimap;
+    public bool prevMinimapState = false;
+
     private void Start()
 	{
 		forwardButtonSprite.gameObject.SetActive(false);
-		HideDialog();
+        minimap = GameObject.Find("Minimap").GetComponent<MinimapController>();
+        HideDialog();
     }
 
     public IEnumerator ShowTutorialCoroutine(string text, int durationInMillis = 0, bool waitForKeyPress = false, Action callback = null)
@@ -140,6 +140,9 @@ public class DialogueUI : MonoBehaviour
 
     public IEnumerator ShowTextCoroutine(string text, int durationInMillis = 0, bool waitForKeyPress = false, Action callback = null)
     {
+        prevMinimapState = minimap.status;
+        minimap.SetMinimapStatus(false);
+
         durationCountdownStarted = false;
         DialogueBox.SetActive(true);
 		if (waitForKeyPress)
@@ -199,6 +202,9 @@ public class DialogueUI : MonoBehaviour
 			if(text == textField.text)
 				HideDialog();
 		}
+
+        if(prevMinimapState)
+            minimap.SetMinimapStatus(prevMinimapState);
 
         callback?.Invoke();
 	}
