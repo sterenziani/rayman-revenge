@@ -8,7 +8,7 @@ public class EnemyHead : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "Player")
+        if (collision.gameObject.GetComponent<Player>() != null)
         {
             Destroy(transform.parent.gameObject);
         }

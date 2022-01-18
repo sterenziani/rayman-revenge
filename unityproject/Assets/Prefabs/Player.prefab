@@ -138,6 +138,7 @@ MonoBehaviour:
   explosionRange: 0
   explosionForce: 0
   onlyCollideWithPlayer: 0
+  owner: {fileID: 8986412475655520875}
   collideSound: {fileID: 0}
   explosionSound: {fileID: 0}
 --- !u!1 &939166342084880786
@@ -675,6 +676,7 @@ MonoBehaviour:
   explosionRange: 0
   explosionForce: 0
   onlyCollideWithPlayer: 0
+  owner: {fileID: 8986412475655520875}
   collideSound: {fileID: 0}
   explosionSound: {fileID: 0}
 --- !u!114 &8986412475279219150
@@ -847,6 +849,7 @@ MonoBehaviour:
   MinDamageToTake: 0
   Name: Rayman
   sprite: {fileID: 21300000, guid: 9ff14e0bc283a884b8d6621a3f854e60, type: 3}
+  overlayColor: {r: 1, g: 1, b: 1, a: 1}
   spawnSound: {fileID: 0}
   deathSound: {fileID: 8300000, guid: 0d06c2c732b759a42ac5221d65727d2b, type: 3}
   hittedSound: {fileID: 8300000, guid: ab411353dc201cf408c6efc7bbb95af7, type: 3}
@@ -927,7 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: cc88bacd5ce6c4e4aa9d39726ec9e2b4, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 7dc68c4ee62c23d4dafb7221cedc073b, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:

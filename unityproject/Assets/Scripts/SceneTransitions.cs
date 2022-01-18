@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneTransitions : MonoBehaviour
 {
     public Animator transitionAnim;
+    public string nextSceneName;
 
     public void ReloadScene()
     {
@@ -23,11 +23,12 @@ public class SceneTransitions : MonoBehaviour
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
     IEnumerator LoadNextSceneAfter(float time)
     {
         transitionAnim.SetTrigger("end");
         yield return new WaitForSeconds(time);
-        int nextSceneIndex = (1 + SceneManager.GetActiveScene().buildIndex) % SceneManager.sceneCountInBuildSettings;
-        SceneManager.LoadScene(nextSceneIndex);
+        //int nextSceneIndex = (1 + SceneManager.GetActiveScene().buildIndex) % SceneManager.sceneCountInBuildSettings;
+        SceneManager.LoadScene(nextSceneName);
     }
 }

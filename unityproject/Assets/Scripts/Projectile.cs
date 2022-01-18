@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     public float maxRange = float.PositiveInfinity;
     [SerializeField] int maxCollisions = int.MaxValue;
     [SerializeField] float maxLifetime = float.PositiveInfinity;
-    private float remainingSafeTime = 1f;
+    private float remainingSafeTime = 0.5f;
 
     [SerializeField] bool explodeOnTouch = false;
     [SerializeField] ParticleSystem explosionEffect;
@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float explosionRange = 0;
     [SerializeField] float explosionForce = 0;
     [SerializeField] bool onlyCollideWithPlayer = false;
+    [SerializeField] Vulnerable owner = null;
 
     private AudioSource audioSource;
     [SerializeField] AudioClip collideSound;
@@ -129,13 +130,14 @@ public class Projectile : MonoBehaviour
 
         if (onlyCollideWithPlayer && !collision.gameObject.GetComponent<Player>())
             return;
-        if (remainingSafeTime > 0 && collision.gameObject.GetComponent<Player>() != null)
-            return;
 
         Vulnerable vulnerable = collision.gameObject.GetComponent<Vulnerable>();
 
         if(vulnerable != null && vulnerable.MinDamageToTake <= hitDamage)
         {
+            if (owner != null && remainingSafeTime > 0 && vulnerable == owner)
+                return;
+
             vulnerable.TakeDamage(hitDamage);
 
             if(explodeOnTouch)

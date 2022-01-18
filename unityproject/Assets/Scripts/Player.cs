@@ -96,6 +96,8 @@ public class Player : Vulnerable
         dying = false;
         animator.SetBool("isAlive", true);
         InvokeRepeating(nameof(ReduceHealthByTime), recurrentHealthLostTime, recurrentHealthLostTime);
+
+        raymanBody.GetComponent<Renderer>().material.color = overlayColor;
     }
 
     // Update is called once per frame
@@ -290,6 +292,7 @@ public class Player : Vulnerable
             audioSource.PlayOneShot(powerUpSound);
 
             raymanBody.GetComponent<Renderer>().material = material;
+            raymanBody.GetComponent<Renderer>().material.color = overlayColor;
             this.powerUp = powerUp;
 
             if (this.powerUp == PowerUpsEnum.HELICOPTER && isUsingHelicopter)
@@ -311,6 +314,7 @@ public class Player : Vulnerable
         }
 
         raymanBody.GetComponent<Renderer>().material = defaultMaterial;
+        raymanBody.GetComponent<Renderer>().material.color = overlayColor;
         this.powerUp = PowerUpsEnum.NONE;
         remainingPowerUpTime = 0;
     }

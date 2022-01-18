@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +14,12 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Level1");
     }
+
+    public void PlayMultiplayer()
+    {
+        SceneManager.LoadScene("MultiplayerMinigame");
+    }
+
     public void QuitGame()
     {
         Application.Quit();
