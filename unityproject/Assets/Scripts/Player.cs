@@ -95,7 +95,10 @@ public class Player : Vulnerable
         hasWon = false;
         dying = false;
         animator.SetBool("isAlive", true);
-        InvokeRepeating(nameof(ReduceHealthByTime), recurrentHealthLostTime, recurrentHealthLostTime);
+        if(recurrentHealthLostTime > 0)
+        {
+            InvokeRepeating(nameof(ReduceHealthByTime), recurrentHealthLostTime, recurrentHealthLostTime);
+        }
 
         raymanBody.GetComponent<Renderer>().material.color = overlayColor;
     }

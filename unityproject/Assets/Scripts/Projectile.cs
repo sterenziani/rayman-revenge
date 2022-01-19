@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     public float maxRange = float.PositiveInfinity;
     [SerializeField] int maxCollisions = int.MaxValue;
     [SerializeField] float maxLifetime = float.PositiveInfinity;
-    private float remainingSafeTime = 0.5f;
+    private float remainingSafeTime = 1f;
 
     [SerializeField] bool explodeOnTouch = false;
     [SerializeField] ParticleSystem explosionEffect;
@@ -135,7 +135,7 @@ public class Projectile : MonoBehaviour
 
         if(vulnerable != null && vulnerable.MinDamageToTake <= hitDamage)
         {
-            if (owner != null && remainingSafeTime > 0 && vulnerable == owner)
+            if (owner != null && /*remainingSafeTime > 0 &&*/ vulnerable == owner)
                 return;
 
             vulnerable.TakeDamage(hitDamage);

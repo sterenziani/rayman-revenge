@@ -193,10 +193,10 @@ public class DialogueUI : MonoBehaviour
 		}
 		else
 		{
-            while(!durationCountdownStarted)
+            /*while(!durationCountdownStarted)
             {
                 yield return null;
-            }
+            }*/
 
             yield return new WaitForSeconds(durationInMillis / 1000f);
 			if(text == textField.text)

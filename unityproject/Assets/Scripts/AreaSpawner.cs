@@ -11,6 +11,7 @@ public class AreaSpawner : MonoBehaviour
     [SerializeField] List<Collider> exclusionZones;
 
     public GameObject[] items;
+    public ItemWithProbability[] itemsWithProbabilities;
 
     private Coroutine spawningCoroutine;
 
@@ -60,6 +61,7 @@ public class AreaSpawner : MonoBehaviour
         {
             if (remainingSpawns.HasValue)
                 remainingSpawns--;
+
             for (int i = 0; i < items.Length; i++)
             {
                 int attempts = 0;
@@ -68,7 +70,39 @@ public class AreaSpawner : MonoBehaviour
                     attempts++;
                 }
             }
+
+            bool done = false;
+            for (int i = 0; i < itemsWithProbabilities.Length && !done; i++)
+            {
+                if(itemsWithProbabilities[i].ShouldSpawn()) {
+                    int attempts = 0;
+                    while (attempts < 100 && !SpawnItem(itemsWithProbabilities[i].item))
+                    {
+                        attempts++;
+                    }
+
+                    if (attempts < 100)
+                        done = true;
+                }
+            }
             yield return new WaitForSeconds(timeBetweenSpawns);
+        }
+    }
+
+    [System.Serializable]
+    public class ItemWithProbability
+    {
+        public const float minProbability = 0f;
+        public const float maxProbability = 100f;
+
+        public GameObject item;
+
+        [Range(minProbability, maxProbability)]
+        public float probability;
+
+        public bool ShouldSpawn()
+        {
+            return probability - Random.Range(minProbability, maxProbability) >= 0;
         }
     }
 }
