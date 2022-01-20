@@ -6,6 +6,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField] Slider slider;
     [SerializeField] Vulnerable trackingVulnerable;
     [SerializeField] Image icon;
+
     private void Start()
     {
         if(trackingVulnerable == null)
@@ -23,8 +24,19 @@ public class HealthBar : MonoBehaviour
     private void Update()
     {
         if(trackingVulnerable == null || trackingVulnerable.gameObject == null || trackingVulnerable.LifePoints <= 0)
-            Destroy(gameObject);
+        {
+            gameObject.SetActive(false);
+        } 
         else
+        {
+            gameObject.SetActive(true);
             slider.value = trackingVulnerable.LifePoints;
+        }
     }
+
+    public void SetTrackingVulnerable(Vulnerable vulnerable)
+    {
+        trackingVulnerable = vulnerable;
+        gameObject.SetActive(true);
+    } 
 }

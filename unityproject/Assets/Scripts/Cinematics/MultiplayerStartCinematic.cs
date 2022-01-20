@@ -11,12 +11,17 @@ public class MultiplayerStartCinematic : MonoBehaviour
     private void Start()
     {
         dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
+
         StartCoroutine(CinematicCoroutine());
     }
 
     private IEnumerator CinematicCoroutine()
     {
         yield return null;
+
+        PlayerSpawnManager playerSpawnManager = GameObject.FindObjectOfType<PlayerSpawnManager>();
+        player1Camera = playerSpawnManager.players[0].cameraController.gameObject.GetComponent<Camera>();
+        player2Camera = playerSpawnManager.players[1].cameraController.gameObject.GetComponent<Camera>();
 
         SceneController.EnterCinematicMode();
 
@@ -26,19 +31,19 @@ public class MultiplayerStartCinematic : MonoBehaviour
         cinematicCamera.enabled = true;
 
         StartCoroutine(dialogueUI.ShowTutorialCoroutine(
-            "Only one Rayman can be the True Rayman! Who of you will be?\nTime to prove it in this <s>Bomberman clone</s> absolutely original game!"
+            "Only one Rayman can be the True Rayman! Who of you will be?\nTime to prove it in this <s>Bomberman clone</s> totally original game!"
             , 6000, true, () => {
                 StartCoroutine(dialogueUI.ShowTutorialCoroutine(
                     "3..."
-                    , 1000, false, () =>
+                    , 800, false, () =>
                     {
                         StartCoroutine(dialogueUI.ShowTutorialCoroutine(
                             "2..."
-                            , 1000, false, () =>
+                            , 800, false, () =>
                             {
                                 StartCoroutine(dialogueUI.ShowTutorialCoroutine(
                                     "1..."
-                                    , 1000, false, () =>
+                                    , 800, false, () =>
                                     {
                                         player1Camera.enabled = true;
                                         player2Camera.enabled = true;

@@ -17,7 +17,7 @@ public class Vulnerable : MonoBehaviour
     public string Name;
     public Sprite sprite;
 
-    public Color overlayColor = Color.white;
+    public Color overlayColor { get; protected set; } = Color.white;
 
     public bool ControlledByCinematic { get; protected set; } = false;
 

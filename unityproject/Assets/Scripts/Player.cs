@@ -43,6 +43,8 @@ public class Player : Vulnerable
 
     private Material defaultMaterial;
 
+    private SpriteRenderer minimapIconRenderer;
+
     [SerializeField] AudioClip helicopterSound;
     [SerializeField] AudioClip helicopterPowerUpSound;
     [SerializeField] AudioClip powerUpSound;
@@ -50,6 +52,15 @@ public class Player : Vulnerable
     [SerializeField] AudioClip jumpSound;
     [SerializeField] AudioClip stunnedSound;
     [SerializeField] AudioClip victoryTheme;
+
+    public void SetOverlayColor(Color color)
+    {
+        overlayColor = color;
+        raymanBody.GetComponent<Renderer>().material.color = overlayColor;
+
+        if(minimapIconRenderer != null)
+            minimapIconRenderer.color = overlayColor;
+    }
 
     private void ReduceHealthByTime()
     {
@@ -91,6 +102,7 @@ public class Player : Vulnerable
         fistShooter = this.gameObject.transform.Find("FistShooter").GetComponent<Gun>();
         fistShooterStrengthPowerUp = this.gameObject.transform.Find("FistShooterStrengthPowerUp").GetComponent<Gun>();
         defaultMaterial = raymanBody.GetComponent<Renderer>().material;
+        minimapIconRenderer = this.gameObject.transform.Find("Minimap Icon").GetComponent<SpriteRenderer>();
 
         hasWon = false;
         dying = false;
@@ -100,7 +112,7 @@ public class Player : Vulnerable
             InvokeRepeating(nameof(ReduceHealthByTime), recurrentHealthLostTime, recurrentHealthLostTime);
         }
 
-        raymanBody.GetComponent<Renderer>().material.color = overlayColor;
+        SetOverlayColor(overlayColor);
     }
 
     // Update is called once per frame
@@ -160,7 +172,7 @@ public class Player : Vulnerable
         }
     }
 
-    void OnJump()
+    public void OnJump()
     {
         if (ControlledByCinematic || dying || hasWon || PauseMenu.gameIsPaused)
             return;
@@ -180,12 +192,12 @@ public class Player : Vulnerable
         }
     }
 
-    void OnAttack()
+    public void OnAttack()
     {
         if (ControlledByCinematic || dying || hasWon || PauseMenu.gameIsPaused)
             return;
         Gun gun = powerUp == PowerUpsEnum.STRENGTH ? fistShooterStrengthPowerUp : fistShooter;
-        if (gun != null)
+        if (!stunned & gun != null)
         {
             if (gun.Attack(null))
                 StartCoroutine(AnimatePunch());

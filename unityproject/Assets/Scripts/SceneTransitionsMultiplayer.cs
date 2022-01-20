@@ -7,39 +7,61 @@ namespace Assets.Scripts
 {
     public class SceneTransitionsMultiplayer : SceneTransitions
     {
-        [SerializeField] Player player1;
-        [SerializeField] Player player2;
-
         private DialogueUI dialogueUI;
 
         private bool gamepadAvailable = true;
         private bool mouseAvailable = true;
         private bool keyboardAvailable = true;
 
+        private PlayerSpawnManager playerSpawnManager;
+
         private void Awake()
         {
             dialogueUI = GameObject.Find("Dialogue UI").GetComponent<DialogueUI>();
+            playerSpawnManager = GameObject.FindObjectOfType<PlayerSpawnManager>();
 
             InputSystem.onDeviceChange += OnInputDeviceConnected;
         }
 
-        public override void ReloadScene()
+        private MultiplayerData GetLastManStandingMultiplayerData()
         {
-            Player winner = player1.LifePoints <= 0 ? player2 : player1;
-            StartCoroutine(FinishCoroutine(winner));
+            foreach (MultiplayerData data in playerSpawnManager.players)
+            {
+                if (data.player != null) {
+                    if (data.player.LifePoints > 0 || data.player.hasWon)
+                    {
+                        return data;
+                    }
+                }
+            }
+
+            return null;
         }
 
-        IEnumerator FinishCoroutine(Player winner)
+        public override void ReloadScene()
+        {
+            MultiplayerData winnerData = GetLastManStandingMultiplayerData();
+            StartCoroutine(FinishCoroutine(winnerData));
+        }
+
+        IEnumerator FinishCoroutine(MultiplayerData winnerData)
         {
             InputSystem.onDeviceChange -= OnInputDeviceConnected;
 
-            yield return winner.Celebrate();
+            string winText;
 
-            string playerText = winner == player1 ? "Player 1" : "Player 2";
+            if (winnerData != null)
+            {
+                yield return winnerData.player.Celebrate();
+                winText= $"<b>Player {winnerData.playerId}</b> wins!";
+            } else
+            {
+                winText = "It's a tie!";
+            }
 
-            string winText = $"<b>{playerText}</b> wins!\nPress <b>SPACEBAR</b> to return to the main menu.";
-
-            StartCoroutine(dialogueUI.ShowTutorialCoroutine(winText, 6000, true, () =>
+            StartCoroutine(dialogueUI.ShowTutorialCoroutine(winText + "\nPress <b>SPACE BAR</b> to return to the main menu.", 
+                6000, 
+                true, () =>
             {
                 LoadNextScene();
             }));
