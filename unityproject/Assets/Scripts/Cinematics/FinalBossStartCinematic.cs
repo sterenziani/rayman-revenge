@@ -64,9 +64,7 @@ public class FinalBossStartCinematic : MonoBehaviour
 
 
         //DarkRayman.GetComponent<ManualAnimator>()?.PlayForceContinuous("Floating");
-        yield return StartCoroutine(Move(new Vector3(0, 0.5f, 0), 0.45f));
-
-        DarkRayman.transform.position = new Vector3(0, 0.5f, 0);
+        yield return StartCoroutine(DarkRayman.MoveToFinalPositionCoroutine(new Vector3(0, 0.5f, 0), 0.45f));
         DarkRayman.initialPosition = DarkRayman.transform.position;
 
         yield return StartCoroutine(dialogueUI.ShowDialogueCoroutine(DarkRayman, "<b>Prepare to die!</b>"));
@@ -78,24 +76,5 @@ public class FinalBossStartCinematic : MonoBehaviour
         SceneController.ExitCinematicMode();
 
         Destroy(gameObject);
-    }
-
-    private IEnumerator Move(Vector3 endPosition, float speed = 0.01f)
-    {
-        float startTime = Time.time;
-        Vector3 startPosition = DarkRayman.transform.position;
-
-        Vector3 currPosition;
-
-        do
-        {
-            float t = (Time.time - startTime) * speed;
-            currPosition = Vector3.Lerp(startPosition, endPosition, t);
-            DarkRayman.transform.position = currPosition;
-
-            yield return null;
-        } while (currPosition != endPosition);
-
-        DarkRayman.transform.position = endPosition;
     }
 }

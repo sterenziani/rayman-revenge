@@ -9,13 +9,13 @@ public class DarkRayman : Vulnerable
     [SerializeField] AreaSpawner lightningSpawner;
 
     [SerializeField] float initialVulnerableTime = 10;
-    [SerializeField] float minVulnerableTime = 4;
+    [SerializeField] float minVulnerableTime = 2.5f;
     [SerializeField] float initialDarkBallsTimeBetween = 2;
     [SerializeField] float minDarkBallsTimeBetween = 0.3f;
-    [SerializeField] float initialDarkBallsSpeed = 2f;
-    [SerializeField] float maxDarkBallsSpeed = 8f;
-    [SerializeField] float initialLightningTimeBetween = 0.8f;
-    [SerializeField] float minLightningTimeBetween = 0.3f;
+    [SerializeField] float initialDarkBallsSpeed = 6f;
+    [SerializeField] float maxDarkBallsSpeed = 10f;
+    [SerializeField] float initialLightningTimeBetween = 0.7f;
+    [SerializeField] float minLightningTimeBetween = 0.2f;
 
     public ManualAnimator manualAnimator;
     private GameObject player;
@@ -90,11 +90,36 @@ public class DarkRayman : Vulnerable
             Invoke(nameof(StartForceFieldPhase), 1.5f);
     }
 
+    public IEnumerator MoveToFinalPositionCoroutine(Vector3 endPosition, float speed = 0.01f)
+    {
+        float startTime = Time.time;
+        Vector3 startPosition = transform.position;
+
+        Vector3 currPosition;
+
+        do
+        {
+            float t = (Time.time - startTime) * speed;
+            currPosition = Vector3.Lerp(startPosition, endPosition, t);
+            transform.position = currPosition;
+
+            yield return null;
+        } while (currPosition != endPosition);
+
+        transform.position = endPosition;
+    }
+
     void StartForceFieldPhase()
     {
         StopReleasingDarkBalls();
         ActivateForceField(StartVulnerablePhase);
         StartShootingLightning(CalculateCurrentValueBasedOnBossHealth(initialLightningTimeBetween, minLightningTimeBetween));
+
+        if(transform.position.y < 0.5f)
+        {
+            StartCoroutine(MoveToFinalPositionCoroutine(new Vector3(0, 0.5f, 0), 0.45f));
+            transform.position = new Vector3(0, 0.5f, 0);
+        }
     }
 
     void StartVulnerablePhase()
@@ -109,8 +134,16 @@ public class DarkRayman : Vulnerable
     {
         base.Update();
 
-        transform.LookAt(player.transform);
-        transform.transform.position = initialPosition;
+        //transform.LookAt(player.transform);
+        LookAtTarget(player.transform);
+        //transform.transform.position = initialPosition;
+    }
+
+    private void LookAtTarget(Transform target)
+    {
+        Vector3 lTargetDir = target.position - transform.position;
+        lTargetDir.y = 0.0f;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lTargetDir), Time.time * 1);
     }
 
     void ActivateForceField(Action callback = null)

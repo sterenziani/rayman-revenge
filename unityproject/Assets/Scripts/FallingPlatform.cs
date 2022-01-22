@@ -12,6 +12,8 @@ public class FallingPlatform : Platform
 	public float blinkFrequency = 0;
 	public bool ignorePlayerWeight = false;
 
+	public float? respawnAfterTime = 3f;
+
 	private float startingHeight = 0;
 	private float timer = 0;
 	private float blinkTimer = 0;
@@ -78,21 +80,12 @@ public class FallingPlatform : Platform
 				}
 				if (timer > explodeTime)
 				{
-					GetComponent<Collider>().enabled = false;
-					foreach (Transform child in transform)
-					{
-						StickyPlatform sp = child.gameObject.GetComponent<StickyPlatform>();
-						if(sp != null)
-						{
-							sp.ResetCollisions();
-							sp.enabled = false;
-						}
-						child.gameObject.SetActive(false);
-					}
-					activated = false;
-					exploded = true;
-					timer = 0;
-					blinkTimer = 0;
+					SetPlatformStatus(false);
+
+					if(respawnAfterTime.HasValue)
+                    {
+						Invoke(nameof(Respawn), respawnAfterTime.Value);
+                    }
 				}
 			}
 			if (exploded)
@@ -119,6 +112,31 @@ public class FallingPlatform : Platform
 				}
 			}
 		}
+	}
+
+	private void Respawn()
+    {
+		SetPlatformStatus(true);
+
+	}
+
+	private void SetPlatformStatus(bool status)
+    {
+		GetComponent<Collider>().enabled = status;
+		foreach (Transform child in transform)
+		{
+			StickyPlatform sp = child.gameObject.GetComponent<StickyPlatform>();
+			if (sp != null)
+			{
+				sp.ResetCollisions();
+				sp.enabled = status;
+			}
+			child.gameObject.SetActive(status);
+		}
+		activated = false;
+		exploded = !status;
+		timer = 0;
+		blinkTimer = 0;
 	}
 	
 	IEnumerator Blink()

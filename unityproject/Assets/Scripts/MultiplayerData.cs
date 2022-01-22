@@ -27,7 +27,7 @@ public class MultiplayerData : MonoBehaviour
             AudioListener audioListener = cameraController.gameObject.GetComponent<AudioListener>();
             if(audioListener != null)
             {
-                audioListener.enabled = false;
+                DestroyImmediate(audioListener);
             }
         }
 
@@ -61,6 +61,21 @@ public class MultiplayerData : MonoBehaviour
     void OnCameraMovement(InputValue value)
     {
         cameraController?.OnCameraMovement(value);
+    }
+
+    void OnCameraZoomOut()
+    {
+        cameraController.OnCameraZoomOut();
+    }
+
+    void OnCameraZoomIn()
+    {
+        cameraController.OnCameraZoomIn();
+    }
+
+    void OnCameraZoomInMouseScroll()
+    {
+        OnCameraZoomInMouseScroll();
     }
 
     void OnPause()

@@ -31,6 +31,8 @@ public class CameraController : MonoBehaviour
 	private float mouseX = 0;
 	private float mouseY = 0;
 
+	private float zoomModifier = 0f;
+
 	void Start()
 	{
 		if (!PlayerPrefs.HasKey("xSensitivity"))
@@ -63,7 +65,9 @@ public class CameraController : MonoBehaviour
 
 			Quaternion rotation = Quaternion.Euler(y, x, 0);
 
-			distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5 * mouseSensitivity, distanceMin, distanceMax);
+			//distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5 * mouseSensitivity, distanceMin, distanceMax);
+			distance = Mathf.Clamp(distance - (zoomModifier * 0.2f * mouseSensitivity), distanceMin, distanceMax);
+			zoomModifier = 0f;
 
 			Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
 			Vector3 position = rotation * negDistance + target.position;
@@ -120,5 +124,28 @@ public class CameraController : MonoBehaviour
 		Vector2 direction = value.Get<Vector2>();
 		mouseX = direction.x;
 		mouseY = direction.y;
+	}
+
+	public void OnCameraZoomIn()
+    {
+		zoomModifier = -1;
+	}
+
+	public void OnCameraZoomOut()
+	{
+		zoomModifier = 1;
+	}
+
+	void OnCameraZoomInMouseScroll()
+	{
+		float value = Input.GetAxis("Mouse ScrollWheel");
+		if (value < 0)
+		{
+			OnCameraZoomIn();
+		}
+		else if (value > 0)
+		{
+			OnCameraZoomOut();
+		}
 	}
 }
