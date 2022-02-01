@@ -148,4 +148,9 @@ public class CameraController : MonoBehaviour
 			OnCameraZoomOut();
 		}
 	}
+
+	void OnCameraLookFront()
+    {
+		this.transform.forward = playerMovement.transform.forward;
+    }
 }

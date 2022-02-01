@@ -47,9 +47,12 @@ public class AreaSpawner : MonoBehaviour
         {
             if(!exclusionZones.Contains(hit.collider))
             {
-                GameObject obj = Instantiate(item, hit.point, Quaternion.identity);
-                obj.SetActive(true);
-                return true;
+                if(item != null)
+                {
+                    GameObject obj = Instantiate(item, hit.point, Quaternion.identity);
+                    obj.SetActive(true);
+                    return true;
+                }
             }
         }
         return false;

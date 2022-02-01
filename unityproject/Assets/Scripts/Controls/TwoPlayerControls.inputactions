@@ -92,6 +92,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "CameraLookFront",
+                    "type": "Button",
+                    "id": "7687ff45-2505-470c-8ae1-b7b97af893ba",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -554,6 +562,28 @@
                     "processors": "",
                     "groups": "Keyboard + Mouse",
                     "action": "CameraZoomInMouseScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82f90a37-c558-4c5f-a7b5-9b4e1058c89d",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard + Mouse",
+                    "action": "CameraLookFront",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6f184063-8bb9-46a9-9fff-7e349923fb4c",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "CameraLookFront",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
